@@ -1,8 +1,13 @@
 package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author ZedFeorius
@@ -23,5 +28,65 @@ public class IndexController {
     @RequestMapping("/index")
     public String toIndex(){
         return "redirect:/";
+    }
+
+    @RequestMapping("teacher")
+    public String teacher(){
+        return "teacher/teacher";
+    }
+
+    @RequestMapping("update_addteacher")
+    public String update_addteacher(){
+        return "teacher/update_addteacher";
+    }
+
+    @RequestMapping("showteacher")
+    public String showteacher(){
+        return "teacher/showteacher";
+    }
+
+
+
+    @RequestMapping("student")
+    public String student(){
+        return "student/student";
+    }
+
+    @RequestMapping("update_addstudent")
+    public String update_addstudent(){
+        return "student/update_addstudent";
+    }
+
+    @RequestMapping("showstudent")
+    public String showstudent(){
+        return "student/showstudent";
+    }
+
+
+
+
+    //学生出勤页面请求
+    @RequestMapping("/toStuAttendance")
+    public String toStuAttendance(){
+        return "work/studentAttendance";
+    }
+    //学生出勤详情页面请求f
+    @RequestMapping("/toStuAttendanceDetail")
+    public String toStuAttendanceDetail(String className, String total, String late, String absence, String date, Model model) throws ParseException {
+        model.addAttribute("className", className);
+        model.addAttribute("total", total);
+        model.addAttribute("late", late);
+        model.addAttribute("absence", absence);
+
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        Date date1=sdf.parse(date);
+        model.addAttribute("date", date1);
+        return "work/studentAttendanceDetail";
+    }
+
+    //学社出勤页面请求
+    @RequestMapping("/toMembersAttendance")
+    public String toMembersAttendance(){
+        return "work/MembersAttendance";
     }
 }

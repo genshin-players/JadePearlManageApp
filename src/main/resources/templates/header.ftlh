@@ -797,8 +797,8 @@
                         <span class="nav-text">用户管理</span>
                     </a>
                         <ul aria-expanded="false">
-                            <li><a href="">教师管理</a></li>
-                            <li><a href="index-2.html">学生管理</a></li>
+                            <li><a href="http://localhost:8080/teacher">教师管理</a></li>
+                            <li><a href="http://localhost:8080/student">学生管理</a></li>
                         </ul>
 
                     </li>
@@ -816,9 +816,10 @@
                         <i class="flaticon-041-graph"></i>
                         <span class="nav-text">学社工作</span>
                     </a>
+                        <#---->
                         <ul aria-expanded="false">
-                            <li><a href="chart-flot.html">学社出勤</a></li>
-                            <li><a href="chart-morris.html">学生出勤</a></li>
+                            <li><a href="http://localhost:8080/toMembersAttendance">学社出勤</a></li>
+                            <li><a href="http://localhost:8080/toStuAttendance">学生出勤</a></li>
                             <li><a href="chart-chartjs.html">学社工作安排</a></li>
                         </ul>
                     </li>
