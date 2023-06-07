@@ -818,8 +818,8 @@
                     </a>
                         <#---->
                         <ul aria-expanded="false">
-                            <li><a href="chart-flot.html">学社出勤</a></li>
-                            <li><a href="chart-morris.html">学生出勤</a></li>
+                            <li><a href="http://localhost:8080/toMembersAttendance">学社出勤</a></li>
+                            <li><a href="http://localhost:8080/toStuAttendance">学生出勤</a></li>
                             <li><a href="chart-chartjs.html">学社工作安排</a></li>
                         </ul>
                     </li>
