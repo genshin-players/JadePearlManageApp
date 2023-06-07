@@ -797,8 +797,8 @@
                         <span class="nav-text">用户管理</span>
                     </a>
                         <ul aria-expanded="false">
-                            <li><a href="">教师管理</a></li>
-                            <li><a href="index-2.html">学生管理</a></li>
+                            <li><a href="http://localhost:8080/teacher">教师管理</a></li>
+                            <li><a href="http://localhost:8080/student">学生管理</a></li>
                         </ul>
 
                     </li>
