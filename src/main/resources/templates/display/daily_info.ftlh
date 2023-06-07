@@ -1,0 +1,234 @@
+
+<!--**********************************
+    Content body start
+***********************************-->
+<#include "../header.ftlh">
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="d-flex mb-4 justify-content-between align-items-center flex-wrap">
+                    <div class="table-search">
+                        <div class="input-group search-area mb-xxl-0 mb-4">
+                            <input type="text" class="form-control" placeholder="查询">
+                            <span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
+                        </div>
+                    </div>
+                    <a href="javascript:window.location.href='/display/editor?type=每日一推'" class="btn btn-primary mb-xxl-0 mb-4 "><i class="far fa-file-word me-2"></i>创建每日一推内容</a>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active show" id="All">
+                        <div class="table-responsive">
+                            <table class="table card-table default-table display mb-4 dataTablesCard table-responsive-xl " id="guestTable-all">
+                                <thead>
+                                <tr>
+                                    <th class="bg-none">
+                                        <div class="form-check style-1">
+                                            <input class="form-check-input" type="checkbox" value="" id="checkAll">
+                                        </div>
+                                    </th>
+                                    <th>ID</th>
+                                    <th>标题</th>
+                                    <th>创建时间</th>
+                                    <th>修改时间</th>
+                                    <th>创建者</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-check style-1">
+                                            <input class="form-check-input" type="checkbox" value="">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="media-bx">
+                                            <h4 class="mb-0 mt-1 text-black">1</h4>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <h4 class="mb-0 mt-1 text-black">安倍晋三复活</h4>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <h5>Oct 29th, 2020</h5>
+                                            <span class="fs-14">08:29 AM</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <h5>Oct 31th, 2020</h5>
+                                            <span class="fs-14">08:29 AM</span>
+                                        </div>
+                                    </td>
+                                    <td><a href="javascript:void(0);" class="btn-link">林忆宁</a></td>
+                                    <td>
+                                        <div class="dropdown dropstart">
+                                            <a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                </svg>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="javascript:void(0);">Edit</a>
+                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check style-1">
+                                            <input class="form-check-input" type="checkbox" value="">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="media-bx">
+                                            <h4 class="mb-0 mt-1 text-black">2</h4>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <h4 class="mb-0 mt-1 text-black">肯尼迪被枪击后生还</h4>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <h5>Oct 29th, 2020</h5>
+                                            <span class="fs-14">08:29 AM</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <h5>Oct 31th, 2020</h5>
+                                            <span class="fs-14">08:29 AM</span>
+                                        </div>
+                                    </td>
+                                    <td><a href="javascript:void(0);" class="btn-link">林忆宁</a></td>
+                                    <td>
+                                        <div class="dropdown dropstart">
+                                            <a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                </svg>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="javascript:void(0);">Edit</a>
+                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check style-1">
+                                            <input class="form-check-input" type="checkbox" value="">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="media-bx">
+                                            <h4 class="mb-0 mt-1 text-black">3</h4>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <h4 class="mb-0 mt-1 text-black">美国双子塔重建</h4>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <h5>Oct 29th, 2020</h5>
+                                            <span class="fs-14">08:29 AM</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <h5>Oct 31th, 2020</h5>
+                                            <span class="fs-14">08:29 AM</span>
+                                        </div>
+                                    </td>
+                                    <td><a href="javascript:void(0);" class="btn-link">林忆宁</a></td>
+                                    <td>
+                                        <div class="dropdown dropstart">
+                                            <a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                </svg>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="javascript:void(0);">Edit</a>
+                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--**********************************
+    Content body end
+***********************************-->
+
+
+
+<!--**********************************
+    Footer start
+***********************************-->
+<div class="footer">
+
+    <div class="copyright">
+        <p>Copyright &copy; 2021.Company name All rights reserved.<a target="_blank" href="https://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+    </div>
+</div>
+<!--**********************************
+    Footer end
+***********************************-->
+
+<!--**********************************
+   Support ticket button start
+***********************************-->
+
+<!--**********************************
+   Support ticket button end
+***********************************-->
+
+
+</div>
+<!--**********************************
+    Main wrapper end
+***********************************-->
+
+<!--**********************************
+    Scripts
+***********************************-->
+<!-- Required vendors -->
+<script src="/js/global.min.js"></script>
+<script src="/js/jquery.nice-select.min.js"></script>
+
+<!-- Datatable -->
+<script src="/js/jquery.dataTables.min.js"></script>
+<script src="/js/datatables.init.js"></script>
+
+<script src="/js/custom.min.js"></script>
+<script src="/js/deznav-init.js"></script>
+<script src="/js/demo.js"></script>
+<script src="/js/styleSwitcher.js"></script>
+
+</body>
+</html>

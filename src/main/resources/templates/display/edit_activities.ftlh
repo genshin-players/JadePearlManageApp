@@ -1,0 +1,137 @@
+
+<!--**********************************
+    Content body start
+***********************************-->
+<#include "../header.ftlh">
+<div class="content-body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">活动编辑</h4>
+						</div>
+						<div class="card-body">
+							<div class="form-validation">
+								<form class="needs-validation" novalidate="">
+									<div class="row">
+										<div class="col-xl-12">
+											<div class="mb-3 row">
+												<label class="col-lg-4 col-form-label" for="signupNum">报名人数
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-6">
+													<input type="text" class="form-control" id="signupNum" placeholder="请输入报名人数" required="">
+													<div class="invalid-feedback">
+														请输入报名人数
+													</div>
+												</div>
+											</div>
+											<div class="mb-3 row">
+												<label class="col-lg-4 col-form-label" for="startTime">开始报名时间 <span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-6">
+													<input type="text" class="form-control" id="startTime" placeholder="Your valid email.." required="">
+													<div class="invalid-feedback">
+
+													</div>
+												</div>
+											</div>
+											<div class="mb-3 row">
+												<label class="col-lg-4 col-form-label" for="endTime">报名截止时间
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-6">
+													<input type="password" class="form-control" id="endTime" placeholder="Choose a safe one.." required="">
+													<div class="invalid-feedback">
+														Please enter a password.
+													</div>
+												</div>
+											</div>
+											<div class="mb-3 row">
+												<label class="col-lg-4 col-form-label" for="validationCustom03">活动内容
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-6">
+													<button type="button" onclick="toEditor()" class="btn btn-primary">编辑活动内容</button>
+												</div>
+											</div>
+										</div>
+										<div class="mb-3 row">
+											<div class="col-lg-8 ms-auto">
+												<button type="submit" class="btn btn-primary">保存</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<!--**********************************
+    Content body end
+***********************************-->
+
+
+
+<!--**********************************
+    Footer start
+***********************************-->
+<div class="footer">
+
+	<div class="copyright">
+		<p>Copyright &copy; 2021.Company name All rights reserved.<a target="_blank" href="https://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+	</div>
+</div>
+<!--**********************************
+    Footer end
+***********************************-->
+
+<!--**********************************
+   Support ticket button start
+***********************************-->
+
+<!--**********************************
+   Support ticket button end
+***********************************-->
+
+
+</div>
+<!--**********************************
+    Main wrapper end
+***********************************-->
+
+<!--**********************************
+    Scripts
+***********************************-->
+<!-- Required vendors -->
+<script src="/js/global.min.js"></script>
+<script src="/js/jquery.nice-select.min.js"></script>
+
+<!-- Datatable -->
+<script src="/js/jquery.dataTables.min.js"></script>
+<script src="/js/datatables.init.js"></script>
+
+<script src="/js/custom.min.js"></script>
+<script src="/js/deznav-init.js"></script>
+<script src="/js/demo.js"></script>
+<script src="/js/styleSwitcher.js"></script>
+<script>
+	function toEditor(){
+		let signupNum = document.getElementById("signupNum").value;
+		let startTime = document.getElementById("startTime").value;
+		let endTime = document.getElementById("endTime").value;
+		let str = "signupNum="+signupNum+"&startTime="+startTime+"&endTime="+endTime;
+		window.location.href = "/display/editor?type=学社活动&"+str;
+	}
+</script>
+
+</body>
+</html>

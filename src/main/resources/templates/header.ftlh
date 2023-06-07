@@ -13,12 +13,12 @@
     <!-- PAGE TITLE HERE -->
     <title>Innap : Hotel Admin Template</title>
 
-    <link rel="stylesheet" href="css/chartist.min.css">
-    <link href="css/nice-select.css" rel="stylesheet">
-    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/chartist.min.css">
+    <link href="/css/nice-select.css" rel="stylesheet">
+    <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <!-- Style css -->
-    <link href="css/style.css" rel="stylesheet">
-
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/jquery.dataTables.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -756,7 +756,7 @@
                             </li>
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                                    <img src="image/user_icon.jpg" alt="">
+                                    <img src="/image/user_icon.jpg" alt="">
                                     <div class="header-info ms-3">
                                         <span>林忆宁</span>
                                         <small>社长</small>
@@ -807,9 +807,9 @@
                         <span class="nav-text">活动管理</span>
                     </a>
                         <ul aria-expanded="false">
-                            <li><a href="app-profile.html">每日一推</a></li>
-                            <li><a href="post-details.html">内部活动</a></li>
-                            <li><a href="app-calender.html">对外展览</a></li>
+                            <li><a href="/display/daily_info">每日一推</a></li>
+                            <li><a href="/display/inner_activities">内部活动</a></li>
+                            <li><a href="/display/external_performance">对外展览</a></li>
                         </ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
