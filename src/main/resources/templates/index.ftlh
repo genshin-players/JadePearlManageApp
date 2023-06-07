@@ -174,7 +174,7 @@
 									<div class="col-xl-6 col-sm-6">
 										<div class="dz-image-bx rounded">
 											<div class="dz-media active me-3">
-												<img class="rounded" src="/assets/picture/1.jpg" alt="">
+												<img class="rounded" src="picture/1.jpg" alt="">
 											</div>
 											<div class="dz-info">
 												<h5>Samantha Humble</h5>
@@ -189,7 +189,7 @@
 									<div class="col-xl-6 col-sm-6">
 										<div class="dz-image-bx rounded">
 											<div class="dz-media active me-3">
-												<img class="rounded" src="/assets/picture/2.jpg" alt="">
+												<img class="rounded" src="picture/2.jpg" alt="">
 											</div>
 											<div class="dz-info">
 												<h5>Louise Marquee</h5>
@@ -204,7 +204,7 @@
 									<div class="col-xl-6 col-sm-6">
 										<div class="dz-image-bx rounded">
 											<div class="dz-media me-3">
-												<img class="rounded" src="/assets/picture/3.jpg" alt="">
+												<img class="rounded" src="picture/3.jpg" alt="">
 											</div>
 											<div class="dz-info">
 												<h5>Richard Smile</h5>
@@ -219,7 +219,7 @@
 									<div class="col-xl-6 col-sm-6">
 										<div class="dz-image-bx rounded">
 											<div class="dz-media me-3">
-												<img class="rounded" src="/assets/picture/4.jpg" alt="">
+												<img class="rounded" src="picture/4.jpg" alt="">
 											</div>
 											<div class="dz-info">
 												<h5>Bella Yen</h5>
@@ -283,7 +283,7 @@
 									</div>
 									<div class="card-body customer-review-bx p-0 dz-scroll loadmore-content" id="customerReviewContent">
 										<div class="dz-review-bx">
-											<img class="dz-media me-4" src="/assets/picture/1.jpg" alt="">
+											<img class="dz-media me-4" src="picture/1.jpg" alt="">
 											<div class="dz-info">
 												<div class="dz-name mb-3">
 													<div>
@@ -306,7 +306,7 @@
 											</div>
 										</div>
 										<div class="dz-review-bx">
-											<img class="dz-media me-4" src="/assets/picture/2.jpg" alt="">
+											<img class="dz-media me-4" src="picture/2.jpg" alt="">
 											<div class="dz-info">
 												<div class="dz-name mb-3">
 													<div>
@@ -329,7 +329,7 @@
 											</div>
 										</div>
 										<div class="dz-review-bx">
-											<img class="dz-media me-4" src="/assets/picture/3.jpg" alt="">
+											<img class="dz-media me-4" src="picture/3.jpg" alt="">
 											<div class="dz-info">
 												<div class="dz-name mb-3">
 													<div>
@@ -352,7 +352,7 @@
 											</div>
 										</div>
 										<div class="dz-review-bx">
-											<img class="dz-media me-4" src="/assets/picture/1.jpg" alt="">
+											<img class="dz-media me-4" src="picture/1.jpg" alt="">
 											<div class="dz-info">
 												<div class="dz-name mb-3">
 													<div>
@@ -422,25 +422,25 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="/assets/js/global.min.js"></script>
-	<script src="/assets/js/Chart.bundle.min.js"></script>
-	<script src="/assets/js/jquery.nice-select.min.js"></script>
+    <script src="js/global.min.js"></script>
+	<script src="js/Chart.bundle.min.js"></script>
+	<script src="js/jquery.nice-select.min.js"></script>
 	
 	<!-- Chart piety plugin files -->
-    <script src="/assets/js/jquery.peity.min.js"></script>
+    <script src="js/jquery.peity.min.js"></script>
 	
 	<!-- Apex Chart -->
-	<script src="/assets/js/apexchart.js"></script>
+	<script src="js/apexchart.js"></script>
 	
-	<script src="/assets/js/moment.js"></script>
-	<script src="/assets/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="js/moment.js"></script>
+	<script src="js/bootstrap-datetimepicker.min.js"></script>
 	
 	<!-- Dashboard 1 -->
-	<script src="/assets/js/dashboard-1.js"></script>
-    <script src="/assets/js/custom.min.js"></script>
-	<script src="/assets/js/deznav-init.js"></script>
-	<script src="/assets/js/demo.js"></script>
-    <script src="/assets/js/styleSwitcher.js"></script>
+	<script src="js/dashboard-1.js"></script>
+    <script src="js/custom.min.js"></script>
+	<script src="js/deznav-init.js"></script>
+	<script src="js/demo.js"></script>
+    <script src="js/styleSwitcher.js"></script>
 	<script>
 		$(function () {
 			$('#datetimepicker').datetimepicker({
