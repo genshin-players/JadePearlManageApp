@@ -816,6 +816,7 @@
                         <i class="flaticon-041-graph"></i>
                         <span class="nav-text">学社工作</span>
                     </a>
+                        <#---->
                         <ul aria-expanded="false">
                             <li><a href="chart-flot.html">学社出勤</a></li>
                             <li><a href="chart-morris.html">学生出勤</a></li>
