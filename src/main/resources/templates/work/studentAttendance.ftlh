@@ -102,7 +102,7 @@
                 <div class="col-xl-3">
                     <div class="card text-white bg-success">
                         <div class="card-header">
-                            <a  class="card-title text-white" style="font-weight: bolder;font-size: 25px">老灯班<span>(全)</span></a>
+                            <a  class="card-title text-white" style="font-weight: bolder;font-size: 25px">老灯班（爆金币咯）<span>(全)</span></a>
                             <span class="text-dark" style="font-weight: bolder;font-size: 10px">2023-12-12</span>
                         </div>
                         <div class="card-body mb-0">

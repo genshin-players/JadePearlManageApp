@@ -46,7 +46,6 @@ public class IndexController {
     }
 
 
-
     @RequestMapping("student")
     public String student(){
         return "student/student";
@@ -61,8 +60,6 @@ public class IndexController {
     public String showstudent(){
         return "student/showstudent";
     }
-
-
 
 
     //学生出勤页面请求
