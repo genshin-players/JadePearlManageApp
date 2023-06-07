@@ -752,14 +752,14 @@
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div>`
                             </li>
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                                    <img src="picture/pic1.jpg" alt="">
+                                    <img src="image/user_icon.jpg" alt="">
                                     <div class="header-info ms-3">
-                                        <span>John Doe</span>
-                                        <small>Superadmin</small>
+                                        <span>林忆宁</span>
+                                        <small>社长</small>
                                     </div>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
@@ -861,10 +861,11 @@
                         </ul>
                     </li>
                 </ul>
-                <div class="copyright">
+                <#--不确定是不是要这个-->
+                <#--<div class="copyright">
                     <p><strong>Innap Hotel Admin</strong> © 2021 All Rights Reserved</p>
                     <p class="fs-12">Made with <span class="heart"></span> by DexignZone</p>
-                </div>
+                </div>-->
             </div>
         </div>
         <!--**********************************
