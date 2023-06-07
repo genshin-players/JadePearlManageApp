@@ -30,6 +30,41 @@ public class IndexController {
         return "redirect:/";
     }
 
+    @RequestMapping("teacher")
+    public String teacher(){
+        return "teacher/teacher";
+    }
+
+    @RequestMapping("update_addteacher")
+    public String update_addteacher(){
+        return "teacher/update_addteacher";
+    }
+
+    @RequestMapping("showteacher")
+    public String showteacher(){
+        return "teacher/showteacher";
+    }
+
+
+
+    @RequestMapping("student")
+    public String student(){
+        return "student/student";
+    }
+
+    @RequestMapping("update_addstudent")
+    public String update_addstudent(){
+        return "student/update_addstudent";
+    }
+
+    @RequestMapping("showstudent")
+    public String showstudent(){
+        return "student/showstudent";
+    }
+
+
+
+
     //学生出勤页面请求
     @RequestMapping("/toStuAttendance")
     public String toStuAttendance(){
