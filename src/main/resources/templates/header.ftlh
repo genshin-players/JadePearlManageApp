@@ -593,7 +593,7 @@
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
                             <div class="dashboard_bar">
-                                Dashboard
+                                天下第一管理系统
                             </div>
                         </div>
                         <ul class="navbar-nav header-right">
@@ -819,8 +819,8 @@
                         <#---->
                         <ul aria-expanded="false">
                             <li><a href="http://localhost:8080/toMembersAttendance">学社出勤</a></li>
-                            <li><a href="http://localhost:8080/toStuAttendance">学生出勤</a></li>
-                            <li><a href="chart-chartjs.html">学社工作安排</a></li>
+                            <li><a href="http://localhost:8080/toStuAttendance">班级出勤</a></li>
+                            <li><a href="http://localhost:8080/toAssignWork">学社工作安排</a></li>
                         </ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
