@@ -215,7 +215,7 @@
 <script>
     function toAssignOneWork() {
         var memName=$("[name=memName]").val();
-        window.location.href="http://localhost:8080/toAssignOneWork?memName="+memName;
+        window.location.href="http://localhost:8080/toAssignWork?memName="+memName;
 
     }
 </script>
