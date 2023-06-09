@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package cn.bdqn.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,14 +10,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * @author ZedFeorius
- * @version 1.0.0
- * @date 06 07 2023  15:45:22
- * @packageName com.example.demo.controller
- * @className IndexController
- * @describe TODO
- */
 @Controller
 @CrossOrigin
 public class IndexController {
@@ -34,7 +26,7 @@ public class IndexController {
 
     @RequestMapping("teacher")
     public String teacher(){
-        return "teacher/show_teacher";
+        return "teacher/teacher";
     }
 
     @RequestMapping("update_addteacher")
@@ -50,7 +42,7 @@ public class IndexController {
 
     @RequestMapping("student")
     public String student(){
-        return "student/show_student";
+        return "student/student";
     }
 
     @RequestMapping("update_addstudent")
