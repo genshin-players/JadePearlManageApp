@@ -212,7 +212,7 @@
 
         var dateNow=pageDate.getFullYear()+"-"+(pageDate.getUTCMonth()+1)+"-"+pageDate.getDate();
 
-        window.location.href="http://localhost:8080/toMemAttendanceDetail?memName="+memName+"&date="+dateNow;
+        window.location.href="/toMemAttendanceDetail?memName="+memName+"&date="+dateNow;
     }
 
 

@@ -25,7 +25,7 @@
                     <div class="card" style="box-shadow: 10px 10px 20px 10px rgba(0, 0, 255, .2);opacity: 0.8 ">
                         <div class="card-header">
                             <h4 class="card-title"><span style="font-weight: bolder;font-size: 20px">${className}${date?string("yyyy-MM-dd")}</span>出勤详情</h4>
-                            <button class="btn btn-info" onclick="javascript:window.location.href='http://localhost:8080/toEditStudentAttendance';">添加出勤记录</button>
+                            <button class="btn btn-info" onclick="javascript:window.location.href='/toEditStudentAttendance';">添加出勤记录</button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -59,7 +59,7 @@
                                                     <svg width="24px" height="24px" viewbox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
                                                 </div>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="http://localhost:8080/toEditStudentAttendance">修改记录</a>
+                                                    <a class="dropdown-item" href="/toEditStudentAttendance">修改记录</a>
                                                     <a class="dropdown-item" href="#">删除记录</a>
                                                 </div>
                                             </div>
@@ -83,7 +83,7 @@
                                                 </div>
                                                 <div class="dropdown-menu dropdown-menu-end">
                                                     <a class="dropdown-item" href="#">添加记录</a>
-                                                    <a class="dropdown-item" href="http://localhost:8080/toEditStudentAttendance">修改记录</a>
+                                                    <a class="dropdown-item" href="/toEditStudentAttendance">修改记录</a>
                                                     <a class="dropdown-item" href="#">删除记录</a>
                                                 </div>
                                             </div>
@@ -107,7 +107,7 @@
                                                 </div>
                                                 <div class="dropdown-menu dropdown-menu-end">
                                                     <a class="dropdown-item" href="#">添加记录</a>
-                                                    <a class="dropdown-item" href="http://localhost:8080/toEditStudentAttendance">修改记录</a>
+                                                    <a class="dropdown-item" href="/toEditStudentAttendance">修改记录</a>
                                                     <a class="dropdown-item" href="#">删除记录</a>
                                                 </div>
                                             </div>
@@ -131,7 +131,7 @@
                                                 </div>
                                                 <div class="dropdown-menu dropdown-menu-end">
                                                     <a class="dropdown-item" href="#">添加记录</a>
-                                                    <a class="dropdown-item" href="http://localhost:8080/toEditStudentAttendance">修改记录</a>
+                                                    <a class="dropdown-item" href="/toEditStudentAttendance">修改记录</a>
                                                     <a class="dropdown-item" href="#">删除记录</a>
                                                 </div>
                                             </div>
@@ -155,7 +155,7 @@
                                                 </div>
                                                 <div class="dropdown-menu dropdown-menu-end">
                                                     <a class="dropdown-item" href="#">添加记录</a>
-                                                    <a class="dropdown-item" href="http://localhost:8080/toEditStudentAttendance">修改记录</a>
+                                                    <a class="dropdown-item" href="/toEditStudentAttendance">修改记录</a>
                                                     <a class="dropdown-item" href="#">删除记录</a>
                                                 </div>
                                             </div>
@@ -179,7 +179,7 @@
                                                 </div>
                                                 <div class="dropdown-menu dropdown-menu-end">
                                                     <a class="dropdown-item" href="#">添加记录</a>
-                                                    <a class="dropdown-item" href="http://localhost:8080/toEditStudentAttendance">修改记录</a>
+                                                    <a class="dropdown-item" href="/toEditStudentAttendance">修改记录</a>
                                                     <a class="dropdown-item" href="#">删除记录</a>
                                                 </div>
                                             </div>

@@ -12,6 +12,7 @@
         <module>register</module>
         <module>gatway</module>
         <module>page</module>
+        <module>work</module>
     </modules>
 
     <parent>

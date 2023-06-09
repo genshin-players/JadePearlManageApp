@@ -14,7 +14,7 @@
                             <span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
                         </div>
                     </div>
-                    <a href="http://localhost:8080/update_addstudent" class="btn btn-primary mb-xxl-0 mb-4 "><i class="far fa-file-word me-2"></i>添加学生</a>
+                    <a href="/update_addstudent" class="btn btn-primary mb-xxl-0 mb-4 "><i class="far fa-file-word me-2"></i>添加学生</a>
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane active show" id="All">
@@ -97,7 +97,7 @@
                                                 </svg>
                                             </a>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="http://localhost:8080/update_addstudent">修改</a>
+                                                <a class="dropdown-item" href="/update_addstudent">修改</a>
                                                 <a class="dropdown-item" href="#">删除</a>
                                             </div>
                                         </div>
@@ -161,7 +161,7 @@
                                                 </svg>
                                             </a>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="http://localhost:8080/update_addstudent">修改</a>
+                                                <a class="dropdown-item" href="/update_addstudent">修改</a>
                                                 <a class="dropdown-item" href="#">删除</a>
                                             </div>
                                         </div>
@@ -225,7 +225,7 @@
                                                 </svg>
                                             </a>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="http://localhost:8080/update_addstudent">修改</a>
+                                                <a class="dropdown-item" href="/update_addstudent">修改</a>
                                                 <a class="dropdown-item" href="#">删除</a>
                                             </div>
                                         </div>
@@ -289,7 +289,7 @@
                                                 </svg>
                                             </a>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="http://localhost:8080/update_addstudent">修改</a>
+                                                <a class="dropdown-item" href="/update_addstudent">修改</a>
                                                 <a class="dropdown-item" href="#">删除</a>
                                             </div>
                                         </div>
@@ -353,7 +353,7 @@
                                                 </svg>
                                             </a>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="http://localhost:8080/update_addstudent">修改</a>
+                                                <a class="dropdown-item" href="/update_addstudent">修改</a>
                                                 <a class="dropdown-item" href="#">删除</a>
                                             </div>
                                         </div>

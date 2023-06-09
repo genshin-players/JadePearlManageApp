@@ -213,7 +213,7 @@
 
         var dateNow=pageDate.getFullYear()+"-"+(pageDate.getUTCMonth()+1)+"-"+pageDate.getDate();
 
-        window.location.href="http://localhost:8080/toStuAttendanceDetail?className="+className+"&total="+total+"&late="+late+"&absence="+absence+"&date="+dateNow;
+        window.location.href="/toStuAttendanceDetail?className="+className+"&total="+total+"&late="+late+"&absence="+absence+"&date="+dateNow;
     }
 
 
