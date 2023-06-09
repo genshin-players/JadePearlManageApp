@@ -20,14 +20,15 @@
     <div class="content-body">
         <div class="container-fluid">
 
-            <div class="row page-titles">
+            <div class="row page-titles header-panel">
                 <ol class="text-center">
                     <button id="prevDay" class="btn btn-info" onclick="prevDay()">上一日</button>
                     <span id="workTime" class="text-warning text" style="font-weight: bolder; font-size: 30px">2023-12-12</span>
                     <button id="nextDay" class="btn btn-info" onclick="nextDay()">下一日</button>
                 </ol>
+                <hr style="height: 2px">
             </div>
-
+            <#--<hr style="height: 2px">-->
             <div class="row">
 
                 <div class="col-xl-3">
