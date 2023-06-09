@@ -1,0 +1,10 @@
+
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+<
+work/pom.xml,a\b\ab04a63c6b6bb37ab6a4fc5ed08574c3d9970771
+B
+activities/pom.xml,7\9\79941731218911e92fc99cbb695587dbd3686060
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
