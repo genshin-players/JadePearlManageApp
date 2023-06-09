@@ -32,7 +32,7 @@ public class IndexController {
 
     @RequestMapping("teacher")
     public String teacher(){
-        return "teacher/teacher";
+        return "teacher/show_teacher";
     }
 
     @RequestMapping("update_addteacher")
@@ -48,7 +48,7 @@ public class IndexController {
 
     @RequestMapping("student")
     public String student(){
-        return "student/student";
+        return "student/show_student";
     }
 
     @RequestMapping("update_addstudent")
