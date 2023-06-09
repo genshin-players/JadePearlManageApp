@@ -797,8 +797,8 @@
                         <span class="nav-text">用户管理</span>
                     </a>
                         <ul aria-expanded="false">
-                            <li><a href="http://localhost:8080/teacher">教师管理</a></li>
-                            <li><a href="http://localhost:8080/student">学生管理</a></li>
+                            <li><a href="/teacher">教师管理</a></li>
+                            <li><a href="/student">学生管理</a></li>
                         </ul>
 
                     </li>
@@ -818,9 +818,9 @@
                     </a>
                         <#---->
                         <ul aria-expanded="false">
-                            <li><a href="http://localhost:8080/toMembersAttendance">学社出勤</a></li>
-                            <li><a href="http://localhost:8080/toStuAttendance">班级出勤</a></li>
-                            <li><a href="http://localhost:8080/toAssignWork">学社工作安排</a></li>
+                            <li><a href="/toMembersAttendance">学社出勤</a></li>
+                            <li><a href="/toStuAttendance">班级出勤</a></li>
+                            <li><a href="/toAssignWork">学社工作安排</a></li>
                         </ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
