@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>cn.bdqn</groupId>
-    <artifactId>activities</artifactId>
+    <artifactId>display</artifactId>
     <packaging>jar</packaging>
 
     <properties>

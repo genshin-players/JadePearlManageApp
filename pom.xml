@@ -13,7 +13,7 @@
         <module>gatway</module>
         <module>page</module>
         <module>work</module>
-        <module>activities</module>
+        <module>display</module>
     </modules>
 
     <parent>
