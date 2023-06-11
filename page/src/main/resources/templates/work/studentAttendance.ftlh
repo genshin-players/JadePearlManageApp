@@ -49,9 +49,8 @@
                                     class="card text-white bg-warning"
                                 </#if>
 
-
                                     onclick="toDetailPage(this)"
-                                 data_class="小王班" data_total="100" data_late="10" data_absence="10">
+                                 data_classId="${card.classes.id}" data_attendanceDate="${pageDate}" >
                                 <div class="card-header">
                                     <a  class="card-title text-white" style="font-weight: bolder;font-size: 25px">${card.classes.name}  <span><#if card.attendanceNumber==card.classSize>(全)<#else>(缺)</#if>
                                         <br><span class="text-dark" style="font-weight: bolder;font-size: 10px">${card.attendanceDate?string('yyyy-MM-dd HH:mm:ss')}</span>
@@ -125,12 +124,13 @@
     Scripts
 ***********************************-->
 <!-- Required vendors -->
-<script src="js/global.min.js"></script>
-<script src="js/jquery.nice-select.min.js"></script>
-<script src="js/custom.min.js"></script>
-<script src="js/deznav-init.js"></script>
-<script src="js/demo.js"></script>
-<script src="js/styleSwitcher.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.js"></script>
+<script src="/js/global.min.js"></script>
+<script src="/js/jquery.nice-select.min.js"></script>
+<script src="/js/custom.min.js"></script>
+<script src="/js/deznav-init.js"></script>
+<script src="/js/demo.js"></script>
+<script src="/js/styleSwitcher.js"></script>
 
 <script>
     //custom select box
@@ -162,15 +162,9 @@
 
 //卡片点击时间 去详情页面a
     function toDetailPage(t) {
-
-        var className=t.getAttribute("data_class");
-        var total=t.getAttribute("data_total");
-        var late=t.getAttribute("data_late");
-        var absence=t.getAttribute("data_absence");
-
-        //var dateNow=pageDate.getFullYear()+"-"+(pageDate.getUTCMonth()+1)+"-"+pageDate.getDate();
-
-        //window.location.href="/toStuAttendanceDetail?className="+className+"&total="+total+"&late="+late+"&absence="+absence+"&date="+dateNow;
+        var classId=t.getAttribute("data_classId");
+        var attendanceDate=t.getAttribute("data_attendanceDate");
+        window.location.href="http://localhost:8003/toStuAttendanceDetail?attendanceDate="+attendanceDate+"&classId="+classId;
     }
 
 

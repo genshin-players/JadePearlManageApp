@@ -10,6 +10,7 @@ import cn.bdqn.mapper.ClassesMapper;
 import cn.bdqn.mapper.UsersMapper;
 import cn.bdqn.service.AttendenceService;
 import cn.bdqn.vo.ClassAttendanceCardInfoVO;
+import cn.bdqn.vo.ClassAttendanceDetailInfoVO;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,5 +108,39 @@ public class AttendenceServiceImpl extends ServiceImpl<AttendenceMapper, Attende
 
 
         return classAttendanceCardInfoList;
+    }
+
+
+    /**
+     * 班级出勤详情页面展示的信息
+     *
+     * @param attendanceDate 出勤日期
+     * @param classId        班级编号
+     * @return 信息集合
+     */
+    @Override
+    public List<ClassAttendanceDetailInfoVO> getClassAttendanceDetailInfo(String attendanceDate, Integer classId) {
+        //查询该日期该班级所有学生的出勤记录
+        List<Attendence> attendances= attendenceMapper.selectList(
+                new QueryWrapper<Attendence>().like("date",attendanceDate+"%").eq("class_id",classId));
+        //创建集合用于存储每个学生的信息
+        List<ClassAttendanceDetailInfoVO> detailInfoVOList=new ArrayList<>();
+
+        for(Attendence a:attendances){
+            ClassAttendanceDetailInfoVO detailVO=new ClassAttendanceDetailInfoVO();
+            //出勤记录保存
+            detailVO.setAttendence(a);
+            //学生保存
+            detailVO.setStudent(usersMapper.selectById(a.getStudentId()));
+            //班级信息保存
+            Classes c=classesMapper.selectById(a.getClassId());
+            detailVO.setClasses(c);
+            //班主任
+            detailVO.setAdviser(usersMapper.selectById(c.getAdviserId()));
+            //汇报人信息保存
+            detailVO.setReportUser(usersMapper.selectById(a.getReportUserId()));
+            detailInfoVOList.add(detailVO);
+        }
+        return detailInfoVOList;
     }
 }
