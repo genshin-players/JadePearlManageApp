@@ -1,6 +1,4 @@
 
-W
-'work/src/main/java/cn/bdqn/WorkApp.java,e\8\e8dc28fa6dd41df287215c7ce87c3f09520ffa94
 `
 0publicFiles/controller/ActivitiesController.java,4\9\496d3464328c793ed835b78de741edd68487a804
 ]
@@ -27,16 +25,3 @@ b
 +publicFiles/controller/RolesController.java,f\8\f8896be21e22c2e4f049e6596c3f22542bdd42af
 ?
 page/.gitignore,f\6\f665e2ab73be7144b69373dd3d758b30ebda98ca
-l
-<page/src/main/java/cn/bdqn/controller/DisplayController.java,e\e\ee5ff9cfd9a8c0673f6171720f6deff7a2a27980
-]
--display/src/main/java/cn/bdqn/DisplayApp.java,a\2\a2643476811853e9cb0e932b9125332be64c785b
-<
-work/pom.xml,a\b\ab04a63c6b6bb37ab6a4fc5ed08574c3d9970771
-?
-display/pom.xml,2\f\2f1b778675269741062e8ef438a644b5f35234bb
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
