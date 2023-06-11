@@ -32,7 +32,7 @@
 												<label class="col-lg-4 col-form-label" for="startTime">开始报名时间 <span class="text-danger">*</span>
 												</label>
 												<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
-													<input type="text" class="form-control" placeholder="2017-06-04" id="mdate">
+													<input type="text" class="form-control mdate" placeholder="2017-06-04">
 												</div>
 												<div class="col-md-6 col-xl-3 col-xxl-6 mb-3">
 													<div class="input-group">
@@ -46,7 +46,7 @@
 													<span class="text-danger">*</span>
 												</label>
 												<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
-													<input type="text" class="form-control" placeholder="2017-06-04" id="mdate">
+													<input type="text" class="form-control mdate" placeholder="2017-06-04">
 												</div>
 												<div class="col-md-6 col-xl-3 col-xxl-6 mb-3">
 													<div class="input-group">
