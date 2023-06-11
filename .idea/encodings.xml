@@ -11,7 +11,9 @@
     <file url="file://$PROJECT_DIR$/register/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/work/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/work/src/main/resources" charset="UTF-8" />
+    <file url="file://E:/IDEA/maven/apache-maven-3.6.1-bin/repository/org/springframework/boot/spring-boot-starter-parent/2.2.5.RELEASE/src/main/resources" charset="UTF-8" />
   </component>
 </project>

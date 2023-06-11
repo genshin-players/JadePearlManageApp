@@ -13,46 +13,31 @@ import java.util.Date;
 @Controller
 @CrossOrigin
 public class IndexController {
-    @RequestMapping("/")
-    public String index(){
-        return "index";
-    }
-
-    @RequestMapping("/index")
-    public String toIndex(){
-        return "redirect:/";
-    }
 
 
-    @RequestMapping("teacher")
-    public String teacher(){
-        return "teacher/teacher";
-    }
+
 
     @RequestMapping("update_addteacher")
     public String update_addteacher(){
         return "teacher/update_addteacher";
     }
 
-    @RequestMapping("showteacher")
+    @RequestMapping("show_teacher")
     public String showteacher(){
-        return "teacher/showteacher";
+        return "teacher/show_teacher";
     }
 
 
-    @RequestMapping("student")
-    public String student(){
-        return "student/student";
-    }
+
 
     @RequestMapping("update_addstudent")
     public String update_addstudent(){
         return "student/update_addstudent";
     }
 
-    @RequestMapping("showstudent")
+    @RequestMapping("show_student")
     public String showstudent(){
-        return "student/showstudent";
+        return "student/show_student";
     }
 
 
