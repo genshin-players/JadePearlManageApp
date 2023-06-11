@@ -31,10 +31,13 @@
 											<div class="mb-3 row">
 												<label class="col-lg-4 col-form-label" for="startTime">开始报名时间 <span class="text-danger">*</span>
 												</label>
-												<div class="col-lg-6">
-													<input type="text" class="form-control" id="startTime" placeholder="Your valid email.." required="">
-													<div class="invalid-feedback">
-
+												<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
+													<input type="text" class="form-control" placeholder="2017-06-04" id="mdate">
+												</div>
+												<div class="col-md-6 col-xl-3 col-xxl-6 mb-3">
+													<div class="input-group">
+														<input class="form-control" id="single-input" value="" placeholder="Now">
+														<button type="button" id="check-minutes" class="btn waves-effect waves-light btn-ft btn-success">点击选择时间</button>
 													</div>
 												</div>
 											</div>
@@ -42,10 +45,13 @@
 												<label class="col-lg-4 col-form-label" for="endTime">报名截止时间
 													<span class="text-danger">*</span>
 												</label>
-												<div class="col-lg-6">
-													<input type="password" class="form-control" id="endTime" placeholder="Choose a safe one.." required="">
-													<div class="invalid-feedback">
-														Please enter a password.
+												<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
+													<input type="text" class="form-control" placeholder="2017-06-04" id="mdate">
+												</div>
+												<div class="col-md-6 col-xl-3 col-xxl-6 mb-3">
+													<div class="input-group">
+														<input class="form-control" id="single-input" value="" placeholder="Now">
+														<button type="button" id="check-minutes" class="btn waves-effect waves-light btn-ft btn-success">点击选择时间</button>
 													</div>
 												</div>
 											</div>
@@ -111,6 +117,7 @@
 <!--**********************************
     Scripts
 ***********************************-->
+
 <!-- Required vendors -->
 <script src="/js/global.min.js"></script>
 <script src="/js/jquery.nice-select.min.js"></script>
@@ -123,6 +130,51 @@
 <script src="/js/deznav-init.js"></script>
 <script src="/js/demo.js"></script>
 <script src="/js/styleSwitcher.js"></script>
+
+
+
+
+
+
+
+<!-- Daterangepicker -->
+<!-- momment js is must -->
+<script src="/js/moment.min.js"></script>
+<script src="/js/daterangepicker.js"></script>
+<!-- clockpicker -->
+<script src="/js/bootstrap-clockpicker.min.js"></script>
+<!-- asColorPicker -->
+<script src="/js/jquery-asColor.min.js"></script>
+<script src="/js/jquery-asGradient.min.js"></script>
+<script src="/js/jquery-asColorPicker.min.js"></script>
+<!-- Material color picker -->
+<script src="/js/bootstrap-material-datetimepicker.js"></script>
+<!-- pickdate -->
+<script src="/js/picker.js"></script>
+<script src="/js/picker.time.js"></script>
+<script src="/js/picker.date.js"></script>
+
+
+
+<!-- Daterangepicker -->
+<script src="/js/bs-daterange-picker-init.js"></script>
+<!-- Clockpicker init -->
+<script src="/js/clock-picker-init.js"></script>
+<!-- asColorPicker init -->
+<script src="/js/jquery-asColorPicker.init.js"></script>
+<!-- Material color picker init -->
+<script src="/js/material-date-picker-init.js"></script>
+<!-- Pickdate -->
+<script src="/js/pickadate-init.js"></script>
+
+
+<script src="/js/jquery.nice-select.min.js"></script>
+
+<script src="/js/custom.min.js"></script>
+<script src="/js/deznav-init.js"></script>
+<script src="/js/demo.js"></script>
+<script src="/js/styleSwitcher.js"></script>
+
 <script>
 	function toEditor(){
 		let signupNum = document.getElementById("signupNum").value;

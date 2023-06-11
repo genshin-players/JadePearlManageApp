@@ -19,6 +19,25 @@
     <!-- Style css -->
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/jquery.dataTables.min.css" rel="stylesheet">
+
+
+    <!-- Daterange picker -->
+    <link href="/css/daterangepicker.css" rel="stylesheet">
+    <!-- Clockpicker -->
+    <link href="/css/bootstrap-clockpicker.min.css" rel="stylesheet">
+    <!-- asColorpicker -->
+    <link href="/css/asColorPicker.min.css" rel="stylesheet">
+    <!-- Material color picker -->
+    <link href="/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
+
+    <!-- Pick date -->
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/default.date.css">
+    <link href="/css/icon.css" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link href="/css/nice-select.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
 </head>
 <body>
 
