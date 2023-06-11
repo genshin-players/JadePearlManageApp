@@ -37,7 +37,7 @@
 												<div class="col-md-6 col-xl-3 col-xxl-6 mb-3">
 													<div class="input-group">
 														<input class="form-control" id="single-input" value="" placeholder="Now">
-														<button type="button" id="check-minutes" class="btn waves-effect waves-light btn-ft btn-success">点击选择时间</button>
+														<button type="button" class="btn waves-effect waves-light btn-ft btn-success check-minutes">点击选择时间</button>
 													</div>
 												</div>
 											</div>
@@ -51,7 +51,7 @@
 												<div class="col-md-6 col-xl-3 col-xxl-6 mb-3">
 													<div class="input-group">
 														<input class="form-control" id="single-input" value="" placeholder="Now">
-														<button type="button" id="check-minutes" class="btn waves-effect waves-light btn-ft btn-success">点击选择时间</button>
+														<button type="button" class="btn waves-effect waves-light btn-ft btn-success check-minutes">点击选择时间</button>
 													</div>
 												</div>
 											</div>
