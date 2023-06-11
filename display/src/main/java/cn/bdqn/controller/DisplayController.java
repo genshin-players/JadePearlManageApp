@@ -29,6 +29,7 @@ import java.util.Map;
  */
 @RestController
 @CrossOrigin
+@RequestMapping("display")
 public class DisplayController {
 
     @Autowired

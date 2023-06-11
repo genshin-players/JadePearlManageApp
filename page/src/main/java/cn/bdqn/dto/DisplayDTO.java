@@ -5,9 +5,11 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -24,7 +26,7 @@ public class DisplayDTO  {
     private String title;
     private Integer displayTypeId;
     private String coverImage;
-    private LocalDateTime createTime;
-    private LocalDateTime updateTime;
+    private Date createTime;
+    private Date updateTime;
     private Integer publishUserId;
 }
