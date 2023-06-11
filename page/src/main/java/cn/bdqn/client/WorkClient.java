@@ -18,7 +18,7 @@ import java.util.Map;
 public interface WorkClient {
 
     @RequestMapping("/classAttendance.html")
-    ResultVO<List<ClassAttendanceCardInfoVO>> classAttendanceCardList(@RequestParam("attendanceDate") String attendanceDate);
+    public ResultVO<List<ClassAttendanceCardInfoVO>> classAttendanceCardList(@RequestParam("attendanceDate") String attendanceDate);
 
     @RequestMapping("/classAttendanceDetail.html")
     public ResultVO<List<ClassAttendanceDetailInfoVO>> classAttendanceDetail(@RequestParam("attendanceDate")String attendanceDate, @RequestParam("classId") Integer classId);

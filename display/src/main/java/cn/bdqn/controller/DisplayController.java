@@ -8,10 +8,12 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,17 +27,18 @@ import java.util.Map;
  * @author dddqmmx
  * @since 2023-06-09
  */
-@Controller
-@RequestMapping("/display")
+@RestController
+@CrossOrigin
+@RequestMapping("display")
 public class DisplayController {
 
     @Autowired
     private IDisplayService displayService;
 
     @RequestMapping("getPushEveryFuckingDayList")
-    @ResponseBody
     public Map<String, Object> getPushEveryFuckingDayList(){
-        LambdaQueryWrapper<Display> lambdaQueryWrapper = new LambdaQueryWrapper<Display>();
+        System.out.println("sssss");
+        LambdaQueryWrapper<Display> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(Display::getDisplayTypeId,2);
         Map<String,Object> map = new HashMap<>();
         List<Display> list = displayService.list(lambdaQueryWrapper);
@@ -51,7 +54,6 @@ public class DisplayController {
     }
 
     @RequestMapping("getExternalPerformanceList")
-    @ResponseBody
     public Map<String, Object> getExternalPerformanceList(){
         LambdaQueryWrapper<Display> lambdaQueryWrapper = new LambdaQueryWrapper<Display>();
         lambdaQueryWrapper.eq(Display::getDisplayTypeId,3);

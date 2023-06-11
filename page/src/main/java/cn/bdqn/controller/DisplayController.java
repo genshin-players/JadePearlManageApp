@@ -1,24 +1,46 @@
 package cn.bdqn.controller;
 
+import cn.bdqn.client.DisplayClient;
+import cn.bdqn.client.WorkClient;
+import cn.bdqn.dto.DisplayDTO;
+import cn.bdqn.vo.ResultVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/display")
 public class DisplayController {
+    @Autowired
+    private DisplayClient displayClient;
     @RequestMapping("/daily_info")
-    public String toDailyInfo() {
+    public String toDailyInfo(Model model) {
+        ResultVO<List<DisplayDTO>> pushEveryFuckingDayList = displayClient.getPushEveryFuckingDayList();
+        List<DisplayDTO> displayDTOList = pushEveryFuckingDayList.getData();
+/*        for (DisplayDTO displayDTO:displayDTOList){
+            System.out.println(displayDTO.getTitle());
+        }*/
+        model.addAttribute("displayDTOList",displayDTOList);
         return "display/daily_info";
     }
     @RequestMapping("/inner_activities")
-    public String toInnerActivities() {
+    public String toInnerActivities(Model model) {
+
         return "display/inner_activities";
     }
 
     @RequestMapping("/external_performance")
-    public String toExternalPerformance() {
+    public String toExternalPerformance(Model model) {
+        ResultVO<List<DisplayDTO>> externalPerformanceList = displayClient.getExternalPerformanceList();
+        List<DisplayDTO> displayDTOList = externalPerformanceList.getData();
+/*        for (DisplayDTO displayDTO:displayDTOList){
+            System.out.println(displayDTO.getTitle());
+        }*/
+        model.addAttribute("displayDTOList",displayDTOList);
         return "display/external_performance";
     }
 
@@ -37,7 +59,7 @@ public class DisplayController {
     }
 
     @RequestMapping("/edit_activities")
-    public String toEditorActivites(){
+    public String toEditorActivites(Model model){
         return "display/edit_activities";
     }
 }
