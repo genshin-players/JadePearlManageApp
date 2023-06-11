@@ -1,15 +1,29 @@
 package cn.bdqn.controller;
 
+import cn.bdqn.client.DisplayClient;
+import cn.bdqn.client.WorkClient;
+import cn.bdqn.dto.DisplayDTO;
+import cn.bdqn.vo.ResultVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/display")
 public class DisplayController {
+    @Autowired
+    private DisplayClient displayClient;
     @RequestMapping("/daily_info")
     public String toDailyInfo() {
+        ResultVO<List<DisplayDTO>> pushEveryFuckingDayList = displayClient.getPushEveryFuckingDayList();
+        List<DisplayDTO> displayDTOList = pushEveryFuckingDayList.getData();
+        for (DisplayDTO displayDTO:displayDTOList){
+            System.out.println(displayDTO.getTitle());
+        }
         return "display/daily_info";
     }
     @RequestMapping("/inner_activities")

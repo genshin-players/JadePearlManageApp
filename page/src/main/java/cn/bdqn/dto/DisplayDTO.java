@@ -1,0 +1,30 @@
+package cn.bdqn.dto;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+/**
+ * <p>
+ * 显示内容
+ * </p>
+ *
+ * @author dddqmmx
+ * @since 2023-06-09
+ */
+@Data
+public class DisplayDTO  {
+
+    private Integer id;
+    private String title;
+    private Integer displayTypeId;
+    private String coverImage;
+    private LocalDateTime createTime;
+    private LocalDateTime updateTime;
+    private Integer publishUserId;
+}

@@ -1,7 +1,13 @@
 package cn.bdqn.client;
 
+import cn.bdqn.dto.DisplayDTO;
+import cn.bdqn.vo.ResultVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author ZedFeorius
@@ -13,5 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @FeignClient(name = "display")
 public interface DisplayClient {
-
+    @RequestMapping("getPushEveryFuckingDayList")
+    ResultVO<List<DisplayDTO>> getPushEveryFuckingDayList();
 }

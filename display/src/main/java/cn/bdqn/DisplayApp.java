@@ -4,6 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @author ZedFeorius
@@ -13,8 +14,10 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * @className DisplayApp
  * @describe TODO
  */
+@EnableFeignClients
 @EnableEurekaClient
 @SpringBootApplication
+@MapperScan("cn.bdqn.mapper")
 public class DisplayApp {
     public static void main(String[] args) {
         SpringApplication.run(DisplayApp.class,args);
