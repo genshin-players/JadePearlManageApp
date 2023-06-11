@@ -1,0 +1,35 @@
+package cn.bdqn.entity;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+
+/**
+* <p>
+    * 角色菜单
+    * </p>
+*
+* @author ljj
+* @since 2023-06-11
+*/
+    @Data
+        @EqualsAndHashCode(callSuper = false)
+    @Accessors(chain = true)
+    public class RoleMenu implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+            /**
+            * 角色id
+            */
+    private Integer roleId;
+
+            /**
+            * 菜单id
+            */
+    private Integer menuId;
+
+
+}
