@@ -816,8 +816,8 @@
                         <span class="nav-text">用户管理</span>
                     </a>
                         <ul aria-expanded="false">
-                            <li><a href="/teacher">教师管理</a></li>
-                            <li><a href="/student">学生管理</a></li>
+                            <li><a href="/show_teacher">教师管理</a></li>
+                            <li><a href="/show_student">学生管理</a></li>
                         </ul>
 
                     </li>
