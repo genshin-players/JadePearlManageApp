@@ -16,6 +16,5 @@ import org.springframework.stereotype.Controller;
 @Controller
 @RequestMapping("/display")
 public class DisplayController {
-
 }
 
