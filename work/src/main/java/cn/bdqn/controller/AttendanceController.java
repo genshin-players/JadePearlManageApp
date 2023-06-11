@@ -1,4 +1,4 @@
-package cn.bdqn;
+package cn.bdqn.controller;
 
 
 import cn.bdqn.service.AttendenceService;
@@ -20,8 +20,6 @@ public class AttendanceController {
     @Autowired
     AttendenceService attendenceService;
 
-
-
     @RequestMapping("/classAttendance.html")
     public Map<String,Object> classAttendanceCardList(String attendanceDate){
         Map<String,Object>map=new HashMap<>();
@@ -35,8 +33,6 @@ public class AttendanceController {
             map.put("msg","error");
             map.put("code","500");
         }
-
-
         return map;
     }
 
