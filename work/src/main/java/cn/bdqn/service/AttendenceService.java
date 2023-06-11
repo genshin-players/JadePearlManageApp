@@ -3,6 +3,7 @@ package cn.bdqn.service;
 import cn.bdqn.entity.Attendence;
 import cn.bdqn.vo.ClassAttendanceCardInfoVO;
 import cn.bdqn.vo.ClassAttendanceDetailInfoVO;
+import cn.bdqn.vo.ToStudentAttendancePageVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Date;
@@ -33,5 +34,19 @@ public interface AttendenceService extends IService<Attendence> {
      * @return 信息集合
      */
     public List<ClassAttendanceDetailInfoVO> getClassAttendanceDetailInfo(String attendanceDate, Integer classId);
+
+    /**
+     * 去往添加学生出勤记录的页面 需要的数据
+     * @return
+     */
+    public ToStudentAttendancePageVO ToStudentAttendancePage();
+
+
+    /**
+     * 添加学生出勤记录
+     * @param attendence 出勤记录
+     * @return 受影响的行数
+     */
+    public int addStudentAttendance(Attendence attendence);
 
 }

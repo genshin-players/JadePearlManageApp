@@ -1,12 +1,16 @@
 package cn.bdqn.controller;
 
 import cn.bdqn.client.WorkClient;
+import cn.bdqn.entity.Attendence;
+import cn.bdqn.entity.Users;
 import cn.bdqn.vo.workvo.ClassAttendanceCardInfoVO;
 import cn.bdqn.vo.ResultVO;
 import cn.bdqn.vo.workvo.ClassAttendanceDetailInfoVO;
+import cn.bdqn.vo.workvo.ToStudentAttendancePageVO;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.google.errorprone.annotations.FormatString;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -87,11 +91,68 @@ public class WorkController {
 
 
 
+    //班级出勤页面去往  新增出勤记录页面
+    @RequestMapping("/toAddStudentAttendance")
+    public String toAddStudentAttendance(Model model){
+        ResultVO<ToStudentAttendancePageVO> resultVO = workClient.toStudentAttendancePageVO();
+        model.addAttribute("resultVO",resultVO);
+        model.addAttribute("editType","新增");
+        return "work/editStudentAttendance";
+    }
+
+    @ResponseBody
+    @GetMapping("/getStudentByClass")
+    public Map<String,Object> getStudentByClass(Integer classId){
+        Map<String,Object>map=new HashMap<>();
+        ResultVO<ToStudentAttendancePageVO> resultVO = workClient.toStudentAttendancePageVO();
+        List<Users> classList=new ArrayList<>();
+        if(classId!=0){
+            Map<Integer, Object> studentByClass = resultVO.getData().getStudentByClass();
+            classList= (List<Users>) studentByClass.get(classId);
+        }else {
+            List<Users> userList=resultVO.getData().getUserList();
+            for (Users u:userList){
+                if(u.getRoleId()==6||u.getRoleId()==5){
+                    classList.add(u);
+                }
+            }
+        }
+
+
+        map.put("studentByClass",classList);
+        map.put("studentAndClass",resultVO.getData().getStudent_class());
+        map.put("classList",resultVO.getData().getClassesList());
+        return map;
+    }
+
+
+    //新增出勤记录
+    @PostMapping("/addStudentAttendance")
+    @ResponseBody
+    public ResultVO<Integer> addStudentAttendance(Attendence attendence,String attendanceDate){
+
+        Date date=null;
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            date=sdf.parse(attendanceDate);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        attendence.setDate(date);
+        ResultVO<Integer> resultVO=workClient.addStudentAttendance(attendence);
+        return resultVO;
+    }
+
+
+
     //班级出勤编辑页面请求
     @RequestMapping("/toEditStudentAttendance")
     public String toEditStudentAttendance(){
         return "work/editStudentAttendance";
     }
+
+
 
 
 

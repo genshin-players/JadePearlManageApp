@@ -25,7 +25,7 @@
                     <div class="card" style="box-shadow: 10px 10px 20px 10px rgba(0, 0, 255, .2);opacity: 0.8 ">
                         <div class="card-header">
                             <h4 class="card-title"><span style="font-weight: bolder;font-size: 20px">${classes.name}  ${pageDate}</span>出勤详情</h4>
-                            <button class="btn btn-info" onclick="javascript:window.location.href='/toEditStudentAttendance';">添加出勤记录</button>
+                            <button class="btn btn-info" onclick="javascript:window.location.href='/toAddStudentAttendance'">添加出勤记录</button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

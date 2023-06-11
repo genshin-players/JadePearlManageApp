@@ -37,7 +37,7 @@
 
 
 
-                <#if resultVO.data??>
+                <#if resultVO.data?size!=0>
                     <#list resultVO.data as card>
                         <div class="col-xl-3">
                             <div
