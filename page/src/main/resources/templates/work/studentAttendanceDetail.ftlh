@@ -24,7 +24,7 @@
                 <div class="col-12">
                     <div class="card" style="box-shadow: 10px 10px 20px 10px rgba(0, 0, 255, .2);opacity: 0.8 ">
                         <div class="card-header">
-                            <h4 class="card-title"><span style="font-weight: bolder;font-size: 20px">${className}${date?string("yyyy-MM-dd")}</span>出勤详情</h4>
+                            <h4 class="card-title"><span style="font-weight: bolder;font-size: 20px">${classes.name}  ${pageDate}</span>出勤详情</h4>
                             <button class="btn btn-info" onclick="javascript:window.location.href='/toEditStudentAttendance';">添加出勤记录</button>
                         </div>
                         <div class="card-body">
@@ -37,154 +37,62 @@
                                         <th>班级</th>
                                         <th>班主任</th>
                                         <th>出勤状态</th>
+                                        <th>汇报人</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>01</td>
-                                        <td>小王</td>
-                                        <td>小王班</td>
-                                        <td>老王</td>
-                                        <td>
-                                            <span class="badge light badge-success">
-														<i class="fa fa-circle text-success me-1"></i>
-														出勤
-													</span>
-                                        </td>
-                                        <#---->
-                                        <td>
-                                            <div class="dropdown ms-auto text-end">
-                                                <div class="btn-link" data-bs-toggle="dropdown">
-                                                    <svg width="24px" height="24px" viewbox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
-                                                </div>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="/toEditStudentAttendance">修改记录</a>
-                                                    <a class="dropdown-item" href="#">删除记录</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>02</td>
-                                        <td>大王</td>
-                                        <td>小王班</td>
-                                        <td>老王</td>
-                                        <td>
-                                            <span class="badge light badge-success">
-														<i class="fa fa-circle text-success me-1"></i>
-														出勤
-													</span>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown ms-auto text-end">
-                                                <div class="btn-link" data-bs-toggle="dropdown">
-                                                    <svg width="24px" height="24px" viewbox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
-                                                </div>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="#">添加记录</a>
-                                                    <a class="dropdown-item" href="/toEditStudentAttendance">修改记录</a>
-                                                    <a class="dropdown-item" href="#">删除记录</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>03</td>
-                                        <td>老王</td>
-                                        <td>小王班</td>
-                                        <td>老王</td>
-                                        <td>
-                                            <span class="badge light badge-warning">
-														<i class="fa fa-circle text-warning me-1"></i>
-														迟到
-													</span>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown ms-auto text-end">
-                                                <div class="btn-link" data-bs-toggle="dropdown">
-                                                    <svg width="24px" height="24px" viewbox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
-                                                </div>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="#">添加记录</a>
-                                                    <a class="dropdown-item" href="/toEditStudentAttendance">修改记录</a>
-                                                    <a class="dropdown-item" href="#">删除记录</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>04</td>
-                                        <td>小灯</td>
-                                        <td>小王班</td>
-                                        <td>老王</td>
-                                        <td>
-                                            <span class="badge light badge-warning">
-														<i class="fa fa-circle text-warning me-1"></i>
-														迟到
-													</span>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown ms-auto text-end">
-                                                <div class="btn-link" data-bs-toggle="dropdown">
-                                                    <svg width="24px" height="24px" viewbox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
-                                                </div>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="#">添加记录</a>
-                                                    <a class="dropdown-item" href="/toEditStudentAttendance">修改记录</a>
-                                                    <a class="dropdown-item" href="#">删除记录</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>05</td>
-                                        <td>大灯</td>
-                                        <td>小王班</td>
-                                        <td>老王</td>
-                                        <td>
-                                            <span class="badge light badge-danger">
+
+                                    <#list resultVO.data as detail>
+                                        <tr>
+                                            <td>${detail.attendence.id}</td>
+                                            <#assign json=detail.student.identityInfo?eval/>
+                                            <td>${json.realname}</td>
+                                            <td>${detail.classes.name}</td>
+                                            <#assign json=detail.adviser.identityInfo?eval/>
+                                            <td>${json.realname}</td>
+                                            <td>
+                                                <#if detail.attendence.isPresent==0>
+                                                    <span class="badge light badge-danger">
 														<i class="fa fa-circle text-danger me-1"></i>
 														缺勤
-													</span>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown ms-auto text-end">
-                                                <div class="btn-link" data-bs-toggle="dropdown">
-                                                    <svg width="24px" height="24px" viewbox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
+                                                    </span>
+                                                <#elseif detail.attendence.isPresent==1>
+                                                    <span class="badge light badge-warning">
+														<i class="fa fa-circle text-warning me-1"></i>
+														迟到
+                                                    </span>
+                                                <#elseif detail.attendence.isPresent==2>
+                                                    <span class="badge light badge-success">
+														<i class="fa fa-circle text-success me-1"></i>
+														出勤
+                                                    </span>
+                                                <#elseif detail.attendence.isPresent==3>
+                                                    <span class="badge light badge-dark">
+														<i class="fa fa-circle text-dark me-1"></i>
+														请假
+                                                    </span>
+                                                </#if>
+
+                                            </td>
+                                            <#assign json=detail.reportUser.identityInfo?eval/>
+                                            <td>${json.realname}</td>
+                                            <#---->
+                                            <td>
+                                                <div class="dropdown ms-auto text-end">
+                                                    <div class="btn-link" data-bs-toggle="dropdown">
+                                                        <svg width="24px" height="24px" viewbox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
+                                                    </div>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="/toEditStudentAttendance">修改记录</a>
+                                                        <a class="dropdown-item" href="#">删除记录</a>
+                                                    </div>
                                                 </div>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="#">添加记录</a>
-                                                    <a class="dropdown-item" href="/toEditStudentAttendance">修改记录</a>
-                                                    <a class="dropdown-item" href="#">删除记录</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>06</td>
-                                        <td>老灯</td>
-                                        <td>小王班</td>
-                                        <td>老王</td>
-                                        <td>
-                                            <span class="badge light badge-danger">
-														<i class="fa fa-circle text-danger me-1"></i>
-														缺勤
-													</span>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown ms-auto text-end">
-                                                <div class="btn-link" data-bs-toggle="dropdown">
-                                                    <svg width="24px" height="24px" viewbox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
-                                                </div>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="#">添加记录</a>
-                                                    <a class="dropdown-item" href="/toEditStudentAttendance">修改记录</a>
-                                                    <a class="dropdown-item" href="#">删除记录</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    </#list>
+
+
 
                                     </tbody>
                                 </table>

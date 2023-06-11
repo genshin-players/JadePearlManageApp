@@ -1,8 +1,9 @@
-package cn.bdqn;
+package cn.bdqn.controller;
 
 
 import cn.bdqn.service.AttendenceService;
 import cn.bdqn.vo.ClassAttendanceCardInfoVO;
+import cn.bdqn.vo.ClassAttendanceDetailInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,8 +36,23 @@ public class AttendanceController {
             map.put("msg","error");
             map.put("code","500");
         }
+        return map;
+    }
 
 
+    @RequestMapping("/classAttendanceDetail.html")
+    public Map<String,Object> classAttendanceDetail(String attendanceDate, Integer classId){
+        Map<String,Object>map=new HashMap<>();
+        try{
+            List<ClassAttendanceDetailInfoVO> classAttendanceDetailInfo=attendenceService.getClassAttendanceDetailInfo(attendanceDate, classId);
+            map.put("data",classAttendanceDetailInfo);
+            map.put("msg","success");
+            map.put("code","200");
+        }catch (Exception e){
+            e.printStackTrace();
+            map.put("msg","error");
+            map.put("code","500");
+        }
         return map;
     }
 
