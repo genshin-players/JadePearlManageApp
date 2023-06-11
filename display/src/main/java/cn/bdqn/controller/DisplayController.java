@@ -38,7 +38,7 @@ public class DisplayController {
     @RequestMapping("getPushEveryFuckingDayList")
     public Map<String, Object> getPushEveryFuckingDayList(){
         System.out.println("sssss");
-        LambdaQueryWrapper<Display> lambdaQueryWrapper = new LambdaQueryWrapper<Display>();
+        LambdaQueryWrapper<Display> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(Display::getDisplayTypeId,2);
         Map<String,Object> map = new HashMap<>();
         List<Display> list = displayService.list(lambdaQueryWrapper);
