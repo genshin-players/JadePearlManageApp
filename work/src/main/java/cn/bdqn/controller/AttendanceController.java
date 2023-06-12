@@ -1,15 +1,15 @@
 package cn.bdqn.controller;
 
 
+import cn.bdqn.entity.Attendence;
 import cn.bdqn.service.AttendenceService;
 import cn.bdqn.vo.ClassAttendanceCardInfoVO;
 import cn.bdqn.vo.ClassAttendanceDetailInfoVO;
+import cn.bdqn.vo.ToStudentAttendancePageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -48,6 +48,49 @@ public class AttendanceController {
             map.put("data",classAttendanceDetailInfo);
             map.put("msg","success");
             map.put("code","200");
+        }catch (Exception e){
+            e.printStackTrace();
+            map.put("msg","error");
+            map.put("code","500");
+        }
+        return map;
+    }
+
+
+    /**
+     * 去添加学生出勤页面所需要的数据
+     * @return 数据
+     */
+    @RequestMapping("/toStudentAttendancePage")
+    public Map<String,Object> toStudentAttendancePageVO(){
+        Map<String,Object>map=new HashMap<>();
+        try{
+            ToStudentAttendancePageVO vo=attendenceService.ToStudentAttendancePage();
+            map.put("data",vo);
+            map.put("msg","success");
+            map.put("code","200");
+        }catch (Exception e){
+            e.printStackTrace();
+            map.put("msg","error");
+            map.put("code","500");
+        }
+        return map;
+    }
+
+
+    @PostMapping("/addStudentAttendance")
+    public Map<String,Object> addStudentAttendance(Attendence attendence){
+        Map<String,Object>map=new HashMap<>();
+        try{
+            int i = attendenceService.addStudentAttendance(attendence);
+            if(i>0){
+                map.put("data",i);
+                map.put("msg","success");
+                map.put("code","200");
+            }else {
+                map.put("msg","error");
+                map.put("code","500");
+            }
         }catch (Exception e){
             e.printStackTrace();
             map.put("msg","error");

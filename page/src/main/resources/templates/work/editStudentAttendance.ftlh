@@ -37,65 +37,118 @@
             <div class="col-xl-8">
                 <div class="card bg-light bg" style="box-shadow: 10px 10px 20px 10px rgba(0, 0, 255, .2);opacity: 0.8 ">
                     <div class="card-header">
-                        <span class="card-title text-center text-primary" style="font-weight: bolder;font-size: 25px">编辑学生出勤</span>
+                        <span class="card-title text-center text-primary" style="font-weight: bolder;font-size: 25px">${editType}学生出勤</span>
                     </div>
+
                     <div class="card-body">
 
                         <div class="row">
-                            <div class="col-lg-2">
-                                <span class="text-white fw-bolder" style="font-size: 18px">选择学生:</span>
-                            </div>
-                            <div class="col-lg-4">
-                                <select class="single-select-placeholder js-states">
-                                    <option value="0">请选择学生</option>
-                                    <option value="AL">亚托克斯</option>
-                                    <option value="WY">墨菲特</option>
-                                    <option value="WY">诺克萨斯之手</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
 
                             </div>
+                            <div class="col-lg-2">
+                                <span class="text-white fw-bolder" style="font-size: 18px">选择班级:</span>
+                            </div>
+                            <div class="col-lg-4">
+                                <select class="single-select-placeholder js-states" name="classId" onchange="classChange()">
+                                    <option value="0">请选择班级</option>
+                                    <#list resultVO.data.classesList as c>
+                                        <option class="classIdOp" value="${c.id}">${c.name}</option>
+                                    </#list>
+                                </select>
+                            </div>
+
+
                             <br>
                             <hr style="margin-top: 10px;background-color: white">
                         </div>
 
                         <div class="row">
+                            <div class="col-lg-3">
+
+                            </div>
+                            <div class="col-lg-2">
+                                <span class="text-white fw-bolder" style="font-size: 18px">选择学生:</span>
+                            </div>
+                            <div class="col-lg-4">
+                                <select class="single-select-placeholder js-states" name="studentId" onchange="studentClick()">
+                                    <option value="0">请选择学生</option>
+                                </select>
+                            </div>
+
+
+
+
+                            <br>
+                            <hr style="margin-top: 10px;background-color: white">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3">
+
+                            </div>
                             <div class="col-lg-2">
                                 <span class="text-white fw-bolder" style="font-size: 18px">出勤状态:</span>
                             </div>
                             <div class="col-lg-4">
-                                <select class="single-select-placeholder js-states">
-                                    <option value="0">请选择出勤状态</option>
-                                    <option value="AL">出勤</option>
-                                    <option value="WY">迟到</option>
-                                    <option value="WY">缺勤</option>
+                                <select class="single-select-placeholder js-states" name="isPresent">
+                                    <option value="-1">请选择出勤状态</option>
+                                    <option value="0">缺勤</option>
+                                    <option value="1">迟到</option>
+                                    <option value="2">出勤</option>
+                                    <option value="3">请假</option>
                                 </select>
                             </div>
-                            <div class="col-lg-4">
 
-                            </div>
                             <br>
                             <hr style="margin-top: 10px;background-color: white">
 
                             <div class="row">
+                                <div class="col-lg-3">
+
+                                </div>
+                                <div class="col-lg-2">
+                                    <span class="text-white fw-bolder" style="font-size: 18px">报告人员:</span>
+                                </div>
+                                <div class="col-lg-4">
+                                    <select class="single-select-placeholder js-states" name="reportUserId">
+                                        <option value="0">请选择报告人员(学社成员)</option>
+                                        <#list resultVO.data.userList as repotUser>
+                                            <#if repotUser.roleId==5>
+                                                <#assign json=repotUser.identityInfo?eval/>
+                                                <option value="${repotUser.id}">${json.realname}</option>
+                                            </#if>
+                                        </#list>
+                                    </select>
+                                </div>
+
+                                <br>
+                                <hr style="margin-top: 10px;background-color: white">
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-lg-3">
+
+                                </div>
                                 <div class="col-lg-2">
                                     <span class="text-white fw-bolder" style="font-size: 18px">日期:</span>
                                 </div>
                                 <div class="col-lg-4">
-                                    <input type="text" class="form-control" placeholder="选择日期" id="mdate" style="height: 35px;margin-left: 10px">
+                                    <input type="text" class="form-control" placeholder="选择日期" name="date" id="mdate" style="height: 35px;margin-left: 10px">
                                 </div>
-                                <div class="col-lg-4">
 
-                                </div>
                                 <br>
                                 <hr style="margin-top: 10px;background-color: white">
+
+
+
                                 <div class="row">
                                     <div class="col-lg-4">
 
                                     </div>
                                     <div class="col-lg-4" align="center">
-                                        <button class="btn btn-outline-secondary">提交</button>
+                                        <button class="btn btn-outline-secondary" onclick="submitEdit()">提交</button>
                                     </div>
 
 
@@ -103,6 +156,7 @@
                                     <br>
 
                         </div>
+
 
                     </div>
                 </div>
@@ -202,5 +256,146 @@
 <script src="/js/deznav-init.js"></script>
 <script src="/js/demo.js"></script>
 <script src="/js/styleSwitcher.js"></script>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    $(function () {
+        $("[name=classId]").find("option[value='2']").click();
+
+
+        $.ajax({
+            type:"get",
+            url:"http://localhost:8003/getStudentByClass",
+            data:{classId:0},
+            dataType:"json",
+            success:function (data) {
+                $(".myOp").remove();
+                var str="";
+                for (let i = 0; i < data.studentByClass.length; i++) {
+                    const info=JSON.parse(data.studentByClass[i].identityInfo);
+                    str+="<option class='myOp' value='"+data.studentByClass[i].id+"'>"+info.realname+"</option>";
+                }
+                $("[name=studentId]").append(str);
+            }
+        });
+    });
+
+
+    function classChange() {
+        var classId=$("[name=classId]").val();
+        if(classId!=0&&classId!=null){
+            $.ajax({
+                type:"get",
+                url:"http://localhost:8003/getStudentByClass",
+                data:{classId:classId},
+                dataType:"json",
+                success:function (data) {
+                    $(".myOp").remove();
+                    var str="";
+                    for (let i = 0; i < data.studentByClass.length; i++) {
+                        const info=JSON.parse(data.studentByClass[i].identityInfo);
+                        str+="<option class='myOp' value='"+data.studentByClass[i].id+"'>"+info.realname+"</option>";
+                    }
+                    $("[name=studentId]").append(str);
+                }
+            });
+        }else {
+            $.ajax({
+                type:"get",
+                url:"http://localhost:8003/getStudentByClass",
+                data:{classId:0},
+                dataType:"json",
+                success:function (data) {
+                    $(".myOp").remove();
+                    var str="";
+                    for (let i = 0; i < data.studentByClass.length; i++) {
+                        const info=JSON.parse(data.studentByClass[i].identityInfo);
+                        str+="<option class='myOp' value='"+data.studentByClass[i].id+"'>"+info.realname+"</option>";
+                    }
+                    $("[name=studentId]").append(str);
+                }
+            });
+        }
+
+    }
+
+    function studentClick() {
+        var studentId=$("[name=studentId]").val();
+
+        $.ajax({
+            type:"get",
+            url:"http://localhost:8003/getStudentByClass",
+            data:{classId:0},
+            dataType:"json",
+            success:function (data) {
+
+                $(".classIdOp").remove();
+                var str="";
+                for (let j = 0; j < data.classList.length; j++) {
+                    var classId=0;
+                    //找出选中学生的班级id
+                    for (let i = 0; i < data.studentAndClass.length; i++) {
+                        //console.log(data.studentAndClass[i].studentId+"=="+studentId+"  "+data.studentAndClass[i].studentId==studentId+"\n");
+                        if(data.studentAndClass[i].studentId==studentId){
+                            classId=data.studentAndClass[i].classId;
+                        }
+                    }
+                    if(classId==data.classList[j].id){
+                        str+="<option class='classIdOp' value='"+data.classList[j].id+"' selected>"+data.classList[j].name+"</option>";
+                    }else {
+                        str+="<option class='classIdOp' value='"+data.classList[j].id+"'>"+data.classList[j].name+"</option>";
+                    }
+
+                }
+                $("[name=classId]").append(str);
+
+            }
+        });
+    }
+
+
+    function submitEdit() {
+        var classId=$("[name=classId]").val();
+        var studentId=$("[name=studentId]").val();
+        var isPresent=$("[name=isPresent]").val();
+        var reportUserId=$("[name=reportUserId]").val();
+        var attendanceDate=$("[name=date]").val();
+
+
+        if(classId==0){
+            alert("请选择班级");
+        }else if(studentId==0){
+            alert("请选择学生");
+        }else if(isPresent==-1){
+            alert("请选择出勤状态");
+        }else if(reportUserId==0){
+            alert("请选择报告人");
+        }else if(attendanceDate=null||attendanceDate==""){
+            alert("请选择报告日期");
+        }else {
+
+            $.ajax({
+                type:"post",
+                url:"http://localhost:8003/addStudentAttendance",
+                data:{
+                    "classId":classId,
+                    "studentId":studentId,
+                    "isPresent":isPresent,
+                    "reportUserId":reportUserId,
+                    "attendanceDate":$("[name=date]").val(),
+                },
+                dataType:"json",
+                success:function(data){
+                    console.log(data);
+                    alert("添加成功");
+                    window.location.href="/toStuAttendance?attendanceDate="+$("[name=date]").val();
+                },
+                error:function(data){
+                    alert("添加失败");
+                }
+            });
+        }
+    }
+</script>
 </body>
 </html>

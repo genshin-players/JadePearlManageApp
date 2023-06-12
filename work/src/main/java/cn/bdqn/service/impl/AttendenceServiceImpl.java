@@ -11,8 +11,10 @@ import cn.bdqn.mapper.UsersMapper;
 import cn.bdqn.service.AttendenceService;
 import cn.bdqn.vo.ClassAttendanceCardInfoVO;
 import cn.bdqn.vo.ClassAttendanceDetailInfoVO;
+import cn.bdqn.vo.ToStudentAttendancePageVO;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,53 +57,59 @@ public class AttendenceServiceImpl extends ServiceImpl<AttendenceMapper, Attende
         List<Classes>classesList=classesMapper.selectList(null);
         //循环将每个班卡片数据保存到集合
         for(Classes classes:classesList){
-            ClassAttendanceCardInfoVO vo=new ClassAttendanceCardInfoVO();
-            //保存班级信息
-            vo.setClasses(classes);
-            //班级总人数
-            QueryWrapper<Class> classSizeWrapper=new QueryWrapper<>();
-            classSizeWrapper.eq("class_id",classes.getId());
-            vo.setClassSize(classMapper.selectCount(classSizeWrapper)-2);
-            //出勤人数
-            QueryWrapper<Attendence> attendanceNumWrapper=new QueryWrapper<>();
-            attendanceNumWrapper.like("date",attendanceDate+"%");
-            attendanceNumWrapper.eq("class_id",classes.getId());
-            attendanceNumWrapper.eq("is_present",2);
-            vo.setAttendanceNumber(attendenceMapper.selectCount(attendanceNumWrapper));
-            //缺勤人数
-            QueryWrapper<Attendence> absenteesNumWrapper=new QueryWrapper<>();
-            absenteesNumWrapper.like("date",attendanceDate+"%");
-            absenteesNumWrapper.eq("class_id",classes.getId());
-            absenteesNumWrapper.eq("is_present",0);
-            vo.setAbsenteesNumber(attendenceMapper.selectCount(absenteesNumWrapper));
-            //迟到人数
-            QueryWrapper<Attendence> latecomersNumWrapper=new QueryWrapper<>();
-            latecomersNumWrapper.like("date",attendanceDate+"%");
-            latecomersNumWrapper.eq("class_id",classes.getId());
-            latecomersNumWrapper.eq("is_present",1);
-            vo.setLatecomersNumber(attendenceMapper.selectCount(latecomersNumWrapper));
-            //请假人数
-            QueryWrapper<Attendence> leaverNumWrapper=new QueryWrapper<>();
-            leaverNumWrapper.like("date",attendanceDate+"%");
-            leaverNumWrapper.eq("class_id",classes.getId());
-            leaverNumWrapper.eq("is_present",3);
-            vo.setLeaverNumber(attendenceMapper.selectCount(leaverNumWrapper));
-            //汇报人对象
-            QueryWrapper<Attendence> reportWrapper=new QueryWrapper<>();
-            reportWrapper.like("date",attendanceDate+"%");
-            reportWrapper.eq("class_id",classes.getId());
-            List<Attendence> attendences = attendenceMapper.selectList(reportWrapper);
-            Users user=usersMapper.selectById(attendences.get(0).getReportUserId());
-            vo.setReportUser(user);
-            //汇报时间
-            QueryWrapper<Attendence> reportDateWrapper=new QueryWrapper<>();
-            reportDateWrapper.like("date",attendanceDate+"%");
-            reportDateWrapper.eq("class_id",classes.getId());
-            List<Attendence> attendences2 = attendenceMapper.selectList(reportDateWrapper);
+            QueryWrapper<Attendence> test=new QueryWrapper<>();
+            test.like("date",attendanceDate+"%");
+            test.eq("class_id",classes.getId());
+            List<Attendence> t = attendenceMapper.selectList(test);
+            if(t!=null&& t.size()>0){
+               ClassAttendanceCardInfoVO vo=new ClassAttendanceCardInfoVO();
+               //保存班级信息
+               vo.setClasses(classes);
+               //班级总人数
+               QueryWrapper<Class> classSizeWrapper=new QueryWrapper<>();
+               classSizeWrapper.eq("class_id",classes.getId());
+               vo.setClassSize(classMapper.selectCount(classSizeWrapper)-2);
+               //出勤人数
+               QueryWrapper<Attendence> attendanceNumWrapper=new QueryWrapper<>();
+               attendanceNumWrapper.like("date",attendanceDate+"%");
+               attendanceNumWrapper.eq("class_id",classes.getId());
+               attendanceNumWrapper.eq("is_present",2);
+               vo.setAttendanceNumber(attendenceMapper.selectCount(attendanceNumWrapper));
+               //缺勤人数
+               QueryWrapper<Attendence> absenteesNumWrapper=new QueryWrapper<>();
+               absenteesNumWrapper.like("date",attendanceDate+"%");
+               absenteesNumWrapper.eq("class_id",classes.getId());
+               absenteesNumWrapper.eq("is_present",0);
+               vo.setAbsenteesNumber(attendenceMapper.selectCount(absenteesNumWrapper));
+               //迟到人数
+               QueryWrapper<Attendence> latecomersNumWrapper=new QueryWrapper<>();
+               latecomersNumWrapper.like("date",attendanceDate+"%");
+               latecomersNumWrapper.eq("class_id",classes.getId());
+               latecomersNumWrapper.eq("is_present",1);
+               vo.setLatecomersNumber(attendenceMapper.selectCount(latecomersNumWrapper));
+               //请假人数
+               QueryWrapper<Attendence> leaverNumWrapper=new QueryWrapper<>();
+               leaverNumWrapper.like("date",attendanceDate+"%");
+               leaverNumWrapper.eq("class_id",classes.getId());
+               leaverNumWrapper.eq("is_present",3);
+               vo.setLeaverNumber(attendenceMapper.selectCount(leaverNumWrapper));
+               //汇报人对象
+               QueryWrapper<Attendence> reportWrapper=new QueryWrapper<>();
+               reportWrapper.like("date",attendanceDate+"%");
+               reportWrapper.eq("class_id",classes.getId());
+               List<Attendence> attendences = attendenceMapper.selectList(reportWrapper);
+               Users user=usersMapper.selectById(attendences.get(0).getReportUserId());
+               vo.setReportUser(user);
+               //汇报时间
+               QueryWrapper<Attendence> reportDateWrapper=new QueryWrapper<>();
+               reportDateWrapper.like("date",attendanceDate+"%");
+               reportDateWrapper.eq("class_id",classes.getId());
+               List<Attendence> attendences2 = attendenceMapper.selectList(reportDateWrapper);
 
-            vo.setAttendanceDate(attendenceMapper.selectList(reportDateWrapper).get(0).getDate());
-            //数据加入集合
-            classAttendanceCardInfoList.add(vo);
+               vo.setAttendanceDate(attendenceMapper.selectList(reportDateWrapper).get(0).getDate());
+               //数据加入集合
+               classAttendanceCardInfoList.add(vo);
+           }
         }
 
 
@@ -142,5 +150,66 @@ public class AttendenceServiceImpl extends ServiceImpl<AttendenceMapper, Attende
             detailInfoVOList.add(detailVO);
         }
         return detailInfoVOList;
+    }
+
+    /**
+     * 去往添加学生出勤记录的页面 需要的数据
+     * @return
+     */
+    public ToStudentAttendancePageVO ToStudentAttendancePage(){
+        ToStudentAttendancePageVO pageVO=new ToStudentAttendancePageVO();
+
+        //全部用户列表
+        List<Users> users = usersMapper.selectList(null);
+        pageVO.setUserList(users);
+        //全部班级列表
+        List<Classes> classesList = classesMapper.selectList(null);
+        pageVO.setClassesList(classesList);
+        //学生-班级 对应表
+        List<Class> classStudentList = classMapper.selectList(null);
+        pageVO.setStudent_class(classStudentList);
+
+        //学生列表 按班级分
+        Map<Integer,Object> classStudent=new HashMap<>();
+        for (Classes classes:classesList){
+            //学生列表
+            List<Users> studentC=new ArrayList<>();
+
+            //遍历对应表 得到按班级分的学生列表
+            for(Class c:classStudentList){
+                if(c.getClassId()==classes.getId()){
+                    //循环用户表
+                    for(Users u:users){
+                        if(c.getStudentId()==u.getId()&&u.getRoleId()==6){
+                            studentC.add(u);
+                        }
+                    }
+                }
+            }
+
+
+
+
+            classStudent.put(classes.getId(),studentC);
+        }
+
+        pageVO.setStudentByClass(classStudent);
+
+
+        return pageVO;
+    }
+
+
+    /**
+     * 添加学生出勤记录
+     *
+     * @param attendence 出勤记录
+     * @return 受影响的行数
+     */
+    @Override
+    public int addStudentAttendance(Attendence attendence) {
+        System.out.println(attendence.toString());
+        int count = attendenceMapper.insert(attendence);
+        return count;
     }
 }
