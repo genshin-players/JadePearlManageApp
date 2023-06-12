@@ -79,7 +79,7 @@
                                                 </a>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item" href="javascript:void(0);">编辑</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);">删除</a>
+                                                    <a class="dropdown-item" href="javascript:deleteDisplay(${displayDTO.id});">删除</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -127,6 +127,27 @@
 <!--**********************************
     Main wrapper end
 ***********************************-->
+
+<script>
+    function deleteDisplay(){
+        if (confirm("确定要删除吗")){
+            $.ajax({
+                type:"GET",
+                url:"/display/deleteDisplay",
+                data:{username:username,password:password},
+                dataType:"json",
+                success:function (res) {
+                    console.log(res)
+                    if (res.code == 200) {
+                        alert("删除")
+                    }else {
+                        alert("删除")
+                    }
+                }
+            })
+        }
+    }
+</script>
 
 <!--**********************************
     Scripts

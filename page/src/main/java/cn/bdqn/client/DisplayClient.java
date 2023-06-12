@@ -27,4 +27,6 @@ public interface DisplayClient {
     ResultVO<List<DisplayDTO>> getPushEveryFuckingDayList(@RequestParam(required = false,defaultValue = "") String title);
     @RequestMapping("getExternalPerformanceList")
     ResultVO<List<DisplayDTO>> getExternalPerformanceList(@RequestParam(required = false,defaultValue = "") String title);
+    @RequestMapping("deleteDisplay")
+    Map<String, Object> deleteDisplay(@RequestParam(value = "id") Integer id);
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/display")
@@ -69,5 +70,10 @@ public class DisplayController {
     @RequestMapping("/edit_activities")
     public String toEditorActivites(Model model){
         return "display/edit_activities";
+    }
+
+    @RequestMapping("deleteDisplay")
+    Map<String, Object> deleteDisplay(@RequestParam(value = "id") Integer id){
+        return displayClient.deleteDisplay(id);
     }
 }

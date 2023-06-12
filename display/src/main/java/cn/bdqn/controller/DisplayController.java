@@ -68,5 +68,19 @@ public class DisplayController {
         }
         return map;
     }
+
+    @RequestMapping("deleteDisplay")
+    public Map<String, Object> deleteDisplay(@RequestParam(value = "id") Integer id){
+        boolean b = displayService.removeById(id);
+        Map<String,Object> map = new HashMap<>();
+        if (b){
+            map.put("code", 200);
+            map.put("msg", "success");
+        }else {
+            map.put("code", 500);
+            map.put("msg", "error");
+        }
+        return map;
+    }
 }
 
