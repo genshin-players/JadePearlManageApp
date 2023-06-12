@@ -99,6 +99,22 @@ public class WorkController {
         model.addAttribute("editType","新增");
         return "work/editStudentAttendance";
     }
+    //班级出勤页面点击 修改  修改出勤记录
+    @RequestMapping("/toUpdateStudentAttendance")
+    public String toUpdateStudentAttendance(@RequestParam("attendanceId") Integer attendanceId,Model model){
+        ResultVO<ToStudentAttendancePageVO> resultVO = workClient.toStudentAttendancePageVO();
+        model.addAttribute("resultVO",resultVO);
+        model.addAttribute("editType","修改");
+
+        model.addAttribute("attendance",workClient.getAttendanceById(attendanceId));
+        return "work/updateStudentAttendance";
+    }
+    //根据出勤id获取出勤记录
+    @RequestMapping("/getAttendanceById")
+    public ResultVO<Attendence> getAttendanceById(@RequestParam("attendanceId") Integer attendanceId){
+        return workClient.getAttendanceById(attendanceId);
+    }
+
 
     @ResponseBody
     @GetMapping("/getStudentByClass")
@@ -142,6 +158,38 @@ public class WorkController {
         attendence.setDate(date);
         ResultVO<Integer> resultVO=workClient.addStudentAttendance(attendence);
         return resultVO;
+    }
+
+    @PostMapping("/updateStudentAttendance")
+    @ResponseBody
+    public ResultVO<Integer> updateStudentAttendance(Attendence attendence,String attendanceDate){
+        Date date=null;
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            date=sdf.parse(attendanceDate);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        attendence.setDate(date);
+        ResultVO<Integer> resultVO=workClient.updateStudentAttendance(attendence);
+        return resultVO;
+    }
+
+
+    @PostMapping("/delStudentAttendance")
+    @ResponseBody
+    public ResultVO<Integer> delStudentAttendance(@RequestParam("attendanceId") Integer attendanceId){
+        return workClient.delStudentAttendance(attendanceId);
+    }
+
+
+
+    //根据学生和日期获取出勤记录
+    @PostMapping("/getAttendanceByStuIdAndDate")
+    @ResponseBody
+    public ResultVO<List<Attendence>> getAttendanceByStuIdAndDate(Integer stuId,String attendanceDate){
+        return workClient.getAttendanceByStuIdAndDate(stuId,attendanceDate);
     }
 
 

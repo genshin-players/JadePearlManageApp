@@ -84,8 +84,8 @@
                                                         <svg width="24px" height="24px" viewbox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
                                                     </div>
                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="/toEditStudentAttendance">修改记录</a>
-                                                        <a class="dropdown-item" href="#">删除记录</a>
+                                                        <a class="dropdown-item" href="/toUpdateStudentAttendance?attendanceId=${detail.attendence.id}&&attendanceDate=${pageDate}">修改记录</a>
+                                                        <a class="dropdown-item" href="#" onclick="delAttendance(${detail.attendence.id})">删除记录</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -157,6 +157,22 @@
 
 <script>
 
+    function delAttendance(attendanceId) {
+        $.ajax({
+            type:"post",
+            url:"http://localhost:8003/delStudentAttendance",
+            data:{attendanceId:attendanceId},
+            dataType:"json",
+            success:function (data) {
+                if(data.data>0){
+                    window.location.reload();
+                }
+            },
+            error:function () {
+                alert("删除失败");
+            }
+        });
+    }
 </script>
 </body>
 </html>

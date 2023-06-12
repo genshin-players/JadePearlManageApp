@@ -2,6 +2,8 @@ package cn.bdqn.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -32,6 +34,7 @@ public class Attendence implements Serializable {
     /**
      * 日期，格式”yyyy-MM-dd HH:mm:sss“
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date date;
 
     /**

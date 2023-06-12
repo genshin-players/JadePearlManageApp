@@ -44,17 +44,19 @@
 
                         <div class="row">
                             <div class="col-lg-3">
+                                <#if attendance??>
+                                    <input type="text" name="id" value="${attendance.data.id}" hidden>
+                                </#if>
                             </div>
                             <div class="col-lg-2">
                                 <span class="text-white fw-bolder" style="font-size: 18px">选择班级:</span>
                             </div>
                             <div class="col-lg-4">
-                                <select class="single-select-placeholder js-states" readonly name="classId" onchange="classChange()">
-                                    <option value="0">请选择班级</option>
+                                <span class="text-primary" style="font-weight: bolder;font-size: 20px">
                                     <#list resultVO.data.classesList as c>
-                                        <option class="classIdOp" value="${c.id}">${c.name}</option>
+                                        <#if c.id==attendance.data.classId>${c.name} <input hidden type="text" name="classId" value="${c.id}"></#if>
                                     </#list>
-                                </select>
+                                </span>
                             </div>
 
 
@@ -70,9 +72,12 @@
                                 <span class="text-white fw-bolder" style="font-size: 18px">选择学生:</span>
                             </div>
                             <div class="col-lg-4">
-                                <select class="single-select-placeholder js-states" name="studentId" onchange="studentClick()">
-                                    <option value="0">请选择学生</option>
-                                </select>
+                                <span class="text-primary" style="font-weight: bolder;font-size: 20px">
+                                    <#list resultVO.data.userList as u>
+                                        <#assign json=u.identityInfo?eval/>
+                                        <#if u.id==attendance.data.studentId>${json.realname} <input type="text" name="studentId" value="${u.id}" hidden></#if>
+                                    </#list>
+                                </span>
                             </div>
 
 
@@ -92,10 +97,10 @@
                             <div class="col-lg-4">
                                 <select class="single-select-placeholder js-states" name="isPresent">
                                     <option value="-1">请选择出勤状态</option>
-                                    <option value="0">缺勤</option>
-                                    <option value="1">迟到</option>
-                                    <option value="2">出勤</option>
-                                    <option value="3">请假</option>
+                                    <option value="0" <#if attendance??&& attendance.data.isPresent==0>selected</#if>>缺勤</option>
+                                    <option value="1" <#if attendance??&&attendance.data.isPresent==1>selected</#if>>迟到</option>
+                                    <option value="2" <#if attendance??&&attendance.data.isPresent==2>selected</#if>>出勤</option>
+                                    <option value="3" <#if attendance??&&attendance.data.isPresent==3>selected</#if>>请假</option>
                                 </select>
                             </div>
 
@@ -134,7 +139,7 @@
                                     <span class="text-white fw-bolder" style="font-size: 18px">日期:</span>
                                 </div>
                                 <div class="col-lg-4">
-                                    <input type="text" class="form-control mdate" placeholder="选择日期" name="date"  style="height: 35px;margin-left: 10px">
+                                    <input type="text" class="form-control mdate" placeholder="选择日期" name="date" <#if attendance??> value="${attendance.data.date?string('yyyy-MM-dd')}"</#if>  style="height: 35px;margin-left: 10px">
                                 </div>
 
                                 <br>
@@ -258,101 +263,14 @@
 
 <script>
     $(function () {
-        $("[name=classId]").find("option[value='2']").click();
 
 
-        $.ajax({
-            type:"get",
-            url:"http://localhost:8003/getStudentByClass",
-            data:{classId:0},
-            dataType:"json",
-            success:function (data) {
-                $(".myOp").remove();
-                var str="";
-                for (let i = 0; i < data.studentByClass.length; i++) {
-                    const info=JSON.parse(data.studentByClass[i].identityInfo);
-                    str+="<option class='myOp' value='"+data.studentByClass[i].id+"'>"+info.realname+"</option>";
-                }
-                $("[name=studentId]").append(str);
-            }
-        });
     });
 
 
-    function classChange() {
-        var classId=$("[name=classId]").val();
-        if(classId!=0&&classId!=null){
-            $.ajax({
-                type:"get",
-                url:"http://localhost:8003/getStudentByClass",
-                data:{classId:classId},
-                dataType:"json",
-                success:function (data) {
-                    $(".myOp").remove();
-                    var str="";
-                    for (let i = 0; i < data.studentByClass.length; i++) {
-                        const info=JSON.parse(data.studentByClass[i].identityInfo);
-                        str+="<option class='myOp' value='"+data.studentByClass[i].id+"'>"+info.realname+"</option>";
-                    }
-                    $("[name=studentId]").append(str);
-                }
-            });
-        }else {
-            $.ajax({
-                type:"get",
-                url:"http://localhost:8003/getStudentByClass",
-                data:{classId:0},
-                dataType:"json",
-                success:function (data) {
-                    $(".myOp").remove();
-                    var str="";
-                    for (let i = 0; i < data.studentByClass.length; i++) {
-                        const info=JSON.parse(data.studentByClass[i].identityInfo);
-                        str+="<option class='myOp' value='"+data.studentByClass[i].id+"'>"+info.realname+"</option>";
-                    }
-                    $("[name=studentId]").append(str);
-                }
-            });
-        }
-
-    }
-
-    function studentClick() {
-        var studentId=$("[name=studentId]").val();
-
-        $.ajax({
-            type:"get",
-            url:"http://localhost:8003/getStudentByClass",
-            data:{classId:0},
-            dataType:"json",
-            success:function (data) {
-
-                $(".classIdOp").remove();
-                var str="";
-                for (let j = 0; j < data.classList.length; j++) {
-                    var classId=0;
-                    //找出选中学生的班级id
-                    for (let i = 0; i < data.studentAndClass.length; i++) {
-                        //console.log(data.studentAndClass[i].studentId+"=="+studentId+"  "+data.studentAndClass[i].studentId==studentId+"\n");
-                        if(data.studentAndClass[i].studentId==studentId){
-                            classId=data.studentAndClass[i].classId;
-                        }
-                    }
-                    if(classId==data.classList[j].id){
-                        str+="<option class='classIdOp' value='"+data.classList[j].id+"' selected>"+data.classList[j].name+"</option>";
-                    }else {
-                        str+="<option class='classIdOp' value='"+data.classList[j].id+"'>"+data.classList[j].name+"</option>";
-                    }
-
-                }
-                $("[name=classId]").append(str);
-
-            }
-        });
-    }
-
 
     function submitEdit() {
+        var id=$("[name=id]").val();
         var classId=$("[name=classId]").val();
         var studentId=$("[name=studentId]").val();
         var isPresent=$("[name=isPresent]").val();
@@ -373,41 +291,23 @@
         }else {
             $.ajax({
                 type:"post",
-                url:"http://localhost:8003/getAttendanceByStuIdAndDate",
-                data:{"stuId":studentId,"attendanceDate":$("[name=date]").val()},
+                url:"http://localhost:8003/updateStudentAttendance",
+                data:{
+                    "id":id,
+                    "classId":classId,
+                    "studentId":studentId,
+                    "isPresent":isPresent,
+                    "reportUserId":reportUserId,
+                    "attendanceDate":$("[name=date]").val(),
+                },
                 dataType:"json",
-                success:function (data) {
-
-                    if(data.data.length>0){
-
-                        alert($("[name=studentId] option:selected").html()+"在"+$("[name=date]").val()+"已经有出勤记录，请勿重复添加，有需要可前往修改。");
-
-                    }else {
-                        $.ajax({
-                            type:"post",
-                            url:"http://localhost:8003/addStudentAttendance",
-                            data:{
-                                "classId":classId,
-                                "studentId":studentId,
-                                "isPresent":isPresent,
-                                "reportUserId":reportUserId,
-                                "attendanceDate":$("[name=date]").val(),
-                            },
-                            dataType:"json",
-                            success:function(data){
-                                console.log(data);
-                                alert("添加成功");
-                                window.location.href="/toStuAttendance?attendanceDate="+$("[name=date]").val();
-                            },
-                            error:function(data){
-                                alert("添加失败");
-                            }
-                        });
-                    }
+                success:function(data){
+                    window.location.href="/toStuAttendanceDetail?classId="+classId+"&attendanceDate="+$("[name=date]").val();
+                },
+                error:function(data){
+                    alert("修改失败");
                 }
             });
-
-
         }
     }
 </script>

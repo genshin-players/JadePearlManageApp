@@ -49,4 +49,28 @@ public interface AttendenceService extends IService<Attendence> {
      */
     public int addStudentAttendance(Attendence attendence);
 
+
+    /**
+     * 按学生ID和日期获取出勤记录
+     * @param stuId 学生编号
+     * @param attendanceDate 出勤日期
+     * @return 出勤记录集合
+     */
+    public List<Attendence> getAttendanceByStuIdAndDate(Integer stuId,String attendanceDate);
+
+
+    /**
+     * 修改出勤记录
+     * @param attendence 出勤记录及id
+     * @return 受影响行数
+     */
+    public int updateStudentAttendance(Attendence attendence);
+
+    /**
+     * 按id删除出勤记录
+     * @param attendanceId 出勤记录id
+     * @return 受影响的行数
+     */
+    public int delStudentAttendance(Integer attendanceId);
+
 }

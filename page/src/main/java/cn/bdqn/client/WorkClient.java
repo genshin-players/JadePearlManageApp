@@ -7,9 +7,7 @@ import cn.bdqn.vo.workvo.ClassAttendanceDetailInfoVO;
 import cn.bdqn.vo.workvo.ToStudentAttendancePageVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -32,6 +30,23 @@ public interface WorkClient {
 
 
     @PostMapping("/addStudentAttendance")
-    public ResultVO<Integer> addStudentAttendance(@SpringQueryMap Attendence attendence);
+    public ResultVO<Integer> addStudentAttendance(@RequestBody Attendence attendence);
+
+    @PostMapping("/updateStudentAttendance")
+    public ResultVO<Integer> updateStudentAttendance(@RequestBody Attendence attendence);
+
+
+    //根据学生id和日期获取 出勤记录
+    @RequestMapping("/getAttendanceByStuIdAndDate")
+    public ResultVO<List<Attendence>> getAttendanceByStuIdAndDate(@RequestParam("stuId") Integer stuId,@RequestParam("attendanceDate") String attendanceDate);
+
+
+    //根据出勤id获取出勤记录
+    @RequestMapping("/getAttendanceById")
+    public ResultVO<Attendence> getAttendanceById(@RequestParam("attendanceId") Integer attendanceId);
+
+    //根据id删除出勤记录
+    @PostMapping("/delStudentAttendance")
+    public ResultVO<Integer> delStudentAttendance(@RequestParam("attendanceId") Integer attendanceId);
 
 }

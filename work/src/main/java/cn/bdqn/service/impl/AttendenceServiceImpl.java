@@ -208,8 +208,45 @@ public class AttendenceServiceImpl extends ServiceImpl<AttendenceMapper, Attende
      */
     @Override
     public int addStudentAttendance(Attendence attendence) {
-        System.out.println(attendence.toString());
         int count = attendenceMapper.insert(attendence);
         return count;
+    }
+
+    /**
+     * 按学生ID和日期获取出勤记录
+     *
+     * @param stuId          学生编号
+     * @param attendanceDate 出勤日期
+     * @return 出勤记录集合
+     */
+    @Override
+    public List<Attendence> getAttendanceByStuIdAndDate(Integer stuId, String attendanceDate) {
+        QueryWrapper<Attendence> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("date",attendanceDate+"%");
+        queryWrapper.eq("student_id",stuId);
+
+        return attendenceMapper.selectList(queryWrapper);
+    }
+
+    /**
+     * 修改出勤记录
+     *
+     * @param attendence 出勤记录及id
+     * @return 受影响行数
+     */
+    @Override
+    public int updateStudentAttendance(Attendence attendence) {
+        return attendenceMapper.updateById(attendence);
+    }
+
+    /**
+     * 按id删除出勤记录
+     *
+     * @param attendanceId 出勤记录id
+     * @return 受影响的行数
+     */
+    @Override
+    public int delStudentAttendance(Integer attendanceId) {
+        return attendenceMapper.deleteById(attendanceId);
     }
 }
