@@ -1,8 +1,10 @@
 package cn.bdqn.mapper;
 
 import cn.bdqn.entity.Users;
-import cn.bdqn.entity.Users;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,7 +14,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author ljj
  * @since 2023-06-11
  */
+
 public interface UsersMapper extends BaseMapper<Users> {
+
 
 
 }
