@@ -14,6 +14,7 @@
         <module>page</module>
         <module>work</module>
         <module>display</module>
+        <module>user</module>
     </modules>
 
     <parent>

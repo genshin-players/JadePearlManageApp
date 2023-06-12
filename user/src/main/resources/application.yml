@@ -1,13 +1,13 @@
 spring:
   application:
-    name: work
+    name: user
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/jadepearl_app?useSSL=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password: 123.com
 server:
-  port: 8004
+  port: 8005
 eureka:
   client:
     service-url:
