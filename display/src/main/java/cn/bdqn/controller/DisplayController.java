@@ -8,12 +8,9 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,10 +33,11 @@ public class DisplayController {
     private IDisplayService displayService;
 
     @RequestMapping("getPushEveryFuckingDayList")
-    public Map<String, Object> getPushEveryFuckingDayList(){
+    public Map<String, Object> getPushEveryFuckingDayList(@RequestParam(required = false,defaultValue = "") String title){
         System.out.println("sssss");
         LambdaQueryWrapper<Display> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(Display::getDisplayTypeId,2);
+        lambdaQueryWrapper.like(Display::getTitle,"%"+title+"%");
         Map<String,Object> map = new HashMap<>();
         List<Display> list = displayService.list(lambdaQueryWrapper);
         if (list != null){
@@ -54,9 +52,10 @@ public class DisplayController {
     }
 
     @RequestMapping("getExternalPerformanceList")
-    public Map<String, Object> getExternalPerformanceList(){
+    public Map<String, Object> getExternalPerformanceList(@RequestParam(required = false,defaultValue = "") String title){
         LambdaQueryWrapper<Display> lambdaQueryWrapper = new LambdaQueryWrapper<Display>();
         lambdaQueryWrapper.eq(Display::getDisplayTypeId,3);
+        lambdaQueryWrapper.like(Display::getTitle,"%"+title+"%");
         Map<String,Object> map = new HashMap<>();
         List<Display> list = displayService.list(lambdaQueryWrapper);
         if (list != null){

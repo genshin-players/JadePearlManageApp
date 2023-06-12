@@ -22,8 +22,8 @@ public class DisplayController {
     @Autowired
     private ActivatesClient activatesClient;
     @RequestMapping("/daily_info")
-    public String toDailyInfo(Model model) {
-        ResultVO<List<DisplayDTO>> pushEveryFuckingDayList = displayClient.getPushEveryFuckingDayList();
+    public String toDailyInfo(@RequestParam(required = false,defaultValue = "") String title,Model model) {
+        ResultVO<List<DisplayDTO>> pushEveryFuckingDayList = displayClient.getPushEveryFuckingDayList(title);
         List<DisplayDTO> displayDTOList = pushEveryFuckingDayList.getData();
 /*        for (DisplayDTO displayDTO:displayDTOList){
             System.out.println(displayDTO.getTitle());
@@ -42,8 +42,8 @@ public class DisplayController {
     }
 
     @RequestMapping("/external_performance")
-    public String toExternalPerformance(Model model) {
-        ResultVO<List<DisplayDTO>> externalPerformanceList = displayClient.getExternalPerformanceList();
+    public String toExternalPerformance(@RequestParam(required = false,defaultValue = "") String title,Model model) {
+        ResultVO<List<DisplayDTO>> externalPerformanceList = displayClient.getExternalPerformanceList(title);
         List<DisplayDTO> displayDTOList = externalPerformanceList.getData();
 /*        for (DisplayDTO displayDTO:displayDTOList){
             System.out.println(displayDTO.getTitle());
