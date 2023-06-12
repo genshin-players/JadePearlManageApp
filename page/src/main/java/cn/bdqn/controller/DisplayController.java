@@ -1,7 +1,9 @@
 package cn.bdqn.controller;
 
+import cn.bdqn.client.ActivatesClient;
 import cn.bdqn.client.DisplayClient;
 import cn.bdqn.client.WorkClient;
+import cn.bdqn.dto.ActivitiesDTO;
 import cn.bdqn.dto.DisplayDTO;
 import cn.bdqn.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import java.util.List;
 public class DisplayController {
     @Autowired
     private DisplayClient displayClient;
+    @Autowired
+    private ActivatesClient activatesClient;
     @RequestMapping("/daily_info")
     public String toDailyInfo(Model model) {
         ResultVO<List<DisplayDTO>> pushEveryFuckingDayList = displayClient.getPushEveryFuckingDayList();
@@ -29,7 +33,11 @@ public class DisplayController {
     }
     @RequestMapping("/inner_activities")
     public String toInnerActivities(Model model) {
-
+        List<ActivitiesDTO> activitiesList = activatesClient.getActivitiesList();
+        for (ActivitiesDTO activitiesDTO:activitiesList){
+            System.out.println(activitiesDTO.getDisplay().getTitle());
+        }
+        model.addAttribute("activitiesList",activitiesList);
         return "display/inner_activities";
     }
 

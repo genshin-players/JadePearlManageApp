@@ -65,8 +65,6 @@ public class Activities extends Model<Activities> {
      */
     private Boolean isActive;
 
-    private Display display;
-
     @Override
     public Serializable pkVal() {
         return this.id;
