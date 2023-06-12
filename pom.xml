@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>register</module>
-        <module>gatway</module>
+        <module>gateway</module>
         <module>page</module>
         <module>user</module>
         <module>work</module>
