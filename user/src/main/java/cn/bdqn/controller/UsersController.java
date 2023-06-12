@@ -3,6 +3,8 @@ package cn.bdqn.controller;
 
 import cn.bdqn.entity.Users;
 import cn.bdqn.service.IUsersService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +28,13 @@ public class UsersController {
     private IUsersService usersService;
 
     @RequestMapping("showAll")
-    private List<Users> getAll(){
-        List<Users> list = usersService.list();
+    private List<Users> getAll(String realname){
+        QueryWrapper<Users> wrapper=new QueryWrapper<>();
+        wrapper.eq("role_id", 6);
+        List<Users> list = usersService.list(wrapper);
         return list;
     }
+
+
 
 }

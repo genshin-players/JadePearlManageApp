@@ -14,9 +14,6 @@ import java.util.Date;
 @CrossOrigin
 public class IndexController {
 
-
-
-
     @RequestMapping("update_addteacher")
     public String update_addteacher(){
         return "teacher/update_addteacher";

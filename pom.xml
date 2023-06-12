@@ -12,8 +12,10 @@
         <module>register</module>
         <module>gatway</module>
         <module>page</module>
+        <module>user</module>
         <module>work</module>
         <module>display</module>
+        <module>user</module>
     </modules>
 
     <parent>

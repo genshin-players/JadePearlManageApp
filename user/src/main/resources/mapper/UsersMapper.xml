@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bdqn.mapper.UsersMapper">
+    <select id="getAll" resultType="cn.bdqn.entity.Users">
+
+        SELECT * FROM users WHERE  1=1
+            <if test="identity_info != null">
+              and  `identity_info`
+                LIKE CONCAT('%',#{identity_info},'%')
+            </if>
+
+        and role_id=6
+
+    </select>
+</mapper>
