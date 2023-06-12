@@ -11,7 +11,7 @@
  Target Server Version : 80031 (8.0.31-0ubuntu0.20.04.2)
  File Encoding         : 65001
 
- Date: 12/06/2023 15:16:43
+ Date: 12/06/2023 15:55:42
 */
 
 SET NAMES utf8mb4;
@@ -31,13 +31,16 @@ CREATE TABLE `activities`  (
   `create_time` date NOT NULL DEFAULT 'curdate()' COMMENT '创建日期',
   `update_time` date NOT NULL COMMENT '更新日期',
   `is_active` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1代表TRUE(生效),0代表FALSE（不生效）',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `activities_display_id_fk`(`display_id` ASC) USING BTREE,
+  CONSTRAINT `activities_display_id_fk` FOREIGN KEY (`display_id`) REFERENCES `display` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of activities
 -- ----------------------------
 INSERT INTO `activities` VALUES (1, 5, 5, '2023-06-09 15:56:55', '2023-06-09 15:56:58', 114514, '2023-06-09', '2023-06-09', 1);
+INSERT INTO `activities` VALUES (2, 7, 10, '2023-06-12 15:47:57', '2023-06-12 15:47:58', 1919810, '2023-06-12', '2023-06-12', 1);
 
 -- ----------------------------
 -- Table structure for attendence
@@ -50,7 +53,12 @@ CREATE TABLE `attendence`  (
   `date` datetime NOT NULL COMMENT '日期，格式”yyyy-MM-dd HH:mm:sss“',
   `is_present` int NOT NULL COMMENT '0.缺勤 1.迟到 2.在 3.请假',
   `report_user_id` int NOT NULL COMMENT '汇报者id',
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `attendence_classes_id_fk`(`class_id` ASC) USING BTREE,
+  INDEX `attendence_users_id_fk`(`report_user_id` ASC) USING BTREE,
+  INDEX `attendence_users_id_fk2`(`student_id` ASC) USING BTREE,
+  CONSTRAINT `attendence_classes_id_fk` FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `attendence_users_id_fk2` FOREIGN KEY (`student_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '出勤' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -89,7 +97,13 @@ CREATE TABLE `classes`  (
   `adviser_id` int NOT NULL COMMENT '辅导员id(班主任)',
   `create_time` date NOT NULL DEFAULT 'curdate()',
   `subject_id` int NOT NULL COMMENT '班级类型id',
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `classes_users_id_fk`(`instructor_id` ASC) USING BTREE,
+  INDEX `classes_users_id_fk2`(`adviser_id` ASC) USING BTREE,
+  INDEX `classes_subjects_id_fk`(`subject_id` ASC) USING BTREE,
+  CONSTRAINT `classes_subjects_id_fk` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `classes_users_id_fk` FOREIGN KEY (`instructor_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `classes_users_id_fk2` FOREIGN KEY (`adviser_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '班级' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -111,8 +125,12 @@ CREATE TABLE `display`  (
   `create_time` datetime NOT NULL DEFAULT 'curdate()',
   `update_time` datetime NOT NULL,
   `publish_user_id` int NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '显示内容' ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `display_display_type_id_fk`(`display_type_id` ASC) USING BTREE,
+  INDEX `display_users_id_fk`(`publish_user_id` ASC) USING BTREE,
+  CONSTRAINT `display_display_type_id_fk` FOREIGN KEY (`display_type_id`) REFERENCES `display_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `display_users_id_fk` FOREIGN KEY (`publish_user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '显示内容' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of display
@@ -123,6 +141,7 @@ INSERT INTO `display` VALUES (3, '美国双子塔重建', 2, '1', '2023-06-11 16
 INSERT INTO `display` VALUES (4, '丫丫眼圈被美国人打黑了', 2, '1', '2023-06-12 16:01:13', '2023-06-11 16:01:15', 1);
 INSERT INTO `display` VALUES (5, '辩论赛', 1, '1', '2023-06-11 19:54:44', '2023-06-11 19:54:46', 1);
 INSERT INTO `display` VALUES (6, '学院优秀作品展示', 3, '1', '2023-06-11 20:22:13', '2023-06-11 20:22:15', 1);
+INSERT INTO `display` VALUES (7, '篮球比赛', 1, '1', '2023-06-12 15:47:24', '2023-06-12 15:47:25', 1);
 
 -- ----------------------------
 -- Table structure for display_element
@@ -134,7 +153,11 @@ CREATE TABLE `display_element`  (
   `element_type_id` int NOT NULL COMMENT '元素类型id',
   `routine` int NOT NULL COMMENT '顺序（第一段，第二段等等）',
   `value` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '值',
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `display_element_display_id_fk`(`display_id` ASC) USING BTREE,
+  INDEX `display_element_display_element_type_id_fk`(`element_type_id` ASC) USING BTREE,
+  CONSTRAINT `display_element_display_id_fk` FOREIGN KEY (`display_id`) REFERENCES `display` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `display_element_display_element_type_id_fk` FOREIGN KEY (`element_type_id`) REFERENCES `display_element_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '显示元素' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -186,7 +209,12 @@ CREATE TABLE `member_schedules`  (
   `update_time` date NOT NULL,
   `create_user_id` int NOT NULL,
   `status` tinyint(1) NOT NULL COMMENT '完成状态',
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `member_schedules_users_id_fk`(`member_id` ASC) USING BTREE,
+  INDEX `member_schedules_member_schedules_type_id_fk2`(`work_type_id` ASC) USING BTREE,
+  CONSTRAINT `member_schedules_member_schedules_type_id_fk` FOREIGN KEY (`work_type_id`) REFERENCES `member_schedules_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `member_schedules_member_schedules_type_id_fk2` FOREIGN KEY (`work_type_id`) REFERENCES `member_schedules_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `member_schedules_users_id_fk` FOREIGN KEY (`member_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '学社成员工作安排' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -246,7 +274,11 @@ CREATE TABLE `role_menu`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `role_id` int NOT NULL COMMENT '角色id',
   `menu_id` int NOT NULL COMMENT '菜单id',
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `role_menu_menu_id_fk`(`menu_id` ASC) USING BTREE,
+  INDEX `role_menu_roles_id_fk`(`role_id` ASC) USING BTREE,
+  CONSTRAINT `role_menu_menu_id_fk` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `role_menu_roles_id_fk` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '角色菜单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -312,7 +344,15 @@ CREATE TABLE `signup`  (
   `class_id` int NOT NULL COMMENT '班级id',
   `activity_id` int NOT NULL COMMENT '活动id',
   `signup_student_id` int NOT NULL COMMENT '报名学生id',
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `signup_activities_id_fk`(`activity_id` ASC) USING BTREE,
+  INDEX `signup_classes_id_fk`(`class_id` ASC) USING BTREE,
+  INDEX `signup_users_id_fk`(`signup_student_id` ASC) USING BTREE,
+  INDEX `signup_users_id_fk2`(`adivser_id` ASC) USING BTREE,
+  CONSTRAINT `signup_activities_id_fk` FOREIGN KEY (`activity_id`) REFERENCES `activities` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `signup_classes_id_fk` FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `signup_users_id_fk` FOREIGN KEY (`signup_student_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `signup_users_id_fk2` FOREIGN KEY (`adivser_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '报名' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -327,7 +367,11 @@ CREATE TABLE `student_class`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `student_id` int NOT NULL COMMENT '学生id',
   `class_id` int NOT NULL COMMENT '班级id',
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `student_class_classes_id_fk`(`class_id` ASC) USING BTREE,
+  INDEX `student_class_users_id_fk`(`student_id` ASC) USING BTREE,
+  CONSTRAINT `student_class_classes_id_fk` FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `student_class_users_id_fk` FOREIGN KEY (`student_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '学生与班级绑定表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -379,7 +423,9 @@ CREATE TABLE `users`  (
   `identity_info` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT 'json格式，身份信息，包含姓名、年龄、性别、联系方式等',
   `create_time` date NOT NULL DEFAULT 'curdate()',
   `update_time` date NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `users_roles_id_fk`(`role_id` ASC) USING BTREE,
+  CONSTRAINT `users_roles_id_fk` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '用户（所有学生，老师，管理员）' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
