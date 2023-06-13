@@ -15,8 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * <p>
@@ -49,5 +48,68 @@ public class ActivitiesController {
         }
         return dtoList;
     }
+
+    @RequestMapping("/activitiesListByTitle")
+    public List<ActivitiesDTO> activitiesListByTitle(@RequestParam(value = "title") String title){
+        LambdaQueryWrapper<Display> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.like(Display::getTitle, "%"+title+"%");
+        List<Display> displayList = displayService.list(lambdaQueryWrapper);
+        for (Display display : displayList){
+            LambdaQueryWrapper<Display> lambdaQueryWrapper2 = new LambdaQueryWrapper<>();
+            lambdaQueryWrapper2.like(Display::getTitle, "%"+title+"%");
+            //List<Display> displayList = displayService.list(lambdaQueryWrapper);
+        }
+/*        List<Activities> list = activitiesService.list();
+        List<ActivitiesDTO> dtoList = new ArrayList<>();
+        for (Activities activities:list){
+            ActivitiesDTO activitiesDTO = new ActivitiesDTO();
+            BeanUtils.copyProperties(activities, activitiesDTO);
+            int displayId =activities.getDisplayId();
+            Display display = displayService.getById(displayId);
+            activitiesDTO.setDisplay(display);
+            dtoList.add(activitiesDTO);
+        }*/
+        return dtoList;
+    }
+
+    @RequestMapping("deleteActivitiesById")
+    public Map<String, Object> deleteActivitiesById(@RequestParam(value = "activitiesId") Integer activitiesId,@RequestParam(value = "displayId") Integer displayId){
+        boolean activitiesB = activitiesService.removeById(activitiesId);
+        boolean displayB = displayService.removeById(displayId);
+        Map<String,Object> map = new HashMap<>();
+        if (activitiesB && displayB){
+            map.put("code", 200);
+            map.put("msg", "success");
+        }else {
+            map.put("code", 500);
+            map.put("msg", "error");
+        }
+        return map;
+    }
+
+    @RequestMapping("addActivities")
+    public Map<String, Object> addActivities(
+            @RequestParam(value = "displayId") Integer displayId,
+            @RequestParam(value = "signupNumber") Integer signupNumber,
+            @RequestParam(value = "startTime") Date startTime,
+            @RequestParam(value = "endTime") Date endTime){
+        Map<String,Object> map = new HashMap<>();
+        if (activitiesService.save(
+                Activities.builder()
+                        .displayId(displayId)
+                        .signupNumber(signupNumber)
+                        .startTime(startTime)
+                        .endTime(endTime)
+                        .build()
+        )){
+            map.put("code", 200);
+            map.put("msg", "success");
+        }else {
+            map.put("code", 500);
+            map.put("msg", "error");
+        }
+        return map;
+    }
+
 }
 

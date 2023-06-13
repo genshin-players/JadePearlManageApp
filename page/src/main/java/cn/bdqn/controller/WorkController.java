@@ -56,7 +56,7 @@ public class WorkController {
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         if(attendanceDate==null){
             attendanceDate=sdf.format(new Date());
-        }else {
+        }else{
             try {
                 Date date=sdf.parse(attendanceDate);
                 attendanceDate=sdf.format(date);
@@ -71,26 +71,20 @@ public class WorkController {
 
         return "work/studentAttendanceDetail";
     }
-
     //学社出勤页面请求
     @RequestMapping("/toMembersAttendance")
     public String toMembersAttendance(){
         return "work/MembersAttendance";
     }
-
     //学社出勤详情页面请求
     @RequestMapping("/toMemAttendanceDetail")
     public String toMemAttendanceDetail(String memName,String date,Model model) throws ParseException {
         model.addAttribute("memName", memName);
-
-
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         Date date1=sdf.parse(date);
         model.addAttribute("date", date1);
         return "work/MembersAttendanceDetail";
     }
-
-
 
     //班级出勤页面去往  新增出勤记录页面
     @RequestMapping("/toAddStudentAttendance")
@@ -100,6 +94,7 @@ public class WorkController {
         model.addAttribute("editType","新增");
         return "work/editStudentAttendance";
     }
+
     //班级出勤页面点击 修改  修改出勤记录
     @RequestMapping("/toUpdateStudentAttendance")
     public String toUpdateStudentAttendance(@RequestParam("attendanceId") Integer attendanceId,Model model){
@@ -110,13 +105,12 @@ public class WorkController {
         model.addAttribute("attendance",workClient.getAttendanceById(attendanceId));
         return "work/updateStudentAttendance";
     }
+
     //根据出勤id获取出勤记录
     @RequestMapping("/getAttendanceById")
     public ResultVO<Attendence> getAttendanceById(@RequestParam("attendanceId") Integer attendanceId){
         return workClient.getAttendanceById(attendanceId);
     }
-
-
     @ResponseBody
     @GetMapping("/getStudentByClass")
     public Map<String,Object> getStudentByClass(Integer classId){
@@ -134,20 +128,16 @@ public class WorkController {
                 }
             }
         }
-
-
         map.put("studentByClass",classList);
         map.put("studentAndClass",resultVO.getData().getStudent_class());
         map.put("classList",resultVO.getData().getClassesList());
         return map;
     }
 
-
     //新增出勤记录
     @PostMapping("/addStudentAttendance")
     @ResponseBody
     public ResultVO<Integer> addStudentAttendance(Attendence attendence,String attendanceDate){
-
         Date date=null;
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -155,7 +145,6 @@ public class WorkController {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-
         attendence.setDate(date);
         ResultVO<Integer> resultVO=workClient.addStudentAttendance(attendence);
         return resultVO;
@@ -171,20 +160,16 @@ public class WorkController {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-
         attendence.setDate(date);
         ResultVO<Integer> resultVO=workClient.updateStudentAttendance(attendence);
         return resultVO;
     }
-
 
     @PostMapping("/delStudentAttendance")
     @ResponseBody
     public ResultVO<Integer> delStudentAttendance(@RequestParam("attendanceId") Integer attendanceId){
         return workClient.delStudentAttendance(attendanceId);
     }
-
-
 
     //根据学生和日期获取出勤记录
     @PostMapping("/getAttendanceByStuIdAndDate")
@@ -193,18 +178,11 @@ public class WorkController {
         return workClient.getAttendanceByStuIdAndDate(stuId,attendanceDate);
     }
 
-
-
     //班级出勤编辑页面请求
     @RequestMapping("/toEditStudentAttendance")
     public String toEditStudentAttendance(){
         return "work/editStudentAttendance";
     }
-
-
-
-
-
     //安排工作页面
     @RequestMapping("/toAssignWork")
     public String toAssignOneWork(@RequestParam(required = false) String memName, Model model){

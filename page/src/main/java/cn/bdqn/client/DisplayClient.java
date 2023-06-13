@@ -29,4 +29,11 @@ public interface DisplayClient {
     ResultVO<List<DisplayDTO>> getExternalPerformanceList(@RequestParam(required = false,defaultValue = "") String title);
     @RequestMapping("deleteDisplay")
     Map<String, Object> deleteDisplay(@RequestParam(value = "id") Integer id);
+    @RequestMapping("addDisplay")
+    Map<String, Object> addDisplay(
+            @RequestParam(value = "title") String title,
+            @RequestParam(value = "displayTypeId") Integer displayTypeId,
+            @RequestParam(value = "coverImage", defaultValue = "1", required = false) String coverImage,
+            @RequestParam(value = "publishUserId", defaultValue = "1", required = false) Integer publishUserId
+    );
 }

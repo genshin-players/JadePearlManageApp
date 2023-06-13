@@ -4,7 +4,7 @@ spring:
   application:
     name: page
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://39.107.229.253:3306/jadepearl_app?useSSL=true&characterEncoding=utf-8&serverTimezone=UTC
     username: root
     password: 114514
