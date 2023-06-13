@@ -837,7 +837,7 @@
                     </a>
                         <#---->
                         <ul aria-expanded="false">
-                            <li><a href="/toMembersAttendance">学社出勤</a></li>
+                            <li><a href="/toMemberWork">学社出勤</a></li>
                             <li><a href="/toStuAttendance">班级出勤</a></li>
                             <li><a href="/toAssignWork">学社工作安排</a></li>
                         </ul>

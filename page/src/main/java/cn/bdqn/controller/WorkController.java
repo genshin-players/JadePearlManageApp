@@ -6,6 +6,7 @@ import cn.bdqn.entity.Users;
 import cn.bdqn.vo.workvo.ClassAttendanceCardInfoVO;
 import cn.bdqn.vo.ResultVO;
 import cn.bdqn.vo.workvo.ClassAttendanceDetailInfoVO;
+import cn.bdqn.vo.workvo.MemberWorkCardInfoVO;
 import cn.bdqn.vo.workvo.ToStudentAttendancePageVO;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -213,5 +214,32 @@ public class WorkController {
             model.addAttribute("memName", "sb");
         }
         return "work/assignWork";
+    }
+
+
+
+
+
+
+
+
+    //学社工作页面请求
+    @RequestMapping("/toMemberWork")
+    public String toMemberWork(@RequestParam(required = false) String workDate,Model model){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        if(workDate==null){
+            workDate=sdf.format(new Date());
+        }else {
+            try {
+                Date date=sdf.parse(workDate);
+                workDate=sdf.format(date);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        ResultVO<List<MemberWorkCardInfoVO>> resultVO = workClient.getMemberWorkCardInfo(workDate);
+        model.addAttribute("resultVO",resultVO);
+        model.addAttribute("pageDate",workDate);
+        return "work/MembersAttendance";
     }
 }

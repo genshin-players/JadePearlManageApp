@@ -4,6 +4,7 @@ import cn.bdqn.entity.Attendence;
 import cn.bdqn.vo.workvo.ClassAttendanceCardInfoVO;
 import cn.bdqn.vo.ResultVO;
 import cn.bdqn.vo.workvo.ClassAttendanceDetailInfoVO;
+import cn.bdqn.vo.workvo.MemberWorkCardInfoVO;
 import cn.bdqn.vo.workvo.ToStudentAttendancePageVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
@@ -48,5 +49,13 @@ public interface WorkClient {
     //根据id删除出勤记录
     @PostMapping("/delStudentAttendance")
     public ResultVO<Integer> delStudentAttendance(@RequestParam("attendanceId") Integer attendanceId);
+
+
+
+
+
+    //学社出勤页面 卡片数据
+    @GetMapping("/toMemberWorkCardInfo")
+    public ResultVO<List<MemberWorkCardInfoVO>> getMemberWorkCardInfo(@RequestParam("workDate")String workDate);
 
 }
