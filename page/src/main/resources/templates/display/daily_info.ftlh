@@ -125,19 +125,20 @@
 
 </div>
 <script>
-    function deleteDisplay(){
+    function deleteDisplay(id){
         if (confirm("确定要删除吗")){
             $.ajax({
                 type:"GET",
-                url:"/display/deleteDisplay",
-                data:{username:username,password:password},
+                url:"/display/deleteDisplayById",
+                data:{id:id},
                 dataType:"json",
                 success:function (res) {
                     console.log(res)
                     if (res.code == 200) {
-                        alert("删除")
+                        alert("删除成功");
+                        location.href = '/display/daily_info';
                     }else {
-                        alert("删除")
+                        alert("删除失败")
                     }
                 }
             })

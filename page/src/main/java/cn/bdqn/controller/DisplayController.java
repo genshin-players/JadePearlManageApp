@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Map;
@@ -72,8 +73,9 @@ public class DisplayController {
         return "display/edit_activities";
     }
 
-    @RequestMapping("deleteDisplay")
-    Map<String, Object> deleteDisplay(@RequestParam(value = "id") Integer id){
+    @RequestMapping("deleteDisplayById")
+    @ResponseBody
+    public Map<String, Object> deleteDisplayById(@RequestParam(value = "id") Integer id){
         return displayClient.deleteDisplay(id);
     }
 }
