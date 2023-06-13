@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,6 +75,32 @@ public class DisplayController {
         boolean b = displayService.removeById(id);
         Map<String,Object> map = new HashMap<>();
         if (b){
+            map.put("code", 200);
+            map.put("msg", "success");
+        }else {
+            map.put("code", 500);
+            map.put("msg", "error");
+        }
+        return map;
+    }
+
+
+    @RequestMapping("addDisplay")
+    public Map<String, Object> addDisplay(
+            @RequestParam(value = "title") String title,
+            @RequestParam(value = "displayTypeId") Integer displayTypeId,
+            @RequestParam(value = "coverImage", defaultValue = "1", required = false) String coverImage,
+            @RequestParam(value = "publishUserId", defaultValue = "1", required = false) Integer publishUserId){
+        Map<String,Object> map = new HashMap<>();
+        if (displayService.save(
+                Display.builder()
+                        .title(title)
+                        .displayTypeId(displayTypeId)
+                        .coverImage(coverImage)
+                        .publishUserId(publishUserId)
+                        .updateTime(new Date())
+                        .build()
+        )){
             map.put("code", 200);
             map.put("msg", "success");
         }else {

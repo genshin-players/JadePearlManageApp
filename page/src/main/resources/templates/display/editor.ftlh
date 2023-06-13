@@ -43,6 +43,11 @@
 <script src="/js/styleSwitcher.js"></script>
 <script>
     let editor;
+    let str;
+    let signupNum = "${signupNum}";
+    let startTime = "${startTime}";
+    let endTime = "${endTime}";
+    <#--let title = "${title}";-->
     // This sample still does not showcase all CKEditor 5 features (!)
     // Visit https://ckeditor.com/docs/ckeditor5/latest/features/index.html to browse all the features.
     CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
@@ -199,27 +204,48 @@
 
     document.querySelector("#submit").addEventListener("click", ()=>{
         // getting data from editor
-        /*alert("getting data");
+        alert("getting data");
         const editorData = editor.getData();
-        console.log(editorData);*/
-        // setting data to editor
-        let str = "<p>This is a new test</p><p>A brand new test</p>"
-        editor.setData(str)
+        console.log(editorData);
+        if (editorData.trim()===""){
+            alert("内容不得为空")
+        } else if (editorData.trim()===str){
+            alert("请添加内容描述")
+        } else {
+            $.ajax({
+                async:true,
+                dataType:"json",
+                data:{
+                    title:"test",
+                    displayTypeId:1,
+                },
+                method:"POST",
+                url:"/display/insertDisplay",
+                success:function () {
+
+                },
+                error:function () {
+                    alert("failed")
+                }
+            })
+        }
     })
+
+    /**
+     * fill in the data which transporting from edit Activities page once this page is load
+     */
     $(document).ready(function (){
         if ("${type}" === '学社活动'){
-            alert(1)
-            let signupNum = "${signupNum}";
-            let startTime = "${startTime}";
-            let endTime = "${endTime}";
             console.log(signupNum,startTime,endTime)
-            let str = "<p>本次活动每班报名人数为：" +
+            str = "<h1>"+<#--${title}-->"这里应该有标题"+"</h1>" +
+                "<p>&nbsp;</p>" +
+                "<p>本次活动每班报名人数为：<span style='font-size:18px;'>" +
                 signupNum +
-                "！</p><p>活动报名时间为：" +
+                "</span>！</p><p>活动报名时间为：<span style='font-size:18px;'><i><strong>" +
                 startTime +
-                "至" +
+                "</strong></i></span>至<span style='font-size:18px;'><i><strong>" +
                 endTime +
-                "</p>";
+                "</strong></i></span></p>";
             editor.setData(str);
         }
     })

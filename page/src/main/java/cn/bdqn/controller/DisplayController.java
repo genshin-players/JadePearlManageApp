@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -54,6 +55,17 @@ public class DisplayController {
         return "display/external_performance";
     }
 
+    /**
+     *
+     * @param type 内容类型
+     * @param signupNum 报名人傻
+     * @param startTime 报名开始时间
+     * @param endTime 报名结束时间
+     * @param model 模型
+     * @since 2023/6/13
+     * @author ZedFeorius
+     * @return editor.ftlh
+     */
     @RequestMapping("/editor")
     public String toEditor(
             @RequestParam(required = false) String type,
@@ -77,5 +89,23 @@ public class DisplayController {
     @ResponseBody
     public Map<String, Object> deleteDisplayById(@RequestParam(value = "id") Integer id){
         return displayClient.deleteDisplay(id);
+    }
+
+
+    @RequestMapping("deleteActivitiesById")
+    @ResponseBody
+    Map<String, Object> deleteDisplay(@RequestParam(value = "activitiesId") Integer activitiesId, @RequestParam(value = "displayId") Integer displayId){
+        return activatesClient.deleteActivitiesById(activitiesId, displayId);
+    }
+
+    @RequestMapping("insertDisplay")
+    @ResponseBody
+    public Map<String, Object> addDisplay(
+            @RequestParam(value = "title") String title,
+            @RequestParam(value = "displayTypeId") Integer displayTypeId,
+            @RequestParam(value = "coverImage", defaultValue = "1", required = false) String coverImage,
+            @RequestParam(value = "publishUserId", defaultValue = "1", required = false) Integer publishUserId){
+        System.out.println(1);
+        return displayClient.addDisplay(title,displayTypeId,coverImage,publishUserId);
     }
 }

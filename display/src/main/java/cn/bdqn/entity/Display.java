@@ -5,8 +5,9 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import java.util.Date;
+
+import lombok.*;
 
 /**
  * <p>
@@ -17,6 +18,9 @@ import lombok.EqualsAndHashCode;
  * @since 2023-06-09
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Display extends Model<Display> {
 
@@ -40,9 +44,9 @@ public class Display extends Model<Display> {
      */
     private String coverImage;
 
-    private LocalDateTime createTime;
+    private Date createTime;
 
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
     private Integer publishUserId;
 
