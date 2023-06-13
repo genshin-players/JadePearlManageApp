@@ -98,7 +98,7 @@
                                                 </a>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item" href="/update_addteacher">修改</a>
-                                                    <a class="dropdown-item" href="/user/deleteStudent?id="+${user.id}>删除</a>
+                                                    <a class="dropdown-item" href="/user/deleteStudent?id=${user.id}">删除</a>
                                                 </div>
                                             </div>
                                         </td>

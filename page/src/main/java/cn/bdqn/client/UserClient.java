@@ -20,7 +20,7 @@ public interface UserClient {
 
 
     @RequestMapping("user/deleteTeacher_Student")
-    Integer  deleteTeacher(Integer id);
+    Map<String, Object>  deleteTeacher(@RequestParam(value = "id")  Integer id);
 
 
     /*ly所需接口*/

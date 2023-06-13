@@ -6,10 +6,7 @@ import org.bouncycastle.math.raw.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -34,7 +31,7 @@ public class UserController {
 
 
     @RequestMapping("/show_student")
-    public String showStudent(Model model){
+    public String  showStudent(Model model){
         System.out.println("进来了");
         List<Users> users = userClient.showStudent();
         model.addAttribute("users",users);
@@ -43,21 +40,18 @@ public class UserController {
     }
 //=============================================================================================
     @RequestMapping("/deleteTeacher")
-    public String   deleteTeacher(Integer id){
-        Integer aBoolean = userClient.deleteTeacher(id);
-        if (aBoolean>0){
-            return "redirect:show_teacher";
-        }
-        return "teacher/update_addteacher";
+    public String  deleteTeacher(@RequestParam(value = "id") Integer id){
+        Map<String, Object> map = userClient.deleteTeacher(id);
+        System.out.println("删除成功");
+        System.out.println(id);
+
+        return "redirect:show_teacher";
     }
 
     @RequestMapping("/deleteStudent")
     public String   deleteStudent(Integer id){
-        Integer aBoolean = userClient.deleteTeacher(id);
-        if (aBoolean>0){
-            return "redirect:show_student";
-        }
-        return "student/update_addstudent";
+        Map<String, Object> map= userClient.deleteTeacher(id);
+        return "redirect:show_student";
     }
 
 //========================================================================================
