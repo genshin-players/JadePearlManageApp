@@ -782,7 +782,7 @@
                                     </div>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="app-profile.html" class="dropdown-item ai-icon">
+                                    <a href="app-profile.ftlh" class="dropdown-item ai-icon">
                                         <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                                         <span class="ms-2">Profile </span>
                                     </a>
@@ -816,8 +816,8 @@
                         <span class="nav-text">用户管理</span>
                     </a>
                         <ul aria-expanded="false">
-                            <li><a href="/show_teacher">教师管理</a></li>
-                            <li><a href="/show_student">学生管理</a></li>
+                            <li><a href="/user/show_teacher">教师管理</a></li>
+                            <li><a href="/user/show_student">学生管理</a></li>
                         </ul>
 
                     </li>
@@ -871,13 +871,15 @@
                         <span class="nav-text">我的消息</span>
                     </a>
                         <ul aria-expanded="false">
-                            <li><a href="uc-select2.html">Select 2</a></li>
-                            <li><a href="uc-nestable.html">Nestedable</a></li>
-                            <li><a href="uc-noui-slider.html">Noui Slider</a></li>
-                            <li><a href="uc-sweetalert.html">Sweet Alert</a></li>
-                            <li><a href="uc-toastr.html">Toastr</a></li>
-                            <li><a href="map-jqvmap.html">Jqv Map</a></li>
-                            <li><a href="uc-lightgallery.html">Light Gallery</a></li>
+                            <li><a href="/Name">个人信息设置</a></li>
+                            <li><a href="/Select">个人资料</a></li>
+                            <li><a href="/User">账号资料</a></li>
+                            <li><a href="/Password">修改密码</a></li>
+                            <li><a href="/Images">头像照片</a></li>
+
+                            <#--
+                                                        <li><a href="uc-lightgallery.html">Light Gallery</a></li>
+                            -->
                         </ul>
                     </li>
                 </ul>

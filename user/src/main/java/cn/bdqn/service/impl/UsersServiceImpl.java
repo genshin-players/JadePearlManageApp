@@ -23,5 +23,7 @@ import java.util.List;
 @Service
 public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements IUsersService {
 
+    @Autowired
+    private  UsersMapper usersMapper;
 
 }

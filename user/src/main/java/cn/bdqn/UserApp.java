@@ -1,11 +1,13 @@
 package cn.bdqn;
 
-import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
+@EnableEurekaClient
 @MapperScan("cn.bdqn.mapper")
 @SpringBootApplication
 public class UserApp {
@@ -14,8 +16,4 @@ public class UserApp {
         SpringApplication.run(UserApp.class, args);
     }
 
-    @Bean
-    public PaginationInterceptor paginationInterceptor() {
-        return new PaginationInterceptor();
-    }
 }

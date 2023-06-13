@@ -1,5 +1,6 @@
 package cn.bdqn.entity;
 
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
