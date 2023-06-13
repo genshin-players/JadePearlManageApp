@@ -6,11 +6,13 @@ import cn.bdqn.entity.Activities;
 import cn.bdqn.entity.Display;
 import cn.bdqn.service.IActivitiesService;
 import cn.bdqn.service.IDisplayService;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;

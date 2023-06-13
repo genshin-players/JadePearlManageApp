@@ -5,6 +5,7 @@ import cn.bdqn.vo.ResultVO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
@@ -23,7 +24,9 @@ import java.util.Map;
 @RequestMapping("display")
 public interface DisplayClient {
     @RequestMapping("getPushEveryFuckingDayList")
-    ResultVO<List<DisplayDTO>> getPushEveryFuckingDayList();
+    ResultVO<List<DisplayDTO>> getPushEveryFuckingDayList(@RequestParam(required = false,defaultValue = "") String title);
     @RequestMapping("getExternalPerformanceList")
-    ResultVO<List<DisplayDTO>> getExternalPerformanceList();
+    ResultVO<List<DisplayDTO>> getExternalPerformanceList(@RequestParam(required = false,defaultValue = "") String title);
+    @RequestMapping("deleteDisplay")
+    Map<String, Object> deleteDisplay(@RequestParam(value = "id") Integer id);
 }

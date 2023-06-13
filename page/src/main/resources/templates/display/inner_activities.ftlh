@@ -33,6 +33,7 @@
                                     <th>结束时间</th>
                                     <th>创建时间</th>
                                     <th>修改时间</th>
+                                    <th>是否生效</th>
                                     <th>创建者</th>
                                     <th>操作</th>
                                 </tr>
@@ -79,6 +80,23 @@
                                                 <span class="fs-14">${activities.updateTime?string("hh:mm")}</span>
                                             </div>
                                         </td>
+                                        <td>
+                                            <div>
+                                                <#if activities.isActive == true>
+                                                    <span class="badge light badge-success">
+														<i class="fa fa-circle text-success me-1"></i>
+														生效
+													</span>
+                                                </#if>
+                                                <#if activities.isActive == false>
+                                                    <span class="badge light badge-warning">
+														<i class="fa fa-circle text-warning me-1"></i>
+														不生效
+													</span>
+                                                </#if>
+
+                                            </div>
+                                        </td>
                                         <td><a href="javascript:void(0);" class="btn-link">林忆宁</a></td>
                                         <td>
                                             <div class="dropdown dropstart">
@@ -90,8 +108,8 @@
                                                     </svg>
                                                 </a>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="/display/edit_activities">Edit</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                                    <a class="dropdown-item" href="/display/edit_activities">编辑</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);">删除</a>
                                                 </div>
                                             </div>
                                         </td>

@@ -8,12 +8,14 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="d-flex mb-4 justify-content-between align-items-center flex-wrap">
-                    <div class="table-search">
-                        <div class="input-group search-area mb-xxl-0 mb-4">
-                            <input type="text" class="form-control" placeholder="查询">
-                            <span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
+                    <form id="search" action="/display/external_performance">
+                        <div class="table-search">
+                            <div class="input-group search-area mb-xxl-0 mb-4">
+                                <input name="title" type="text" class="form-control" placeholder="按照标题查询">
+                                <span class="input-group-text"><a href="javascript:$('#search').submit()"><i class="flaticon-381-search-2"></i></a></span>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                     <a href="javascript:window.location.href='/display/editor?type=对外展览'" class="btn btn-primary mb-xxl-0 mb-4 "><i class="far fa-file-word me-2"></i>创建校外展览内容</a>
                 </div>
                 <div class="tab-content">
@@ -76,8 +78,8 @@
                                                     </svg>
                                                 </a>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);">编辑</a>
+                                                    <a class="dropdown-item" href="javascript:deleteDisplay(${displayDTO.id});">删除</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -125,6 +127,28 @@
 <!--**********************************
     Main wrapper end
 ***********************************-->
+
+<script>
+    function deleteDisplay(id){
+        if (confirm("确定要删除吗")){
+            $.ajax({
+                type:"GET",
+                url:"/display/deleteDisplayById",
+                data:{id:id},
+                dataType:"json",
+                success:function (res) {
+                    console.log(res)
+                    if (res.code == 200) {
+                        alert("删除成功")
+                        location.href = '/display/external_performance';
+                    }else {
+                        alert("删除失败")
+                    }
+                }
+            })
+        }
+    }
+</script>
 
 <!--**********************************
     Scripts

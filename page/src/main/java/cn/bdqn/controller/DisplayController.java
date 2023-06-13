@@ -11,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/display")
@@ -22,8 +24,8 @@ public class DisplayController {
     @Autowired
     private ActivatesClient activatesClient;
     @RequestMapping("/daily_info")
-    public String toDailyInfo(Model model) {
-        ResultVO<List<DisplayDTO>> pushEveryFuckingDayList = displayClient.getPushEveryFuckingDayList();
+    public String toDailyInfo(@RequestParam(required = false,defaultValue = "") String title,Model model) {
+        ResultVO<List<DisplayDTO>> pushEveryFuckingDayList = displayClient.getPushEveryFuckingDayList(title);
         List<DisplayDTO> displayDTOList = pushEveryFuckingDayList.getData();
 /*        for (DisplayDTO displayDTO:displayDTOList){
             System.out.println(displayDTO.getTitle());
@@ -42,8 +44,8 @@ public class DisplayController {
     }
 
     @RequestMapping("/external_performance")
-    public String toExternalPerformance(Model model) {
-        ResultVO<List<DisplayDTO>> externalPerformanceList = displayClient.getExternalPerformanceList();
+    public String toExternalPerformance(@RequestParam(required = false,defaultValue = "") String title,Model model) {
+        ResultVO<List<DisplayDTO>> externalPerformanceList = displayClient.getExternalPerformanceList(title);
         List<DisplayDTO> displayDTOList = externalPerformanceList.getData();
 /*        for (DisplayDTO displayDTO:displayDTOList){
             System.out.println(displayDTO.getTitle());
@@ -69,5 +71,11 @@ public class DisplayController {
     @RequestMapping("/edit_activities")
     public String toEditorActivites(Model model){
         return "display/edit_activities";
+    }
+
+    @RequestMapping("deleteDisplayById")
+    @ResponseBody
+    public Map<String, Object> deleteDisplayById(@RequestParam(value = "id") Integer id){
+        return displayClient.deleteDisplay(id);
     }
 }
