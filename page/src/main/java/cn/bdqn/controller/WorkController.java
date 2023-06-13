@@ -55,7 +55,7 @@ public class WorkController {
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         if(attendanceDate==null){
             attendanceDate=sdf.format(new Date());
-        }else {
+        }else{
             try {
                 Date date=sdf.parse(attendanceDate);
                 attendanceDate=sdf.format(date);
@@ -81,8 +81,6 @@ public class WorkController {
     @RequestMapping("/toMemAttendanceDetail")
     public String toMemAttendanceDetail(String memName,String date,Model model) throws ParseException {
         model.addAttribute("memName", memName);
-
-
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         Date date1=sdf.parse(date);
         model.addAttribute("date", date1);

@@ -109,7 +109,7 @@
                                                 </a>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item" href="/display/edit_activities">编辑</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);">删除</a>
+                                                    <a class="dropdown-item" href="javascript:deleteActivities(${activities.id},${activities.displayId})">删除</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -128,7 +128,6 @@
 <!--**********************************
     Content body end
 ***********************************-->
-
 
 
 <!--**********************************
@@ -157,7 +156,27 @@
 <!--**********************************
     Main wrapper end
 ***********************************-->
-
+<script>
+    function deleteActivities(activitiesId,displayId){
+        if (confirm("确定要删除吗")){
+            $.ajax({
+                type:"GET",
+                url:"/display/deleteActivitiesById",
+                data:{activitiesId:activitiesId,displayId:displayId},
+                dataType:"json",
+                success:function (res) {
+                    console.log(res)
+                    if (res.code == 200) {
+                        alert("删除成功");
+                        location.href = '/display/inner_activities';
+                    }else {
+                        alert("删除失败")
+                    }
+                }
+            })
+        }
+    }
+</script>
 <!--**********************************
     Scripts
 ***********************************-->
