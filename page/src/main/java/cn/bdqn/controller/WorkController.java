@@ -3,11 +3,8 @@ package cn.bdqn.controller;
 import cn.bdqn.client.WorkClient;
 import cn.bdqn.entity.Attendence;
 import cn.bdqn.entity.Users;
-import cn.bdqn.vo.workvo.ClassAttendanceCardInfoVO;
+import cn.bdqn.vo.workvo.*;
 import cn.bdqn.vo.ResultVO;
-import cn.bdqn.vo.workvo.ClassAttendanceDetailInfoVO;
-import cn.bdqn.vo.workvo.MemberWorkCardInfoVO;
-import cn.bdqn.vo.workvo.ToStudentAttendancePageVO;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.google.errorprone.annotations.FormatString;
@@ -218,6 +215,20 @@ public class WorkController {
         ResultVO<List<MemberWorkCardInfoVO>> resultVO = workClient.getMemberWorkCardInfo(workDate);
         model.addAttribute("resultVO",resultVO);
         model.addAttribute("pageDate",workDate);
+        //System.out.println(resultVO.getData().get(0).getCreateUser().toString());
         return "work/MembersAttendance";
+    }
+
+    //学社工作页面请求
+    @RequestMapping("/toMemberWorkDetailInfo")
+    public String getMemberWorkDetailInfo(Integer memberId,Model model){
+
+        ResultVO<List<MemberWorkDetailInfoVO>> resultVO=workClient.getMemberWorkDetailInfo(memberId);
+        model.addAttribute("resultVO",resultVO);
+
+        model.addAttribute("member",resultVO.getData().get(0).getMember());
+        model.addAttribute("adviser",resultVO.getData().get(0).getAdviser());
+        model.addAttribute("classes",resultVO.getData().get(0).getClasses());
+        return "work/MembersAttendanceDetail";
     }
 }

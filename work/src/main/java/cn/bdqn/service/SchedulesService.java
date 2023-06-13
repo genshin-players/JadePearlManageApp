@@ -2,6 +2,7 @@ package cn.bdqn.service;
 
 import cn.bdqn.entity.Schedules;
 import cn.bdqn.vo.MemberWorkCardInfoVO;
+import cn.bdqn.vo.MemberWorkDetailInfoVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -22,5 +23,12 @@ public interface SchedulesService extends IService<Schedules> {
      * @return 卡片上的数据
      */
     public List<MemberWorkCardInfoVO> getMemberWorkCardInfo(String workDate);
+
+    /**
+     * 获取学社成员指定时间所有的工作记录
+     * @param memberId 学社成员编号
+     * @return 所有数据
+     */
+    public List<MemberWorkDetailInfoVO> getMemberWorkDetailInfo(Integer memberId);
 
 }

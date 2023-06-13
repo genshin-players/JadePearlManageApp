@@ -34,17 +34,21 @@
             <#---->
 
 
-           <#if resultVO.data?size!=0>
+           <#if resultVO.data??>
                 <#list resultVO.data as vo>
                     <div class="col-xl-3">
                         <div class="card text-white bg-danger" onclick="toDetailPage(this)"
-                             data_name="亚托克斯" data_total="100" data_late="10" data_absence="10">
+                             data_memberId="${vo.member.id}" data_date="${pageDate}">
                             <div class="card-header">
                                 <#assign json=vo.member.identityInfo?eval/>
                                 <a  class="card-title text-white" style="font-weight: bolder;font-size: 25px">${json.realname}  <span><#if vo.schedules.status==0>(未完成)<#elseif vo.schedules.status==1>(已完成)</#if>
                                     <br>
-                                <#assign json=vo.createUser.identityInfo?eval/>
-                                <span class="text-dark card_date" style="font-weight: bolder;font-size: 10px">${vo.schedules.createTime?string('yyyy-MM-dd')} ${vo.createUser.identityInfo}  ${json.realname}创建</span>
+
+                                <span class="text-dark card_date" style="font-weight: bolder;font-size: 10px">${vo.schedules.createTime?string('yyyy-MM-dd')}</span>&nbsp;&nbsp;&nbsp;
+                                <span class="text-dark" style="font-weight: bolder;font-size: 10px">
+                                    <#assign json=vo.createUser.identityInfo?eval/>
+                                <span style="font-weight: bolder">创建人:${json.realname}</span>
+                                </span>
                                     </span></a>
 
                             </div>
@@ -118,46 +122,33 @@
 
 <script>
     //custom select box
-    var pageDate;
+    var currDate;
 
     $(function(){
-        var date = new Date();
-        $("#workTime").html(date.getFullYear()+"-"+(date.getUTCMonth()+1)+"-"+date.getDate());
-        pageDate=date;
 
-
-        $(".card_date").html(date.getFullYear()+"-"+(date.getUTCMonth()+1)+"-"+date.getDate());
     });
 
     function prevDay() {
-        var date=pageDate;
-        date.setDate(date.getDate()-1);
-        $("#workTime").html(date.getFullYear()+"-"+(date.getUTCMonth()+1)+"-"+date.getDate());
-        pageDate=date;
-        var date1=new Date();
+        var date=new Date($("#workTime").html());
 
 
-
+        window.location.href="/toMemberWork?workDate="+date.getFullYear()+"-"+(date.getUTCMonth()+1)+"-"+(date.getDate()-1);
     }
 
     function nextDay() {
-        var date=pageDate;
-        date.setDate(date.getDate()+1);
-        $("#workTime").html(date.getFullYear()+"-"+(date.getUTCMonth()+1)+"-"+date.getDate());
-        pageDate=date;
-        var date1=new Date();
+        var date=new Date($("#workTime").html());
 
+        window.location.href="/toMemberWork?workDate="+date.getFullYear()+"-"+(date.getUTCMonth()+1)+"-"+(date.getDate()+1);
     }
 
 
     //卡片点击时间 去详情页面
     function toDetailPage(t) {
 
-        var memName=t.getAttribute("data_name");
+        var memId=t.getAttribute("data_memberId");
 
-        var dateNow=pageDate.getFullYear()+"-"+(pageDate.getUTCMonth()+1)+"-"+pageDate.getDate();
 
-        window.location.href="/toMemAttendanceDetail?memName="+memName+"&date="+dateNow;
+        window.location.href="/toMemberWorkDetailInfo?memberId="+memId;
     }
 
 

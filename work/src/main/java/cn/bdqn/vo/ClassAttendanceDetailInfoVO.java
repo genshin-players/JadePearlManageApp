@@ -6,7 +6,7 @@ import cn.bdqn.entity.Users;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.catalina.User;
+
 
 /**
  * 班级出勤详情页面信息
