@@ -28,280 +28,80 @@
                                         </div>
                                     </th>
                                     <th>ID</th>
+                                    <th>用户名</th>
                                     <th>姓名</th>
                                     <th>年龄</th>
                                     <th>性别</th>
                                     <th>联系方式</th>
-                                    <th>所管班级</th>
+                                    <th>身份证号码</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="form-check style-1">
-                                            <input class="form-check-input" type="checkbox" value="">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="media-bx">
-                                            <h4 class="mb-0 mt-1 text-black">1</h4>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h4 class="mb-0 mt-1 text-black">库里</h4>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>30</h5>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>男</h5>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>234231413443124</h5>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>A72</h5>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="dropdown dropstart">
-                                            <a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                </svg>
-                                            </a>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="/update_addteacher">修改</a>
-                                                <a class="dropdown-item" href="#">删除</a>
+                                <#list  users as user>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check style-1">
+                                                <input class="form-check-input" type="checkbox" value="">
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check style-1">
-                                            <input class="form-check-input" type="checkbox" value="">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="media-bx">
-                                            <h4 class="mb-0 mt-1 text-black">1</h4>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h4 class="mb-0 mt-1 text-black">库里</h4>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>30</h5>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>男</h5>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>234231413443124</h5>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>A72</h5>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="dropdown dropstart">
-                                            <a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                </svg>
-                                            </a>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="/update_addteacher">修改</a>
-                                                <a class="dropdown-item" href="#">删除</a>
+                                        </td>
+                                        <td>
+                                            <div class="media-bx">
+                                                <h4 class="mb-0 mt-1 text-black">${user.id}</h4>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check style-1">
-                                            <input class="form-check-input" type="checkbox" value="">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="media-bx">
-                                            <h4 class="mb-0 mt-1 text-black">1</h4>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h4 class="mb-0 mt-1 text-black">库里</h4>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>30</h5>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>男</h5>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>234231413443124</h5>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>A72</h5>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="dropdown dropstart">
-                                            <a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                </svg>
-                                            </a>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="/update_addteacher">修改</a>
-                                                <a class="dropdown-item" href="#">删除</a>
+                                        </td>
+                                        <td>
+                                            <div class="media-bx">
+                                                <h4 class="mb-0 mt-1 text-black">${user.username}</h4>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check style-1">
-                                            <input class="form-check-input" type="checkbox" value="">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="media-bx">
-                                            <h4 class="mb-0 mt-1 text-black">1</h4>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h4 class="mb-0 mt-1 text-black">库里</h4>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>30</h5>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>男</h5>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>234231413443124</h5>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>A72</h5>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="dropdown dropstart">
-                                            <a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                </svg>
-                                            </a>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="/update_addteacher">修改</a>
-                                                <a class="dropdown-item" href="#">删除</a>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <#assign json=user.identityInfo?eval/>
+                                                <h4 class="mb-0 mt-1 text-black">${json.realname}</h4>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check style-1">
-                                            <input class="form-check-input" type="checkbox" value="">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="media-bx">
-                                            <h4 class="mb-0 mt-1 text-black">1</h4>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h4 class="mb-0 mt-1 text-black">库里</h4>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>30</h5>
+                                        </td>
+                                        <td>
+                                            <div>
 
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>男</h5>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>234231413443124</h5>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <h5>A72</h5>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="dropdown dropstart">
-                                            <a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                </svg>
-                                            </a>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="/update_addteacher">修改</a>
-                                                <a class="dropdown-item" href="#">删除</a>
+                                                <h5>${json.age}</h5>
+
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h5>${json.gender}</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h5>${json.phone}</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h5>${json.identity}</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="dropdown dropstart">
+                                                <a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        <path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        <path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </a>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="/update_addteacher">修改</a>
+                                                    <a class="dropdown-item" href="/user/deleteTeacher?id="+${user.id}>删除</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </#list>
+
+
                                 </tbody>
                             </table>
                         </div>

@@ -40,18 +40,9 @@ public class UsersController {
     private  List<Users> showTeacher(){
         QueryWrapper<Users> wrapper=new QueryWrapper<>();
         wrapper.eq("role_id",3);
-        /*Map<String,Object> map = new HashMap<>();*/
+        //Map<String,Object> map = new HashMap<>();
         List<Users> list = usersService.list(wrapper);
         System.out.println(list);
-      /*  if (list != null){
-            map.put("code", 200);
-            map.put("msg", "success");
-            map.put("data", list);
-        }else {
-            map.put("code", 500);
-            map.put("msg", "error");
-        }
-        return map;*/
         return list;
     }
 
@@ -65,14 +56,20 @@ public class UsersController {
 
 
     @RequestMapping("deleteTeacher_Student")
-    private String deleteTeacher(Integer id){
+    private Map<String,Object> deleteTeacher(Integer id){
+        Map<String,Object>map=new HashMap<>();
         QueryWrapper<Users> wrapper=new QueryWrapper<>();
         wrapper.eq("id",id);
         boolean remove = usersService.remove(wrapper);
         if (remove){
-            return "删除成功！！！";
+            map.put("data",remove);
+            map.put("msg","success");
+            map.put("code","200");
+        }else {
+            map.put("msg","error");
+            map.put("code","500");
         }
-        return "失败！！！";
+        return map;
     }
 
 
@@ -87,6 +84,26 @@ public class UsersController {
         }
 
     }
+
+
+    /*ly所需接口*/
+    @ResponseBody
+    @RequestMapping("selectUsersById")
+    private  Map<String,Object> selectUsersById(Integer id){
+        Map<String,Object>map=new HashMap<>();
+        Users byId = usersService.getById(id);
+        if (byId!=null){
+            map.put("data",byId);
+            map.put("msg","success");
+            map.put("code","200");
+        }else {
+            map.put("msg","error");
+            map.put("code","500");
+        }
+        return map;
+    }
+
+
 
 
 

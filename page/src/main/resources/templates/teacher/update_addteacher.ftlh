@@ -18,11 +18,22 @@
                             <form class="needs-validation" novalidate="">
                                 <div class="row">
                                     <div class="mb-3 row">
+                                        <label class="col-lg-4 col-form-label" for="validationCustom06">用户名
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" id="validationCustom06" placeholder="输入姓名" required="" name="username">
+                                            <div class="invalid-feedback">
+                                                Please enter a Currency.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
                                         <label class="col-lg-4 col-form-label" for="validationCustom06">姓名
                                             <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" id="validationCustom06" placeholder="输入姓名" required="">
+                                            <input type="text" class="form-control" id="validationCustom06" placeholder="输入姓名" required="" name="realname">
                                             <div class="invalid-feedback">
                                                 Please enter a Currency.
                                             </div>
@@ -141,5 +152,14 @@
 <script src="js/deznav-init.js"></script>
 <script src="js/demo.js"></script>
 <script src="js/styleSwitcher.js"></script>
+
+
+<script>
+    function toAssignOneWork() {
+        var memName=$("[name=memName]").val();
+        window.location.href="/toAssignWork?memName="+memName;
+
+    }
+</script>
 </body>
 </html>
