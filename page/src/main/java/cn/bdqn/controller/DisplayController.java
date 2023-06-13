@@ -98,13 +98,14 @@ public class DisplayController {
         return activatesClient.deleteActivitiesById(activitiesId, displayId);
     }
 
-    @RequestMapping("addDisplay")
+    @RequestMapping("insertDisplay")
+    @ResponseBody
     public Map<String, Object> addDisplay(
             @RequestParam(value = "title") String title,
             @RequestParam(value = "displayTypeId") Integer displayTypeId,
             @RequestParam(value = "coverImage", defaultValue = "1", required = false) String coverImage,
             @RequestParam(value = "publishUserId", defaultValue = "1", required = false) Integer publishUserId){
-
+        System.out.println(1);
         return displayClient.addDisplay(title,displayTypeId,coverImage,publishUserId);
     }
 }

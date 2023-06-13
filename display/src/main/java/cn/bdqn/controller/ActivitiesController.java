@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
@@ -50,25 +51,22 @@ public class ActivitiesController {
     }
 
     @RequestMapping("/activitiesListByTitle")
-    public List<ActivitiesDTO> activitiesListByTitle(@RequestParam(value = "title") String title){
+    @ResponseBody
+    public List<ActivitiesDTO> activitiesListByTitle(@RequestParam("title") String title){
         LambdaQueryWrapper<Display> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.like(Display::getTitle, "%"+title+"%");
         List<Display> displayList = displayService.list(lambdaQueryWrapper);
-        for (Display display : displayList){
-            LambdaQueryWrapper<Display> lambdaQueryWrapper2 = new LambdaQueryWrapper<>();
-            lambdaQueryWrapper2.like(Display::getTitle, "%"+title+"%");
-            //List<Display> displayList = displayService.list(lambdaQueryWrapper);
-        }
-/*        List<Activities> list = activitiesService.list();
         List<ActivitiesDTO> dtoList = new ArrayList<>();
-        for (Activities activities:list){
+        for (Display display : displayList){
+            int displayId = display.getId();
+            LambdaQueryWrapper<Activities> lambdaQueryWrapper1 = new LambdaQueryWrapper<>();
+            lambdaQueryWrapper1.like(Activities::getDisplayId, displayId);
+            List<Activities> activatedList = activitiesService.list(lambdaQueryWrapper1);
             ActivitiesDTO activitiesDTO = new ActivitiesDTO();
-            BeanUtils.copyProperties(activities, activitiesDTO);
-            int displayId =activities.getDisplayId();
-            Display display = displayService.getById(displayId);
+            BeanUtils.copyProperties(activatedList.get(0), activitiesDTO);
             activitiesDTO.setDisplay(display);
             dtoList.add(activitiesDTO);
-        }*/
+        }
         return dtoList;
     }
 

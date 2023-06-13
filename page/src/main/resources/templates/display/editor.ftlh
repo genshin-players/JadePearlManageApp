@@ -44,6 +44,10 @@
 <script>
     let editor;
     let str;
+    let signupNum = "${signupNum}";
+    let startTime = "${startTime}";
+    let endTime = "${endTime}";
+    <#--let title = "${title}";-->
     // This sample still does not showcase all CKEditor 5 features (!)
     // Visit https://ckeditor.com/docs/ckeditor5/latest/features/index.html to browse all the features.
     CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
@@ -210,11 +214,15 @@
         } else {
             $.ajax({
                 async:true,
-                dataType:json,
-                data:{},
+                dataType:"json",
+                data:{
+                    title:"test",
+                    displayTypeId:1,
+                },
                 method:"POST",
-                url:"https://localhost:8003/saveEditor",
-                success:function (data) {
+                url:"/display/insertDisplay",
+                success:function () {
+
                 },
                 error:function () {
                     alert("failed")
@@ -228,10 +236,6 @@
      */
     $(document).ready(function (){
         if ("${type}" === '学社活动'){
-            let signupNum = "${signupNum}";
-            let startTime = "${startTime}";
-            let endTime = "${endTime}";
-            let title = "${title}";
             console.log(signupNum,startTime,endTime)
             str = "<h1>"+<#--${title}-->"这里应该有标题"+"</h1>" +
                 "<p>&nbsp;</p>" +
