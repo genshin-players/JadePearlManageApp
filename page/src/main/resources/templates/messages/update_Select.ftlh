@@ -4,7 +4,7 @@
 <!--**********************************
             Content body start
         ***********************************-->
-<div class="content-body">
+<div class="content-body" xmlns:c="http://www.w3.org/1999/html">
     <div class="container-fluid">
         <!-- row -->
         <div class="row">
@@ -16,13 +16,17 @@
                     <div class="card-body">
                         <div class="form-validation">
                             <form class="needs-validation" novalidate="">
+                                <#list  usersById as usersById>
+
+
                                 <div class="row">
                                     <div class="mb-3 row">
                                         <label class="col-lg-4 col-form-label" for="validationCustom06">姓名
                                             <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" value="张三" class="form-control" id="validationCustom06" placeholder="" required="">
+
+                                            <input type="text" value="" class="form-control" id="validationCustom06" placeholder="" required="">
                                             <div class="invalid-feedback">
                                                 Please enter a Currency.
                                             </div>
@@ -83,7 +87,9 @@
                                     </div>
                                 </div>
                         </div>
+                        </#list>
                         </form>
+
                     </div>
                 </div>
             </div>
