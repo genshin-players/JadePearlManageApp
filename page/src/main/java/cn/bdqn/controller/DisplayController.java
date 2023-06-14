@@ -2,7 +2,6 @@ package cn.bdqn.controller;
 
 import cn.bdqn.client.ActivatesClient;
 import cn.bdqn.client.DisplayClient;
-import cn.bdqn.client.WorkClient;
 import cn.bdqn.dto.ActivitiesDTO;
 import cn.bdqn.dto.DisplayDTO;
 import cn.bdqn.vo.ResultVO;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -98,18 +97,28 @@ public class DisplayController {
         return activatesClient.deleteActivitiesById(activitiesId, displayId);
     }
 
-<<<<<<< HEAD
-    /*@RequestMapping("addDisplay")
-=======
+
     @RequestMapping("insertDisplay")
     @ResponseBody
->>>>>>> 5a49b4ba3109ede9970fb9b369255cebafee3702
     public Map<String, Object> addDisplay(
             @RequestParam(value = "title") String title,
             @RequestParam(value = "displayTypeId") Integer displayTypeId,
             @RequestParam(value = "coverImage", defaultValue = "1", required = false) String coverImage,
-            @RequestParam(value = "publishUserId", defaultValue = "1", required = false) Integer publishUserId){
-        System.out.println(1);
-        return displayClient.addDisplay(title,displayTypeId,coverImage,publishUserId);
-    }*/
+            @RequestParam(value = "publishUserId", defaultValue = "1", required = false) Integer publishUserId,
+            @RequestParam(value = "createTime", required = false) String createTime
+    ){
+        return displayClient.addDisplay(title, displayTypeId, coverImage, publishUserId, createTime);
+    }
+
+    @RequestMapping("insertActivities")
+    @ResponseBody
+    public Map<String, Object> insertActivies(
+            @RequestParam(value = "signupNum") Integer signupNumber,
+            @RequestParam(value = "startTime") String startTime,
+            @RequestParam(value = "endTime") String endTime,
+            @RequestParam(value = "updateTime") String updateTime,
+            @RequestParam(value = "title") String title
+    ){
+        return activatesClient.addActivities(displayClient.getCreatedByCreationTimeAndTitle(updateTime, title),signupNumber, startTime, endTime);
+    }
 }

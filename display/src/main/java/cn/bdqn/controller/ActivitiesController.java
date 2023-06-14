@@ -6,6 +6,7 @@ import cn.bdqn.entity.Activities;
 import cn.bdqn.entity.Display;
 import cn.bdqn.service.IActivitiesService;
 import cn.bdqn.service.IDisplayService;
+import cn.bdqn.util.DateTimeUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
 import java.util.*;
 
 /**
@@ -88,23 +90,27 @@ public class ActivitiesController {
     @RequestMapping("addActivities")
     public Map<String, Object> addActivities(
             @RequestParam(value = "displayId") Integer displayId,
-            @RequestParam(value = "signupNumber") Integer signupNumber,
-            @RequestParam(value = "startTime") Date startTime,
-            @RequestParam(value = "endTime") Date endTime){
+            @RequestParam(value = "signupNum") Integer signupNumber,
+            @RequestParam(value = "startTime") String startTime,
+            @RequestParam(value = "endTime") String endTime){
         Map<String,Object> map = new HashMap<>();
-        if (activitiesService.save(
-                Activities.builder()
-                        .displayId(displayId)
-                        .signupNumber(signupNumber)
-                        .startTime(startTime)
-                        .endTime(endTime)
-                        .build()
-        )){
-            map.put("code", 200);
-            map.put("msg", "success");
-        }else {
-            map.put("code", 500);
-            map.put("msg", "error");
+        try {
+            if (activitiesService.save(
+                    Activities.builder()
+                            .displayId(displayId)
+                            .signupNumber(signupNumber)
+                            .startTime(DateTimeUtil.sdf.parse(startTime))
+                            .endTime(DateTimeUtil.sdf.parse(endTime))
+                            .build()
+            )){
+                map.put("code", 200);
+                map.put("msg", "success");
+            }else {
+                map.put("code", 500);
+                map.put("msg", "error");
+            }
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
         return map;
     }

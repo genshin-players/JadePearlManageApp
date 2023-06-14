@@ -23,8 +23,7 @@ public interface ActivatesClient {
     @RequestMapping("addActivities")
     Map<String, Object> addActivities(
             @RequestParam(value = "displayId") Integer displayId,
-            @RequestParam(value = "signupNumber") Integer signupNumber,
-            @RequestParam(value = "startTime") Date startTime,
-            @RequestParam(value = "endTime") Date endTime);
-
+            @RequestParam(value = "signupNum") Integer signupNumber,
+            @RequestParam(value = "startTime") String startTime,
+            @RequestParam(value = "endTime") String endTime);
 }

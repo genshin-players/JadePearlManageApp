@@ -2,15 +2,10 @@ package cn.bdqn.controller;
 
 
 import cn.bdqn.entity.Display;
-import cn.bdqn.entity.DisplayType;
 import cn.bdqn.service.IDisplayService;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.stereotype.Controller;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -90,7 +85,9 @@ public class DisplayController {
             @RequestParam(value = "title") String title,
             @RequestParam(value = "displayTypeId") Integer displayTypeId,
             @RequestParam(value = "coverImage", defaultValue = "1", required = false) String coverImage,
-            @RequestParam(value = "publishUserId", defaultValue = "1", required = false) Integer publishUserId){
+            @RequestParam(value = "publishUserId", defaultValue = "1", required = false) Integer publishUserId,
+            @RequestParam(value = "createTime", required = false) Date createTime)
+    {
         Map<String,Object> map = new HashMap<>();
         if (displayService.save(
                 Display.builder()
@@ -98,6 +95,7 @@ public class DisplayController {
                         .displayTypeId(displayTypeId)
                         .coverImage(coverImage)
                         .publishUserId(publishUserId)
+                        .createTime(createTime)
                         .updateTime(new Date())
                         .build()
         )){
@@ -108,6 +106,18 @@ public class DisplayController {
             map.put("msg", "error");
         }
         return map;
+    }
+
+    @RequestMapping("getDisplayIdByCreationTimeAndTitle")
+    public Integer getCreatedByCreationTimeAndTitle(
+            @RequestParam(value = "updateTime") String updateTime,
+            @RequestParam(value = "title")String title
+    ){
+        LambdaQueryWrapper<Display> lambdaQueryWrapper = new LambdaQueryWrapper<Display>();
+        lambdaQueryWrapper.eq(Display::getTitle,title);
+        lambdaQueryWrapper.eq(Display::getUpdateTime,updateTime);
+        List<Display> list = displayService.list(lambdaQueryWrapper);
+        return list.get(0).getId();
     }
 }
 

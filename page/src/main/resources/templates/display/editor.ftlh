@@ -212,17 +212,53 @@
         } else if (editorData.trim()===str){
             alert("请添加内容描述")
         } else {
+            const date = new Date();
+            const year = date.getFullYear(); // 获取年份，例如：2022
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // 获取月份，并补零，例如：09
+            const day = String(date.getDate()).padStart(2, '0'); // 获取日期，并补零，例如：05
+            const hour = String(date.getHours()).padStart(2, '0'); // 获取小时，并补零，例如：14
+            const minute = String(date.getMinutes()).padStart(2, '0'); // 获取分钟，并补零，例如：30
+            const second = String(date.getSeconds()).padStart(2, '0'); // 获取秒数，并补零，例如：45
+
+            <#--const formattedDate = `${year}-${month}-${day} ${hour}:${minute}:${second}`;-->
+            const formattedDate = year+'-'+month+'-'+day+" "+hour+":"+minute+":"+second
+            console.log(formattedDate); // 输出类似于 "2022-09-05 14:30:45" 的字符串
+            alert(formattedDate)
             $.ajax({
                 async:true,
                 dataType:"json",
                 data:{
                     title:"test",
                     displayTypeId:1,
+                    createTime:formattedDate
                 },
                 method:"POST",
                 url:"/display/insertDisplay",
                 success:function () {
+                    alert("intoInsertActivities")
+                    alert(formattedDate)
+                    if ("${type}"==="学社活动"){
+                        alert(true)
+                        $.ajax({
+                            async: true,
+                            dataType: "json",
+                            data: {
+                                title: "test",
+                                signupNum: signupNum,
+                                startTime: startTime,
+                                endTime: endTime,
+                                updateTime: formattedDate
+                            },
+                            method: "POST",
+                            url: "/display/insertActivities",
+                            success: function (){
 
+                            },
+                            error: function () {
+                                alert("insert activities error")
+                            }
+                        });
+                    }
                 },
                 error:function () {
                     alert("failed")

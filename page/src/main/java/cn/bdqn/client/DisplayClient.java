@@ -2,13 +2,11 @@ package cn.bdqn.client;
 
 import cn.bdqn.dto.DisplayDTO;
 import cn.bdqn.vo.ResultVO;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +32,12 @@ public interface DisplayClient {
             @RequestParam(value = "title") String title,
             @RequestParam(value = "displayTypeId") Integer displayTypeId,
             @RequestParam(value = "coverImage", defaultValue = "1", required = false) String coverImage,
-            @RequestParam(value = "publishUserId", defaultValue = "1", required = false) Integer publishUserId
+            @RequestParam(value = "publishUserId", defaultValue = "1", required = false) Integer publishUserId,
+            @RequestParam(value = "createTime", required = false) String createTime
+    );
+    @RequestMapping("getDisplayIdByCreationTimeAndTitle")
+    Integer getCreatedByCreationTimeAndTitle(
+            @RequestParam(value = "updateTime") String createTime,
+            @RequestParam(value = "title")String title
     );
 }
