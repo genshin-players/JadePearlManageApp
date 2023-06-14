@@ -30,7 +30,6 @@ public class MessagesController {
 
     @RequestMapping("Select")
     public String Select(){
-        System.out.println(12345);
         return "messages/update_Select";
     }
     //去往个人信息/头像照片
