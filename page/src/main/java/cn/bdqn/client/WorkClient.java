@@ -1,11 +1,8 @@
 package cn.bdqn.client;
 
 import cn.bdqn.entity.Attendence;
-import cn.bdqn.vo.workvo.ClassAttendanceCardInfoVO;
+import cn.bdqn.vo.workvo.*;
 import cn.bdqn.vo.ResultVO;
-import cn.bdqn.vo.workvo.ClassAttendanceDetailInfoVO;
-import cn.bdqn.vo.workvo.MemberWorkCardInfoVO;
-import cn.bdqn.vo.workvo.ToStudentAttendancePageVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.web.bind.annotation.*;
@@ -57,5 +54,9 @@ public interface WorkClient {
     //学社出勤页面 卡片数据
     @GetMapping("/toMemberWorkCardInfo")
     public ResultVO<List<MemberWorkCardInfoVO>> getMemberWorkCardInfo(@RequestParam("workDate")String workDate);
+
+    //学社成员出勤详情
+    @GetMapping("/toMemberWorkDetailInfo")
+    public ResultVO<List<MemberWorkDetailInfoVO>> getMemberWorkDetailInfo(@RequestParam("memberId") Integer memberId);
 
 }
