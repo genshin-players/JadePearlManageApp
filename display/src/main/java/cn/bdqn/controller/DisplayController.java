@@ -98,6 +98,7 @@ public class DisplayController {
                         .displayTypeId(displayTypeId)
                         .coverImage(coverImage)
                         .publishUserId(publishUserId)
+                        .updateTime(new Date())
                         .build()
         )){
             map.put("code", 200);
