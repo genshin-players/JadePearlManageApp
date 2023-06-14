@@ -44,39 +44,21 @@
                                             <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" id="validationCustom07" placeholder="输入年龄" required="">
+                                            <input type="text" class="form-control" id="validationCustom07" placeholder="输入年龄" required="" name="age">
                                             <div class="invalid-feedback">
                                                 Please enter a url.
                                             </div>
                                         </div>
                                     </div>
-                                        <div class="mb-3 row">
-                                            <label class="col-lg-4 col-form-label" for="validationCustom05">管理得班级
-                                                <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <select class="default-select wide form-control" id="validationCustom05">
-                                                    <option data-display="A72">A72</option>
-                                                    <option value="html">T300</option>
-                                                    <option value="css">A71</option>
-                                                    <option value="javascript">A73</option>
-                                                    <option value="angular">A74</option>
-                                                    <option value="angular">A75</option>
-                                                </select>
-                                                <div class="invalid-feedback">
-                                                    Please select a one.
-                                                </div>
-                                            </div>
-                                        </div>
 
                                     <div class="mb-3 row">
                                         <label class="col-lg-4 col-form-label" for="validationCustom05">性别
                                             <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <select class="default-select wide form-control" id="validationCustom05">
-                                                <option data-display="男">男</option>
-                                                <option value="html">女</option>
+                                            <select class="default-select wide form-control" id="validationCustom05" name="gender" >
+                                                <option data-display="男" value="男">男</option>
+                                                <option value="女" >女</option>
                                             </select>
                                             <div class="invalid-feedback">
                                                 Please select a one.
@@ -87,16 +69,27 @@
                                             <label class="col-lg-4 col-form-label" for="validationCustom09">联系方式 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="validationCustom09" placeholder="输入老师方式（电话号）" required="">
+                                                <input type="text" class="form-control" id="validationCustom09" placeholder="输入老师方式（电话号）" required="" name="phone">
                                                 <div class="invalid-feedback">
                                                     Please enter a digits.
                                                 </div>
                                             </div>
                                         </div>
 
+                                    <div class="mb-3 row">
+                                        <label class="col-lg-4 col-form-label" for="validationCustom09">身份证号码 <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" id="validationCustom09" placeholder="输入老师方式（电话号）" required="" name="identity" >
+                                            <div class="invalid-feedback">
+                                                Please enter a digits.
+                                            </div>
+                                        </div>
+                                    </div>
+
                                         <div class="mb-3 row">
                                             <div class="col-lg-8 ms-auto">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <button type="submit" class="btn btn-primary" onclick="submitEdit()">提交</button>
                                             </div>
                                         </div>
                                     </div>
@@ -155,11 +148,49 @@
 
 
 <script>
-    function toAssignOneWork() {
-        var memName=$("[name=memName]").val();
-        window.location.href="/toAssignWork?memName="+memName;
+    $(function () {
 
+
+    });
+
+    function submitEdit() {
+        alert("添加")
+
+        var addTusername=$("[name=username]").val();
+        var addTrealname=$("[name=realname]").val();
+        var addTage=$("[name=age]").val();
+        var addTgender=$("[name=gender]").val();
+        var addTphone=$("[name=phone]").val();
+        var addTidentity=$("[name=identity]").val();
+
+
+        $.ajax({
+            type:"post",
+            url:"http://localhost:8003/user/add_user",
+            data:{
+                "username":addTusername,
+                "realname":addTrealname,
+                "age":addTage,
+                "gender":addTgender,
+                "phone":addTphone,
+                "identity":addTidentity,
+            },
+            dataType:"json",
+            success:function(data){
+                window.location.href="http://localhost:8003/user/show_teacher"
+            },
+            error:function(data){
+                alert("修改失败");
+            }
+        });
     }
+
+
+
+
 </script>
+
+
+
 </body>
 </html>

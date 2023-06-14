@@ -270,6 +270,7 @@
 
 
     function submitEdit() {
+
         var id=$("[name=id]").val();
         var classId=$("[name=classId]").val();
         var studentId=$("[name=studentId]").val();

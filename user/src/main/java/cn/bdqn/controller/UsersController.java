@@ -10,9 +10,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -55,6 +53,7 @@ public class UsersController {
     }
 
 
+
     @RequestMapping("deleteTeacher_Student")
     private Map<String,Object> deleteTeacher(Integer id){
         Map<String,Object>map=new HashMap<>();
@@ -73,15 +72,20 @@ public class UsersController {
     }
 
 
+    @ResponseBody
     @RequestMapping("addUser")
-    private String addUser(Users users){
-        QueryWrapper<Users> wrapper=new QueryWrapper<>();
-        boolean b = usersService.saveOrUpdate(users);
-        if(b){
-            return "success!!!";
+    private Map<String,Object> addUser( Users users){
+        Map<String,Object>map=new HashMap<>();
+        boolean b = usersService.save(users);
+        if (b){
+            map.put("data",b);
+            map.put("msg","success");
+            map.put("code","200");
         }else {
-            return "error!!!";
+            map.put("msg","error");
+            map.put("code","500");
         }
+        return map;
 
     }
 

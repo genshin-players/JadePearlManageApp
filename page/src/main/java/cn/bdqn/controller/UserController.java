@@ -2,8 +2,9 @@ package cn.bdqn.controller;
 
 import cn.bdqn.client.UserClient;
 import cn.bdqn.entity.Users;
-import org.bouncycastle.math.raw.Mod;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+
 @CrossOrigin
 @RequestMapping("user")
 public class UserController {
@@ -56,6 +58,24 @@ public class UserController {
 
 //========================================================================================
 
+
+    @PostMapping("/add_user")
+    public  String addUser(Users users,String username,String  realname,
+                           String age,String gender,
+                           String phone,String identity){
+
+        //"realname":"林忆宁","age":"25","gender":"女","phone":"13361887757","identity":"310106199707170028"
+        System.out.println(username);
+        System.out.println(realname);
+        System.out.println(age);
+        System.out.println(gender);
+        System.out.println(phone);
+        System.out.println(identity);
+        users.setIdentityInfo("realname:"+realname);
+        Map<String, Object> map = userClient.addUser(users);
+        System.out.println(map);
+        return "redirect:show_teacher";
+    }
 
     /*ly所需接口*/
     @RequestMapping("/user/selectUsersById")

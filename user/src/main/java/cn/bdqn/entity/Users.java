@@ -11,7 +11,7 @@ import java.util.Date;
  * 用户（所有学生，老师，管理员）
  * </p>
  *
- * @author 
+ * @author
  * @since 2023-06-09
  */
 public class Users implements Serializable {
@@ -97,19 +97,5 @@ public class Users implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    @Override
-    public String toString() {
-        return "Users{" +
-        ", id = " + id +
-        ", username = " + username +
-        ", password = " + password +
-        ", roleId = " + roleId +
-        ", accountInfo = " + accountInfo +
-        ", identityInfo = " + identityInfo +
-        ", createTime = " + createTime +
-        ", updateTime = " + updateTime +
-        "}";
     }
 }

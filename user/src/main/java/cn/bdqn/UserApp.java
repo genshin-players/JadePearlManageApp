@@ -8,6 +8,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
 @EnableEurekaClient
+
 @MapperScan("cn.bdqn.mapper")
 @SpringBootApplication
 public class UserApp {
