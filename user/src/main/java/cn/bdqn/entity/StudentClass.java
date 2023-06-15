@@ -1,6 +1,5 @@
 package cn.bdqn.entity;
 
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -9,24 +8,28 @@ import java.io.Serializable;
 
 /**
 * <p>
-    * 菜单
+    * 学生与班级绑定表
     * </p>
 *
-* @author ljj
-* @since 2023-06-11
+* @author pb
+* @since 2023-06-15
 */
     @Data
         @EqualsAndHashCode(callSuper = false)
     @Accessors(chain = true)
-    public class Menu implements Serializable {
+    public class StudentClass implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String name;
+            /**
+            * 学生id
+            */
+    private Integer studentId;
 
-    private Integer level;
-
-    private Integer parentId;
+            /**
+            * 班级id
+            */
+    private Integer classId;
 
 
 }

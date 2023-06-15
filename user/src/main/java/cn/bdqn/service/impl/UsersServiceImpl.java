@@ -26,4 +26,10 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
     @Autowired
     private  UsersMapper usersMapper;
 
+
+    @Override
+    public Users showUserById(Integer id) {
+        Users users = usersMapper.selectById(id);
+        return users;
+    }
 }
