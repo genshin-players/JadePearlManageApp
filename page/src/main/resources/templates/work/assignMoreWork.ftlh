@@ -48,19 +48,14 @@
                                 <span class="text-white fw-bolder" style="font-size: 18px">工作人员:</span>
                             </div>
                             <div class="col-lg-10">
-                                <#if member=="sb">
-                                    <select class="multi-select" name="members" multiple="multiple" onchange="checkThis()">
+
+                                    <select class="multi-select"  multiple="multiple" name="memId">
                                         <#list memberList as m>
                                             <#assign json=m.identityInfo?eval/>
                                             <option value="${m.id}">${json.realname}</option>
                                         </#list>
 
                                     </select>
-                                <#else>
-                                    <#assign json=member.identityInfo?eval/>
-                                    <span class="text text-primary" style="font-weight: bolder" >${json.realname}</span>
-                                    <input type="hidden" name="memId" value="${member.id}">
-                                </#if>
 
                             </div>
 
@@ -230,11 +225,7 @@
 
 
 <script>
-    //人员选择框获取数据
-    function checkThis() {
-        let val = $("[name=members]").val();
 
-    }
 
 
     //检查时间 不能是今天之前
@@ -266,6 +257,7 @@
         var workType=$("[name=workType]").val();
         var classId=$("[name=classId]").val();
 
+
         if(member_id==null){
             alert("工作人员不得为空");
         }else if(workTime==null){
@@ -273,14 +265,15 @@
         }else if(workType==null||workType==0){
             alert("工作类型不得为空");
         }else {
+
             if(workType==1&&classId.length>0){
 
                 $.ajax({
                     type:"post",
-                    url:"http://localhost:8003/assignOneWork",
+                    url:"http://localhost:8003/assignMoreWork",
                     dataType:"json",
                     data:{
-                        memberId:member_id,
+                        memberIdArray:member_id,
                         date:workTime,
                         workTypeId:workType,
                         classIdArray:classId,
@@ -289,7 +282,7 @@
                     success:function(res) {
                         console.log(res);
                         if(res.data >0){
-                            window.location.href="/toMemberWorkDetailInfo?memberId="+member_id;
+                            window.location.href="/toMemberWork?workDate="+workTime;
                         }else {
                             alert("添加失败");
                         }
@@ -301,10 +294,10 @@
             }else {
                 $.ajax({
                     type:"post",
-                    url:"http://localhost:8003/assignOneWork",
+                    url:"http://localhost:8003/assignMoreWork",
                     dataType:"json",
                     data:{
-                        memberId:member_id,
+                        memberIdArray:member_id,
                         date:workTime,
                         workTypeId:workType,
                         createUserId:1
@@ -312,17 +305,19 @@
                     success:function(res) {
                         console.log(res);
                         if(res.data >0){
-                            window.location.href="/toMemberWorkDetailInfo?memberId="+member_id;
+                            window.location.href="/toMemberWork?workDate="+workTime;
                         }else {
                             alert("添加失败");
                         }
                     }
                 });
             }
+
         }
-
-
     }
+
+
+
 </script>
 
 </body>

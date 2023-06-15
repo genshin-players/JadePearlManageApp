@@ -37,7 +37,11 @@
            <#if resultVO.data??>
                 <#list resultVO.data as vo>
                     <div class="col-xl-3">
-                        <div class="card text-white bg-danger" onclick="toDetailPage(this)"
+                        <div
+                                <#if vo.schedules.status==0>class="card text-white bg-danger"</#if>
+                                <#if vo.schedules.status==1>class="card text-white bg-success"</#if>
+
+                                onclick="toDetailPage(this)"
                              data_memberId="${vo.member.id}" data_date="${pageDate}">
                             <div class="card-header">
                                 <#assign json=vo.member.identityInfo?eval/>
@@ -75,7 +79,7 @@
                     </div>
                 </#list>
 
-                <#else >
+                <#else>
                     <div class="row">
                         <div class="col-lg-12" align="center">
                             <span class="text" style="color:red;font-weight: bolder;font-size: 30px" >无记录</span>

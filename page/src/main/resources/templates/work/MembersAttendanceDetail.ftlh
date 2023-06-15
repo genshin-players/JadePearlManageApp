@@ -90,7 +90,7 @@
                                                         (
                                                         <#list detail.workClasses as wc>
                                                             <#list classesList.data as c>
-                                                                <#if wc.id==c.id>
+                                                                <#if wc.classId==c.id>
                                                                     ${c.name}&nbsp;
                                                                 </#if>
                                                             </#list>
@@ -122,8 +122,8 @@
                                                             <svg width="24px" height="24px" viewbox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
                                                         </div>
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="/toEditStudentAttendance">修改记录</a>
-                                                            <a class="dropdown-item" href="#">删除记录</a>
+                                                            <a class="dropdown-item" href="/toUpdateMemberWork?schedulesId=${detail.schedules.id}">修改记录</a>
+                                                            <a class="dropdown-item"  onclick="deleteOneWork(${detail.schedules.id})">删除记录</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -204,6 +204,29 @@
     function toAssignOneWork() {
         var memId=$("[name=memId]").val();
         window.location.href="/toAssignWork?memId="+memId;
+
+    }
+
+    function deleteOneWork(schedulesId) {
+
+        if(confirm("确认删除吗")){
+            $.ajax({
+                type:"post",
+                url:"http://localhost:8003/deleteOneWork",
+                dataType:"json",
+                data:{schedulesId:schedulesId},
+                success:function(res){
+                    if (res.data>0){
+                        window.location.reload();
+                    }else {
+                        alert("删除失败");
+                    }
+                },
+                error:function () {
+                    alert("删除失败");
+                }
+            });
+        }
 
     }
 </script>

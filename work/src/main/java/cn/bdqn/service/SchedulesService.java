@@ -4,6 +4,8 @@ import cn.bdqn.entity.Schedules;
 import cn.bdqn.vo.MemberWorkCardInfoVO;
 import cn.bdqn.vo.MemberWorkDetailInfoVO;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -30,5 +32,41 @@ public interface SchedulesService extends IService<Schedules> {
      * @return 所有数据
      */
     public List<MemberWorkDetailInfoVO> getMemberWorkDetailInfo(Integer memberId);
+
+    /**
+     * 给指定成员添加工作
+     * @param schedules
+     * @param classIdArray
+     * @return
+     */
+    public Integer assignOneWork(Schedules schedules,Integer[]classIdArray);
+
+
+    /**
+     * 给多个成员添加工作
+     * @param schedules
+     * @param classIdArray
+     * @return
+     */
+    public Integer assignMoreWork(Schedules schedules, Integer[]memberIdArray, Integer[]classIdArray) throws InterruptedException;
+
+
+
+    /**
+     * 给指定成员修改工作记录
+     * @param schedules
+     * @param classIdArray
+     * @return
+     */
+
+    public Integer updateOneWork(Schedules schedules,Integer[]classIdArray);
+
+
+    /**
+     *  将指定成员删除记录
+     * @param schedulesId
+     * @return
+     */
+    public Integer deleteOneWork(Integer schedulesId);
 
 }

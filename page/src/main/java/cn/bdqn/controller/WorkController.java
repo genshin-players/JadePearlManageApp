@@ -3,15 +3,11 @@ package cn.bdqn.controller;
 import cn.bdqn.client.UserClient;
 import cn.bdqn.client.WorkClient;
 import cn.bdqn.entity.Attendence;
+import cn.bdqn.entity.Schedules;
 import cn.bdqn.entity.Users;
 import cn.bdqn.vo.workvo.*;
 import cn.bdqn.vo.ResultVO;
-import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.google.errorprone.annotations.FormatString;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -103,7 +99,7 @@ public class WorkController {
         model.addAttribute("editType","修改");
 
         model.addAttribute("attendance",workClient.getAttendanceById(attendanceId));
-        return "work/updateStudentAttendance";
+        return "work/editStudentAttendance";
     }
 
     //根据出勤id获取出勤记录
@@ -179,9 +175,16 @@ public class WorkController {
     }
 
     //班级出勤编辑页面请求
-    @RequestMapping("/toEditStudentAttendance")
-    public String toEditStudentAttendance(){
-        return "work/editStudentAttendance";
+    @RequestMapping("/toUpdateMemberWork")
+    public String toEditStudentAttendance(Integer schedulesId,Model model){
+            Schedules schedules1=workClient.getSchedulesById(schedulesId);
+            Users member=userClient.getUserById(schedules1.getMemberId());
+            model.addAttribute("member",member);
+            model.addAttribute("workTypeList",workClient.typeList());
+            model.addAttribute("classesList",workClient.getAllClasses());
+            model.addAttribute("schedules",schedules1);
+
+            return "work/updateWork";
     }
 
 
@@ -190,15 +193,74 @@ public class WorkController {
     @RequestMapping("/toAssignWork")
     public String toAssignOneWork(@RequestParam(required = false) Integer memId, Model model){
         if(memId!=null){
-            int id=memId;
-            Users users = userClient.selectUsersById(id);
+            Users users= userClient.getUserById(memId);
             model.addAttribute("member",users);
             model.addAttribute("classesList",workClient.getAllClasses());
             model.addAttribute("workTypeList",workClient.typeList());
         }else {
+
+            model.addAttribute("memberList",userClient.getAllMember());
             model.addAttribute("member", "sb");
+            model.addAttribute("classesList",workClient.getAllClasses());
+            model.addAttribute("workTypeList",workClient.typeList());
         }
         return "work/assignWork";
+    }
+
+    //安排工作页面
+    @RequestMapping("/toAssignMoreWork")
+    public String toAssignMoreWork(@RequestParam(required = false) Integer memId, Model model){
+        if(memId!=null){
+            Users users= userClient.getUserById(memId);
+            model.addAttribute("member",users);
+            model.addAttribute("classesList",workClient.getAllClasses());
+            model.addAttribute("workTypeList",workClient.typeList());
+        }else {
+
+            model.addAttribute("memberList",userClient.getAllMember());
+            model.addAttribute("member", "sb");
+            model.addAttribute("classesList",workClient.getAllClasses());
+            model.addAttribute("workTypeList",workClient.typeList());
+        }
+        return "work/assignMoreWork";
+    }
+
+
+    //给指定成员安排工作请求
+    @ResponseBody
+    @PostMapping("/assignOneWork")
+    public ResultVO<Integer> assignOneWork(Schedules schedules,@RequestParam(value = "classIdArray[]",required = false) Integer[]classIdArray){
+        ResultVO<Integer> mapResultVO = workClient.assignOneWork(schedules, classIdArray);
+        return mapResultVO;
+    }
+
+
+    //给指定成员安排工作请求
+    @ResponseBody
+    @PostMapping("/assignMoreWork")
+    public ResultVO<Integer> assignMoreWork(Schedules schedules,
+                                            @RequestParam(value = "memberIdArray[]") Integer[]memberIdArray,
+                                            @RequestParam(value = "classIdArray[]",required = false) Integer[]classIdArray){
+        ResultVO<Integer> mapResultVO = workClient.assignMoreWork(schedules, memberIdArray,classIdArray);
+        return mapResultVO;
+    }
+
+
+
+    //给指定成员安排工作请求
+    @ResponseBody
+    @PostMapping("/updateOneWork")
+    public ResultVO<Integer> updateOneWork(Schedules schedules,@RequestParam(value = "classIdArray[]",required = false) Integer[]classIdArray){
+        ResultVO<Integer> mapResultVO = workClient.updateOneWork(schedules, classIdArray);
+        return mapResultVO;
+    }
+
+    //给指定成员安排工作请求
+    @ResponseBody
+    @PostMapping("/deleteOneWork")
+    public ResultVO<Integer> deleteOneWork(@RequestParam("schedulesId") Integer schedulesId){
+        ResultVO<Integer> mapResultVO = workClient.deleteOneWork(schedulesId);
+        return mapResultVO;
     }
 
 
