@@ -126,13 +126,11 @@
     Scripts
 ***********************************-->
 <!-- Required vendors -->
-<script src="js/global.min.js"></script>
-
-<script src="js/jquery.nice-select.min.js"></script>
-
-<script src="js/custom.min.js"></script>
-<script src="js/deznav-init.js"></script>
-<script src="js/demo.js"></script>
-<script src="js/styleSwitcher.js"></script>
+<script src="/js/global.min.js"></script>
+<script src="/js/jquery.nice-select.min.js"></script>
+<script src="/js/custom.min.js"></script>
+<script src="/js/deznav-init.js"></script>
+<script src="/js/demo.js"></script>
+<script src="/js/styleSwitcher.js"></script>
 </body>
 </html>
