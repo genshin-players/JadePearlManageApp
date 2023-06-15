@@ -1,6 +1,7 @@
 package cn.bdqn.controller;
 
 import cn.bdqn.client.UserClient;
+import cn.bdqn.entity.Classes;
 import cn.bdqn.entity.Users;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -59,31 +61,88 @@ public class UserController {
 //========================================================================================
 
 
-    @PostMapping("/add_user")
-    public  String addUser(Users users,String username,String  realname,
-                           String age,String gender,
-                           String phone,String identity){
-
-        //"realname":"林忆宁","age":"25","gender":"女","phone":"13361887757","identity":"310106199707170028"
-        System.out.println(username);
-        System.out.println(realname);
-        System.out.println(age);
-        System.out.println(gender);
-        System.out.println(phone);
-        System.out.println(identity);
-        users.setIdentityInfo("realname:"+realname);
+    @PostMapping("/add_Tuser")
+    public  String addTUser(@RequestParam(value = "username")String username,
+                           @RequestParam(value = "realname") String  realname,
+                           @RequestParam(value = "age") String age,
+                           @RequestParam(value = "gender")String gender,
+                           @RequestParam(value = "phone") String phone,
+                           @RequestParam(value = "identity") String identity){
+        Users users=new Users();
+        users.setUsername(username);
+        users.setPassword("123456");
+        users.setCreateTime(new Date());
+        users.setUpdateTime(new Date());
+        users.setRoleId(3);
+        users.setIdentityInfo("{"+
+                '"'+"realname"+'"'+":"+'"'+realname+'"'+","+
+                '"'+"age"+'"'+":"+'"'+age+'"'+","+
+                '"'+"gender"+'"'+":"+'"'+gender+'"'+","+
+                '"'+"phone"+'"'+":"+'"'+phone+'"'+","+
+                '"'+"identity"+'"'+":"+'"'+identity+'"'
+                +"}");
         Map<String, Object> map = userClient.addUser(users);
         System.out.println(map);
         return "redirect:show_teacher";
     }
 
-    /*ly所需接口*/
+    @PostMapping("/add_Suser")
+    public  String addSUser(@RequestParam(value = "username")String username,
+                           @RequestParam(value = "realname") String  realname,
+                           @RequestParam(value = "age") String age,
+                           @RequestParam(value = "gender")String gender,
+                           @RequestParam(value = "phone") String phone,
+                           @RequestParam(value = "identity") String identity){
+        Users users=new Users();
+        users.setUsername(username);
+        users.setPassword("123456");
+        users.setCreateTime(new Date());
+        users.setUpdateTime(new Date());
+        users.setRoleId(6);
+        users.setIdentityInfo("{"+
+                '"'+"realname"+'"'+":"+'"'+realname+'"'+","+
+                '"'+"age"+'"'+":"+'"'+age+'"'+","+
+                '"'+"gender"+'"'+":"+'"'+gender+'"'+","+
+                '"'+"phone"+'"'+":"+'"'+phone+'"'+","+
+                '"'+"identity"+'"'+":"+'"'+identity+'"'
+                +"}");
+        Map<String, Object> map = userClient.addUser(users);
+        System.out.println(map);
+        return "redirect:show_student";
+    }
+
+
+
+    @RequestMapping("/showUser_ById")
+    private String showUserById(@RequestParam(value = "id") Integer id,Model model){
+        Users users = userClient.showUserById(id);
+        model.addAttribute("users",users);
+        return "teacher/update_addteacher";
+
+
+    }
+
+
+    //查询所有的班级
+   /* @ResponseBody
+    @RequestMapping("showClass")
+    private List<Classes> addUser(Model model){
+        List<Classes> classes = userClient.showClass();
+        model.addAttribute("className",classes);
+        return ""
+
+    }*/
+
+
+
+
+
     @RequestMapping("getUsersById")
     public String selectUsersById(Integer id,Model model){
         Users users = userClient.selectUsersById(id);
+//        model.addAttribute("usersById",users);
         model.addAttribute("usersById",users);
         return "messages/update_Select";
     }
-
 
 }

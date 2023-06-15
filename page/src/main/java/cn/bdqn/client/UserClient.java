@@ -1,5 +1,6 @@
 package cn.bdqn.client;
 
+import cn.bdqn.entity.Classes;
 import cn.bdqn.entity.Users;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -23,7 +24,23 @@ public interface UserClient {
     Map<String, Object>  deleteTeacher(@RequestParam(value = "id")  Integer id);
 
     @PostMapping("/user/addUser")
-    Map<String,Object>  addUser(@RequestParam Users users);
+    Map<String,Object>  addUser(@RequestBody  Users users);
+
+    @ResponseBody
+    @RequestMapping("/user/showUserById")
+     Users showUserById(@RequestParam(value = "id") Integer id);
+
+
+
+ /*   //查询所有的班级
+    @RequestMapping("/user/showClass")
+    List<Classes> showClass();
+*/
+
+    @ResponseBody
+    @RequestMapping("/user/updateUser")
+    Map<String,Object> updateUser(@RequestBody  Users users);
+
 
 
     /*ly所需接口*/

@@ -1,5 +1,6 @@
 package cn.bdqn.mapper;
 
+import cn.bdqn.entity.StudentClass;
 import cn.bdqn.entity.Users;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
@@ -16,6 +17,9 @@ import java.util.List;
  */
 
 public interface UsersMapper extends BaseMapper<Users> {
+
+
+
 
 
 
