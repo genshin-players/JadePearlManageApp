@@ -81,7 +81,7 @@ public class UserController {
     @RequestMapping("getUsersById")
     public String selectUsersById(Integer id,Model model){
         Users users = userClient.selectUsersById(id);
-//        model.addAttribute("usersById",users);
+        model.addAttribute("usersById",users);
         return "messages/update_Select";
     }
 
