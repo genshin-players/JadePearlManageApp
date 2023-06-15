@@ -11,7 +11,7 @@
  Target Server Version : 80031 (8.0.31-0ubuntu0.20.04.2)
  File Encoding         : 65001
 
- Date: 12/06/2023 15:55:42
+ Date: 15/06/2023 14:22:45
 */
 
 SET NAMES utf8mb4;
@@ -28,19 +28,20 @@ CREATE TABLE `activities`  (
   `start_time` datetime NOT NULL COMMENT '报名开始时间，格式”yyyy-MM-dd HH:mm:sss“',
   `end_time` datetime NOT NULL COMMENT '报名截止时间，格式”yyyy-MM-dd HH:mm:sss“',
   `likes` int NOT NULL DEFAULT 0 COMMENT '点赞（热度）',
-  `create_time` date NOT NULL DEFAULT 'curdate()' COMMENT '创建日期',
-  `update_time` date NOT NULL COMMENT '更新日期',
+  `create_time` date NOT NULL DEFAULT 'curtime()' COMMENT '创建日期',
+  `update_time` date NOT NULL DEFAULT 'curtime()' COMMENT '更新日期',
   `is_active` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1代表TRUE(生效),0代表FALSE（不生效）',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `activities_display_id_fk`(`display_id` ASC) USING BTREE,
   CONSTRAINT `activities_display_id_fk` FOREIGN KEY (`display_id`) REFERENCES `display` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of activities
 -- ----------------------------
 INSERT INTO `activities` VALUES (1, 5, 5, '2023-06-09 15:56:55', '2023-06-09 15:56:58', 114514, '2023-06-09', '2023-06-09', 1);
-INSERT INTO `activities` VALUES (2, 7, 10, '2023-06-12 15:47:57', '2023-06-12 15:47:58', 1919810, '2023-06-12', '2023-06-12', 1);
+INSERT INTO `activities` VALUES (3, 14, 11, '2023-06-13 15:45:32', '2023-06-13 15:45:36', 1919810, '2023-06-13', '2023-06-13', 1);
+INSERT INTO `activities` VALUES (12, 102, 23, '2023-06-15 09:00:00', '2023-06-30 09:00:00', 0, '2023-06-15', '2023-06-15', 1);
 
 -- ----------------------------
 -- Table structure for attendence
@@ -59,7 +60,7 @@ CREATE TABLE `attendence`  (
   INDEX `attendence_users_id_fk2`(`student_id` ASC) USING BTREE,
   CONSTRAINT `attendence_classes_id_fk` FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `attendence_users_id_fk2` FOREIGN KEY (`student_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '出勤' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '出勤' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of attendence
@@ -82,9 +83,9 @@ INSERT INTO `attendence` VALUES (26, 2, 13, '2023-06-12 14:00:00', 2, 17);
 INSERT INTO `attendence` VALUES (27, 3, 14, '2023-06-12 00:00:00', 1, 17);
 INSERT INTO `attendence` VALUES (28, 3, 15, '2023-06-12 00:00:00', 2, 17);
 INSERT INTO `attendence` VALUES (29, 3, 16, '2023-06-12 00:00:00', 0, 17);
-INSERT INTO `attendence` VALUES (30, 3, 14, '2023-06-12 00:00:00', 1, 17);
-INSERT INTO `attendence` VALUES (31, 3, 14, '2023-06-12 00:00:00', 2, 17);
-INSERT INTO `attendence` VALUES (32, 3, 14, '2023-06-12 00:00:00', 0, 17);
+INSERT INTO `attendence` VALUES (33, 1, 8, '2023-06-11 00:00:00', 2, 19);
+INSERT INTO `attendence` VALUES (34, 1, 9, '2023-06-11 00:00:00', 2, 19);
+INSERT INTO `attendence` VALUES (35, 1, 10, '2023-06-11 00:00:00', 2, 17);
 
 -- ----------------------------
 -- Table structure for classes
@@ -120,28 +121,31 @@ DROP TABLE IF EXISTS `display`;
 CREATE TABLE `display`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '标题',
+  `content` varchar(5000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '内容',
   `display_type_id` int NOT NULL COMMENT '内容类型',
   `cover_image` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '封面图片（待定）',
-  `create_time` datetime NOT NULL DEFAULT 'curdate()',
-  `update_time` datetime NOT NULL,
+  `create_time` datetime NOT NULL DEFAULT 'curtime()',
+  `update_time` datetime NOT NULL DEFAULT 'curtime()',
   `publish_user_id` int NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `display_display_type_id_fk`(`display_type_id` ASC) USING BTREE,
   INDEX `display_users_id_fk`(`publish_user_id` ASC) USING BTREE,
   CONSTRAINT `display_display_type_id_fk` FOREIGN KEY (`display_type_id`) REFERENCES `display_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `display_users_id_fk` FOREIGN KEY (`publish_user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '显示内容' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 103 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '显示内容' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of display
 -- ----------------------------
-INSERT INTO `display` VALUES (1, '安倍晋三堂々復活', 2, '1', '2023-06-09 16:01:18', '2023-06-09 16:01:21', 1);
-INSERT INTO `display` VALUES (2, '肯尼迪遇刺后生还', 2, '1', '2023-06-11 15:59:32', '2023-06-11 15:59:34', 1);
-INSERT INTO `display` VALUES (3, '美国双子塔重建', 2, '1', '2023-06-11 16:00:01', '2023-06-11 16:00:02', 1);
-INSERT INTO `display` VALUES (4, '丫丫眼圈被美国人打黑了', 2, '1', '2023-06-12 16:01:13', '2023-06-11 16:01:15', 1);
-INSERT INTO `display` VALUES (5, '辩论赛', 1, '1', '2023-06-11 19:54:44', '2023-06-11 19:54:46', 1);
-INSERT INTO `display` VALUES (6, '学院优秀作品展示', 3, '1', '2023-06-11 20:22:13', '2023-06-11 20:22:15', 1);
-INSERT INTO `display` VALUES (7, '篮球比赛', 1, '1', '2023-06-12 15:47:24', '2023-06-12 15:47:25', 1);
+INSERT INTO `display` VALUES (5, '辩论赛', NULL, 1, '1', '2023-06-11 19:54:44', '2023-06-11 19:54:46', 1, 1);
+INSERT INTO `display` VALUES (6, '学院优秀作品展示', NULL, 3, '1', '2023-06-11 20:22:13', '2023-06-11 20:22:15', 1, 1);
+INSERT INTO `display` VALUES (10, '安倍晋三堂々復活', NULL, 2, '1', '2023-06-13 00:25:27', '2023-06-13 00:25:28', 1, 1);
+INSERT INTO `display` VALUES (11, '肯尼迪遭遇枪击后生还', NULL, 2, '1', '2023-06-13 00:26:07', '2023-06-13 00:26:08', 1, 1);
+INSERT INTO `display` VALUES (12, '丫丫眼圈被美国人打黑了', NULL, 2, '1', '2023-06-13 00:26:30', '2023-06-13 00:26:31', 1, 1);
+INSERT INTO `display` VALUES (13, '双子塔重建', NULL, 2, '1', '2023-06-13 00:26:58', '2023-06-13 00:27:00', 1, 1);
+INSERT INTO `display` VALUES (14, '篮球比赛', NULL, 1, '1', '2023-06-13 15:43:42', '2023-06-13 15:43:44', 1, 1);
+INSERT INTO `display` VALUES (102, '炫酷坦克杂技射击表演', '<p>坦克！射击！Student！</p><p>本次活动每班报名人数为：<span style=\"font-size:18px;\">23</span>！</p><p>活动报名时间为：<span style=\"font-size:18px;\"><i><strong>2023-06-15 09:00:00</strong></i></span>至<span style=\"font-size:18px;\"><i><strong>2023-06-30 09:00:00</strong></i></span></p>', 1, '1', '2023-06-15 12:04:11', '2023-06-15 12:04:12', 1, 1);
 
 -- ----------------------------
 -- Table structure for display_element
@@ -156,8 +160,8 @@ CREATE TABLE `display_element`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `display_element_display_id_fk`(`display_id` ASC) USING BTREE,
   INDEX `display_element_display_element_type_id_fk`(`element_type_id` ASC) USING BTREE,
-  CONSTRAINT `display_element_display_id_fk` FOREIGN KEY (`display_id`) REFERENCES `display` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `display_element_display_element_type_id_fk` FOREIGN KEY (`element_type_id`) REFERENCES `display_element_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `display_element_display_element_type_id_fk` FOREIGN KEY (`element_type_id`) REFERENCES `display_element_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `display_element_display_id_fk` FOREIGN KEY (`display_id`) REFERENCES `display` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '显示元素' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -192,9 +196,9 @@ CREATE TABLE `display_type`  (
 -- ----------------------------
 -- Records of display_type
 -- ----------------------------
-INSERT INTO `display_type` VALUES (1, '活动', 1);
+INSERT INTO `display_type` VALUES (1, '内部活动', 1);
 INSERT INTO `display_type` VALUES (2, '每日一推', 1);
-INSERT INTO `display_type` VALUES (3, '校园展示', 0);
+INSERT INTO `display_type` VALUES (3, '对外展览', 0);
 
 -- ----------------------------
 -- Table structure for member_schedules
@@ -208,18 +212,20 @@ CREATE TABLE `member_schedules`  (
   `create_time` date NOT NULL DEFAULT 'curdate()',
   `update_time` date NOT NULL,
   `create_user_id` int NOT NULL,
-  `status` tinyint(1) NOT NULL COMMENT '完成状态',
+  `status` tinyint(1) NOT NULL COMMENT '完成状态 0未完成，1已完成',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `member_schedules_users_id_fk`(`member_id` ASC) USING BTREE,
   INDEX `member_schedules_member_schedules_type_id_fk2`(`work_type_id` ASC) USING BTREE,
   CONSTRAINT `member_schedules_member_schedules_type_id_fk` FOREIGN KEY (`work_type_id`) REFERENCES `member_schedules_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `member_schedules_member_schedules_type_id_fk2` FOREIGN KEY (`work_type_id`) REFERENCES `member_schedules_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `member_schedules_users_id_fk` FOREIGN KEY (`member_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '学社成员工作安排' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '学社成员工作安排' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of member_schedules
 -- ----------------------------
+INSERT INTO `member_schedules` VALUES (1, 17, '2023-06-13', 1, '2023-06-13', '2023-06-13', 1, 0);
+INSERT INTO `member_schedules` VALUES (2, 17, '2023-06-14', 2, '2023-06-14', '2023-06-14', 1, 1);
 
 -- ----------------------------
 -- Table structure for member_schedules_type
@@ -236,6 +242,28 @@ CREATE TABLE `member_schedules_type`  (
 -- ----------------------------
 INSERT INTO `member_schedules_type` VALUES (1, '查班');
 INSERT INTO `member_schedules_type` VALUES (2, '早迎接');
+
+-- ----------------------------
+-- Table structure for member_work_class
+-- ----------------------------
+DROP TABLE IF EXISTS `member_work_class`;
+CREATE TABLE `member_work_class`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `schedules_id` int NOT NULL,
+  `class_id` int NOT NULL,
+  `create_time` datetime NOT NULL DEFAULT 'curtime()',
+  `update_time` datetime NOT NULL DEFAULT 'curtime()',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `member_work_class_classes_id_fk`(`class_id` ASC) USING BTREE,
+  INDEX `member_work_class_member_schedules_id_fk`(`schedules_id` ASC) USING BTREE,
+  CONSTRAINT `member_work_class_classes_id_fk` FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `member_work_class_member_schedules_id_fk` FOREIGN KEY (`schedules_id`) REFERENCES `member_schedules` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of member_work_class
+-- ----------------------------
+INSERT INTO `member_work_class` VALUES (2, 1, 3, '2023-06-15 14:21:51', '2023-06-15 14:21:51');
 
 -- ----------------------------
 -- Table structure for menu
@@ -260,7 +288,7 @@ INSERT INTO `menu` VALUES (5, '班级管理', 1, 0);
 INSERT INTO `menu` VALUES (6, '教师管理', 2, 1);
 INSERT INTO `menu` VALUES (7, '学生管理', 2, 1);
 INSERT INTO `menu` VALUES (8, '每日一推', 2, 2);
-INSERT INTO `menu` VALUES (9, '内部活动', 2, 2);
+INSERT INTO `menu` VALUES (9, '学社活动\n', 2, 2);
 INSERT INTO `menu` VALUES (10, '对外展览', 2, 2);
 INSERT INTO `menu` VALUES (11, '学社出勤', 2, 3);
 INSERT INTO `menu` VALUES (12, '班级出勤', 2, 3);
@@ -372,7 +400,7 @@ CREATE TABLE `student_class`  (
   INDEX `student_class_users_id_fk`(`student_id` ASC) USING BTREE,
   CONSTRAINT `student_class_classes_id_fk` FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `student_class_users_id_fk` FOREIGN KEY (`student_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '学生与班级绑定表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '学生与班级绑定表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of student_class
@@ -392,6 +420,9 @@ INSERT INTO `student_class` VALUES (12, 6, 3);
 INSERT INTO `student_class` VALUES (13, 14, 3);
 INSERT INTO `student_class` VALUES (14, 15, 3);
 INSERT INTO `student_class` VALUES (15, 16, 3);
+INSERT INTO `student_class` VALUES (16, 17, 1);
+INSERT INTO `student_class` VALUES (17, 18, 2);
+INSERT INTO `student_class` VALUES (18, 19, 3);
 
 -- ----------------------------
 -- Table structure for subjects
