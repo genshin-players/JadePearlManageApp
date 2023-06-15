@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -102,12 +101,13 @@ public class DisplayController {
     @ResponseBody
     public Map<String, Object> addDisplay(
             @RequestParam(value = "title") String title,
+            @RequestParam(value = "content") String content,
             @RequestParam(value = "displayTypeId") Integer displayTypeId,
             @RequestParam(value = "coverImage", defaultValue = "1", required = false) String coverImage,
             @RequestParam(value = "publishUserId", defaultValue = "1", required = false) Integer publishUserId,
             @RequestParam(value = "createTime", required = false) String createTime
     ){
-        return displayClient.addDisplay(title, displayTypeId, coverImage, publishUserId, createTime);
+        return displayClient.addDisplay(title, content, displayTypeId, coverImage, publishUserId, createTime);
     }
 
     @RequestMapping("insertActivities")
@@ -116,9 +116,9 @@ public class DisplayController {
             @RequestParam(value = "signupNum") Integer signupNumber,
             @RequestParam(value = "startTime") String startTime,
             @RequestParam(value = "endTime") String endTime,
-            @RequestParam(value = "updateTime") String updateTime,
+            @RequestParam(value = "createTime") String createTime,
             @RequestParam(value = "title") String title
     ){
-        return activatesClient.addActivities(displayClient.getCreatedByCreationTimeAndTitle(updateTime, title),signupNumber, startTime, endTime);
+        return activatesClient.addActivities(displayClient.getCreatedByCreationTimeAndTitle(createTime, title),signupNumber, startTime, endTime);
     }
 }

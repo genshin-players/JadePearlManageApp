@@ -2,7 +2,7 @@
     "use strict"
 
     // Clock pickers
-    var input = $('#single-input').clockpicker({
+    var input = $('#startTimeHMS').clockpicker({
         placement: 'bottom',
         align: 'left',
         autoclose: true,

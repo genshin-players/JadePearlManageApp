@@ -2,6 +2,7 @@ package cn.bdqn.service;
 
 import cn.bdqn.entity.Display;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>

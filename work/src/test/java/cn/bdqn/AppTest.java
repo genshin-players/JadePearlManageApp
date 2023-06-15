@@ -13,7 +13,7 @@ public class AppTest {
 
         GeneratorConfig config = GeneratorConfig.builder().
                 jdbcUrl("jdbc:mysql://39.107.229.253:3306/jadepearl_app?" +
-                        "useSSL=true&characterEncoding=utf-8&serverTimezone=UTC")
+                        "useSSL=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai")
                 .userName("root").password("114514").driverClassName("com.mysql.cj.jdbc.Driver")
                 // 数据库schema，POSTGRE_SQL,ORACLE,DB2类型的数据库需要指定
                 // .schemaName("myBusiness")

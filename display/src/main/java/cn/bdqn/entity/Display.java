@@ -34,6 +34,8 @@ public class Display extends Model<Display> {
      */
     private String title;
 
+    private String content;
+
     /**
      * 内容类型
      */

@@ -16,7 +16,20 @@
             <div class="col-xl-12 col-xxl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Display CkEditor</h4>
+                        <h4 class="card-title">标题</h4>
+                    </div>
+                    <div class="card-body">
+                        <h4>内容标题：</h4>
+                        <input class="form-control" id="title" value="标题" placeholder="title">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-xxl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">编辑内容</h4>
                     </div>
                     <div class="card-body custom-ckeditor">
                         <div id="editor"></div>
@@ -204,14 +217,11 @@
 
     document.querySelector("#submit").addEventListener("click", ()=>{
         // getting data from editor
-        alert("getting data");
         const editorData = editor.getData();
         console.log(editorData);
         if (editorData.trim()===""){
             alert("内容不得为空")
-        } else if (editorData.trim()===str){
-            alert("请添加内容描述")
-        } else {
+        } else if (editorData.trim() !== str) {
             const date = new Date();
             const year = date.getFullYear(); // 获取年份，例如：2022
             const month = String(date.getMonth() + 1).padStart(2, '0'); // 获取月份，并补零，例如：09
@@ -219,40 +229,37 @@
             const hour = String(date.getHours()).padStart(2, '0'); // 获取小时，并补零，例如：14
             const minute = String(date.getMinutes()).padStart(2, '0'); // 获取分钟，并补零，例如：30
             const second = String(date.getSeconds()).padStart(2, '0'); // 获取秒数，并补零，例如：45
-
             <#--const formattedDate = `${year}-${month}-${day} ${hour}:${minute}:${second}`;-->
-            const formattedDate = year+'-'+month+'-'+day+" "+hour+":"+minute+":"+second
+            const formattedDate = year + '-' + month + '-' + day + " " + hour + ":" + minute + ":" + second
             console.log(formattedDate); // 输出类似于 "2022-09-05 14:30:45" 的字符串
-            alert(formattedDate)
+            let title = $("#title").val();
             $.ajax({
-                async:true,
-                dataType:"json",
-                data:{
-                    title:"test",
-                    displayTypeId:1,
-                    createTime:formattedDate
+                async: true,
+                dataType: "json",
+                data: {
+                    title: title,
+                    content: editorData,
+                    displayTypeId: 1,
+                    createTime: formattedDate
                 },
-                method:"POST",
-                url:"/display/insertDisplay",
-                success:function () {
-                    alert("intoInsertActivities")
-                    alert(formattedDate)
-                    if ("${type}"==="学社活动"){
-                        alert(true)
+                method: "POST",
+                url: "/display/insertDisplay",
+                success: function () {
+                    if ("${type}" === "学社活动") {
                         $.ajax({
                             async: true,
                             dataType: "json",
                             data: {
-                                title: "test",
+                                title: title,
                                 signupNum: signupNum,
                                 startTime: startTime,
                                 endTime: endTime,
-                                updateTime: formattedDate
+                                createTime: formattedDate
                             },
                             method: "POST",
                             url: "/display/insertActivities",
-                            success: function (){
-
+                            success: function () {
+                                window.location.href = "/display/inner_activities"
                             },
                             error: function () {
                                 alert("insert activities error")
@@ -260,10 +267,12 @@
                         });
                     }
                 },
-                error:function () {
+                error: function () {
                     alert("failed")
                 }
             })
+        } else {
+            alert("请添加内容描述")
         }
     })
 
@@ -273,9 +282,7 @@
     $(document).ready(function (){
         if ("${type}" === '学社活动'){
             console.log(signupNum,startTime,endTime)
-            str = "<h1>"+<#--${title}-->"这里应该有标题"+"</h1>" +
-                "<p>&nbsp;</p>" +
-                "<p>本次活动每班报名人数为：<span style='font-size:18px;'>" +
+            str = "<p>本次活动每班报名人数为：<span style='font-size:18px;'>" +
                 signupNum +
                 "</span>！</p><p>活动报名时间为：<span style='font-size:18px;'><i><strong>" +
                 startTime +

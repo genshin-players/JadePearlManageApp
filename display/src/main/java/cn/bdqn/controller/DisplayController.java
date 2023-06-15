@@ -3,10 +3,12 @@ package cn.bdqn.controller;
 
 import cn.bdqn.entity.Display;
 import cn.bdqn.service.IDisplayService;
+import cn.bdqn.util.DateTimeUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -83,19 +85,28 @@ public class DisplayController {
     @RequestMapping("addDisplay")
     public Map<String, Object> addDisplay(
             @RequestParam(value = "title") String title,
+            @RequestParam(value = "content") String content,
             @RequestParam(value = "displayTypeId") Integer displayTypeId,
             @RequestParam(value = "coverImage", defaultValue = "1", required = false) String coverImage,
             @RequestParam(value = "publishUserId", defaultValue = "1", required = false) Integer publishUserId,
-            @RequestParam(value = "createTime", required = false) Date createTime)
+            @RequestParam(value = "createTime", required = false) String createTime)
     {
         Map<String,Object> map = new HashMap<>();
+        Date parse = null;
+        try {
+            parse = DateTimeUtil.sdf.parse(createTime);
+            System.out.println(parse);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         if (displayService.save(
                 Display.builder()
                         .title(title)
                         .displayTypeId(displayTypeId)
+                        .content(content)
                         .coverImage(coverImage)
                         .publishUserId(publishUserId)
-                        .createTime(createTime)
+                        .createTime(parse)
                         .updateTime(new Date())
                         .build()
         )){
@@ -110,12 +121,12 @@ public class DisplayController {
 
     @RequestMapping("getDisplayIdByCreationTimeAndTitle")
     public Integer getCreatedByCreationTimeAndTitle(
-            @RequestParam(value = "updateTime") String updateTime,
+            @RequestParam(value = "createTime") String createTime,
             @RequestParam(value = "title")String title
     ){
         LambdaQueryWrapper<Display> lambdaQueryWrapper = new LambdaQueryWrapper<Display>();
         lambdaQueryWrapper.eq(Display::getTitle,title);
-        lambdaQueryWrapper.eq(Display::getUpdateTime,updateTime);
+        lambdaQueryWrapper.eq(Display::getCreateTime, createTime);
         List<Display> list = displayService.list(lambdaQueryWrapper);
         return list.get(0).getId();
     }

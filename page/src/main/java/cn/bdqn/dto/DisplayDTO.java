@@ -24,6 +24,7 @@ public class DisplayDTO  {
 
     private Integer id;
     private String title;
+    private String content;
     private Integer displayTypeId;
     private String coverImage;
     private Date createTime;

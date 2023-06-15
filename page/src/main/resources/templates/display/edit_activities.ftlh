@@ -36,7 +36,7 @@
 												</div>
 												<div class="col-md-6 col-xl-3 col-xxl-6 mb-3">
 													<div class="input-group">
-														<input class="form-control" id="single-input" value="" placeholder="Now">
+														<input class="form-control" id="startTimeHMS" value="09:00" placeholder="Now">
 														<button type="button" class="btn waves-effect waves-light btn-ft btn-success check-minutes">点击选择时间</button>
 													</div>
 												</div>
@@ -51,7 +51,7 @@
 													</div>
 													<div class="col-md-6 col-xl-3 col-xxl-6 mb-3">
 														<div class="input-group">
-															<input class="form-control" id="single-input" value="" placeholder="Now">
+															<input class="form-control" id="endTimeHMS" value="09:00" placeholder="Now">
 															<button type="button" class="btn waves-effect waves-light btn-ft btn-success check-minutes">点击选择时间</button>
 														</div>
 													</div>
@@ -185,8 +185,10 @@
 	function toEditor(){
 		let signupNum = document.getElementById("signupNum").value;
 		let startTime = document.getElementById("startTime").value;
+		let startTimeHMS = document.getElementById("startTimeHMS").value;
 		let endTime = document.getElementById("endTime").value;
-		let str = "signupNum="+signupNum+"&startTime="+startTime+"&endTime="+endTime;
+		let endTimeHMS = document.getElementById("endTimeHMS").value;
+		let str = "signupNum="+signupNum+"&startTime="+startTime+" "+startTimeHMS+":00&endTime="+endTime+" "+endTimeHMS+":00";
 		window.location.href = "/display/editor?type=学社活动&"+str;
 	}
 </script>
