@@ -89,7 +89,7 @@
                                                     <#if detail.schedulesType.id==1>
                                                         (
                                                         <#list detail.workClasses as wc>
-                                                            <#list classesList.data as c>
+                                                            <#list classesList as c>
                                                                 <#if wc.classId==c.id>
                                                                     ${c.name}&nbsp;
                                                                 </#if>

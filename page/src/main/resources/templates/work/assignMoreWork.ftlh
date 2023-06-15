@@ -99,7 +99,7 @@
                                 </div>
                                 <div class="col-lg-10">
                                     <select class="multi-select" name="classId" multiple="multiple" >
-                                    <#list classesList.data as c>
+                                    <#list classesList as c>
                                         <option value="${c.id}">${c.name}</option>
                                     </#list>
                                     </select>

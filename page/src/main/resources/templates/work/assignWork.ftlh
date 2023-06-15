@@ -48,16 +48,11 @@
                                 <span class="text-white fw-bolder" style="font-size: 18px">工作人员:</span>
                             </div>
                             <div class="col-lg-10">
-                                <#if memName=="sb">
-                                    <select class="multi-select" name="members" multiple="multiple" onchange="checkThis()">
-                                        <option value="1" <#if memName=="亚托克斯">selected</#if>>亚托克斯</option>
-                                        <option value="2" <#if memName=="暮光星灵">selected</#if>>暮光星灵</option>
-                                        <option value="3" <#if memName=="诺克萨斯之手">selected</#if>>诺克萨斯之手</option>
-                                        <option value="4" <#if memName=="佛耶戈">selected</#if>>佛耶戈</option>
-                                    </select>
-                                <#else>
-                                    <span class="text text-primary" style="font-weight: bolder" >${memName}</span>
-                                </#if>
+
+                                <#assign json=member.identityInfo?eval/>
+                                <input type="hidden" name="memberId" value="${member.id}">
+                                    <span class="text text-primary" style="font-weight: bolder" >${json.realname}</span>
+
 
                             </div>
 
@@ -70,7 +65,7 @@
                                 <span class="text-white fw-bolder" style="font-size: 18px">工作时间:</span>
                             </div>
                             <div class="col-lg-4">
-                                <input type="text" class="form-control" placeholder="2017-06-04" id="mdate" style="height: 35px" name="workTime" onchange="checkTime()">
+                                <input type="text" class="form-control mdate" placeholder="2023-06-04"  style="height: 35px" name="workTime" onchange="checkTime()">
                             </div>
                             <div class="col-lg-4">
 
@@ -86,10 +81,9 @@
                             <div class="col-lg-4">
                                 <select class="single-select-placeholder js-states" name="workType" onchange="checkWorkType()">
                                     <option value="0">请选择</option>
-                                    <option value="1">查班</option>
-                                    <option value="2">站岗</option>
-                                    <option value="3">举办活动</option>
-                                    <option value="4">扫地</option>
+                                    <<#list workTypeList as type>
+                                        <option value="${type.id}">${type.name}</option>
+                                    </#list>
                                 </select>
                             </div>
                         </div>
@@ -102,10 +96,9 @@
                                 </div>
                                 <div class="col-lg-10">
                                     <select class="multi-select" name="classId" multiple="multiple" >
-                                    <option value="1">小灯班</option>
-                                    <option value="2">中灯班</option>
-                                    <option value="3">大灯班</option>
-                                    <option value="4">老灯班</option>
+                                        <#list  classesList as c>
+                                            <option value="${c.id}">${c.name}</option>
+                                        </#list>
                                     </select>
                                 </div>
                                 <br>
@@ -119,7 +112,7 @@
 
                                     </div>
                                     <div class="col-lg-4" align="center">
-                                        <button class="btn btn-outline-secondary">提交</button>
+                                        <button class="btn btn-outline-secondary"  onclick="sumbitOneWork()">提交</button>
                                     </div>
 
 
@@ -256,6 +249,70 @@
         }else {
             $(".classChoose").css("display","none");
         }
+    }
+
+
+    function sumbitOneWork() {
+        var memberId=$("[name=memberId]").val();
+        var workTime=$("[name=workTime]").val();
+        var workType=$("[name=workType]").val();
+        var classId= $("[name=classId]").val();
+
+        console.log(memberId,workTime,workType,classId);
+
+        if(memberId==null){
+            alert("成员不能为空");
+        }else if(workTime==null||workTime==""){
+            alert("工作时间不能为空");
+        }else if(workType==0){
+            alert("工作内容不能为空");
+        }else if(classId==null){
+            alert("负责班级不能为空");
+        }else {
+            if(workType==1&&classId.length>0){
+                $.ajax({
+                    type: "POST",
+                    url:"/assignOneWork",
+                    data: {
+                        memberId: memberId,
+                        date: workTime,
+                        workTypeId:workType,
+                        createUserId:1,
+                        classIdArray:classId
+                    },
+                    dataType:"json",
+                    success:function (res) {
+                        if(res.data>0){
+                            window.location.href="toMemberWorkDetailInfo?memberId="+memberId;
+                        }else {
+                            alert("添加失败");
+                        }
+                    }
+                });
+            }else {
+
+                $.ajax({
+                    type: "POST",
+                    url:"/assignOneWork",
+                    data: {
+                        memberId: memberId,
+                        date: workTime,
+                        workTypeId:workType,
+                        createUserId:1
+                    },
+                    dataType:"json",
+                    success:function (res) {
+                        if(res.data>0){
+                            window.location.href="toMemberWorkDetailInfo?memberId="+memberId;
+                        }else {
+                            alert("添加失败");
+                        }
+                    }
+                });
+            }
+        }
+
+
     }
 </script>
 

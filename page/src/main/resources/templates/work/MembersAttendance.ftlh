@@ -57,7 +57,21 @@
 
                             </div>
                             <div class="card-body mb-0">
-                                <span class="text-white" style="font-weight: bolder;font-size: 18px">工作:</span><span style="font-size: 15px;margin-left: 40px">${vo.schedulesType.name}</span><br>
+                                <span class="text-white" style="font-weight: bolder;font-size: 18px">工作:</span><span style="font-size: 15px;margin-left: 40px">
+                                    ${vo.schedulesType.name}
+                                    <#if vo.schedules.workTypeId==1>
+                                        (
+                                        <#list vo.workClasses as wc >
+                                            <#list classesList as c>
+                                                <#if wc.classId==c.id>
+                                                    ${c.name}&nbsp;
+                                                </#if>
+                                            </#list>
+                                        </#list>
+                                        )
+                                    </#if>
+
+                                </span><br>
                                 <hr>
                                 <span class="text-white" style="font-weight: bolder;font-size: 18px">所在班:</span><span style="font-size: 15px;margin-left: 20px">${vo.classes.name}</span><br>
                                 <hr>

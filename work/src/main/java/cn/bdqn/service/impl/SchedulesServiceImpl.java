@@ -37,6 +37,8 @@ public class SchedulesServiceImpl extends ServiceImpl<SchedulesMapper, Schedules
     ClassesMapper classesMapper;
     @Autowired
     ClassMapper classMapper;
+    @Autowired
+    WorkClassMapper workClassMapper;
 
 
     /**
@@ -57,6 +59,12 @@ public class SchedulesServiceImpl extends ServiceImpl<SchedulesMapper, Schedules
             for(Schedules s:schedules){
                 MemberWorkCardInfoVO vo=new MemberWorkCardInfoVO();
                 vo.setSchedules(s);
+
+                //判断工作类型如果为1查班 查询负责班级
+                if(s.getWorkTypeId()==1){
+                    List<WorkClass> workClasses=workClassMapper.selectList(new QueryWrapper<WorkClass>().eq("schedules_id",s.getId()));
+                    vo.setWorkClasses(workClasses);
+                }
                 //获取成员
                 Users users= usersMapper.selectById(s.getMemberId());
                 vo.setMember(users);
@@ -99,6 +107,13 @@ public class SchedulesServiceImpl extends ServiceImpl<SchedulesMapper, Schedules
         if(schedules!=null&&schedules.size()>0){
             for (Schedules s:schedules){
                 MemberWorkDetailInfoVO vo=new MemberWorkDetailInfoVO();
+
+                //判断工作类型如果为1查班 查询负责班级
+                if(s.getWorkTypeId()==1){
+                    List<WorkClass> workClasses=workClassMapper.selectList(new QueryWrapper<WorkClass>().eq("schedules_id",s.getId()));
+                    vo.setWorkClasses(workClasses);
+                }
+
                 //获取学社成员
                 Users member=usersMapper.selectById(s.getMemberId());
                 vo.setMember(member);
@@ -191,6 +206,7 @@ public class SchedulesServiceImpl extends ServiceImpl<SchedulesMapper, Schedules
      */
     @Transactional
     public Integer updateOneWork(Schedules schedules,Integer[]classIdArray){
+        int startWorkId=schedulesMapper.selectById(schedules.getId()).getWorkTypeId();
         //判断工作类型不为查班1 则普通修改
         if(schedules.getWorkTypeId()!=1){
             schedules.setUpdateTime(new Date());
@@ -208,7 +224,7 @@ public class SchedulesServiceImpl extends ServiceImpl<SchedulesMapper, Schedules
                     int c=workClassMapper.delete(new QueryWrapper<WorkClass>()
                             .eq("schedules_id",schedules.getId()));
 
-                    if(c>0){//删除成功
+                    if(c>0||startWorkId!=1){//删除成功
 
 
                         if (schedules.getId() != null) {

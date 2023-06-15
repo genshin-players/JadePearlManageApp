@@ -1,6 +1,10 @@
 package cn.bdqn.controller;
 
+import cn.bdqn.entity.Classes;
 import cn.bdqn.entity.Schedules;
+import cn.bdqn.entity.SchedulesType;
+import cn.bdqn.mapper.ClassesMapper;
+import cn.bdqn.mapper.SchedulesTypeMapper;
 import cn.bdqn.service.SchedulesService;
 import cn.bdqn.vo.MemberWorkCardInfoVO;
 import cn.bdqn.vo.MemberWorkDetailInfoVO;
@@ -16,6 +20,10 @@ import java.util.Map;
 public class SchedulesController {
     @Autowired
     SchedulesService schedulesService;
+    @Autowired
+    ClassesMapper classesMapper;
+    @Autowired
+    SchedulesTypeMapper schedulesTypeMapper;
 
 
     @GetMapping("/toMemberWorkCardInfo")
@@ -138,5 +146,16 @@ public class SchedulesController {
 
 
 
+
+    //获取所有班级
+    @RequestMapping("/getAllClasses")
+    public List<Classes> getAllClasses(){
+        return classesMapper.selectList(null);
+    }
+
+    @RequestMapping("/getAllWorkType")
+    public List<SchedulesType> typeList(){
+        return schedulesTypeMapper.selectList(null);
+    };
 
 }
