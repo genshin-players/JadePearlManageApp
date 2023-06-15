@@ -2,16 +2,17 @@ package cn.bdqn.controller;
 
 
 import cn.bdqn.entity.Attendence;
+import cn.bdqn.entity.Classes;
+import cn.bdqn.entity.SchedulesType;
 import cn.bdqn.service.AttendenceService;
+import cn.bdqn.service.ClassesService;
+import cn.bdqn.service.SchedulestypeService;
 import cn.bdqn.vo.ClassAttendanceCardInfoVO;
 import cn.bdqn.vo.ClassAttendanceDetailInfoVO;
 import cn.bdqn.vo.ToStudentAttendancePageVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,34 @@ import java.util.Map;
 public class AttendanceController {
     @Autowired
     AttendenceService attendenceService;
+    @Autowired
+    ClassesService classesService;
+    @Autowired
+    SchedulestypeService schedulestypeService;
+
+
+    //获取所有班级类型
+    @RequestMapping("/getAllWorkType")
+    public List<SchedulesType> typeList(){
+        return schedulestypeService.list();
+    }
+
+    //获取所有班级
+    @RequestMapping("/getAllClasses")
+    public Map<String,Object> getAllClasses(){
+        Map<String,Object>map=new HashMap<>();
+        try{
+            List<Classes> classesList=classesService.getAllClasses();
+            map.put("data",classesList);
+            map.put("msg","success");
+            map.put("code","200");
+        }catch (Exception e){
+            e.printStackTrace();
+            map.put("msg","error");
+            map.put("code","500");
+        }
+        return map;
+    }
 
 
 
