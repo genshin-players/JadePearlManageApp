@@ -32,7 +32,6 @@ public class DisplayController {
 
     @RequestMapping("getPushEveryFuckingDayList")
     public Map<String, Object> getPushEveryFuckingDayList(@RequestParam(required = false,defaultValue = "") String title){
-        System.out.println("sssss");
         LambdaQueryWrapper<Display> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(Display::getDisplayTypeId,2);
         lambdaQueryWrapper.like(Display::getTitle,"%"+title+"%");
@@ -74,6 +73,21 @@ public class DisplayController {
         if (b){
             map.put("code", 200);
             map.put("msg", "success");
+        }else {
+            map.put("code", 500);
+            map.put("msg", "error");
+        }
+        return map;
+    }
+
+    @RequestMapping("getDisplayById")
+    public Map<String, Object> getDisplayById(@RequestParam(value = "id") Integer id){
+        Display display = displayService.getById(id);
+        Map<String,Object> map = new HashMap<>();
+        if (display!=null){
+            map.put("code", 200);
+            map.put("msg", "success");
+            map.put("data",display);
         }else {
             map.put("code", 500);
             map.put("msg", "error");

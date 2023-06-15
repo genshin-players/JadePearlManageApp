@@ -48,18 +48,15 @@
                                 <span class="text-white fw-bolder" style="font-size: 18px">工作人员:</span>
                             </div>
                             <div class="col-lg-10">
-                                <#if member=="sb">
+                                <#if memName=="sb">
                                     <select class="multi-select" name="members" multiple="multiple" onchange="checkThis()">
-                                        <#list memberList as m>
-                                            <#assign json=m.identityInfo?eval/>
-                                            <option value="${m.id}">${json.realname}</option>
-                                        </#list>
-
+                                        <option value="1" <#if memName=="亚托克斯">selected</#if>>亚托克斯</option>
+                                        <option value="2" <#if memName=="暮光星灵">selected</#if>>暮光星灵</option>
+                                        <option value="3" <#if memName=="诺克萨斯之手">selected</#if>>诺克萨斯之手</option>
+                                        <option value="4" <#if memName=="佛耶戈">selected</#if>>佛耶戈</option>
                                     </select>
                                 <#else>
-                                    <#assign json=member.identityInfo?eval/>
-                                    <span class="text text-primary" style="font-weight: bolder" >${json.realname}</span>
-                                    <input type="hidden" name="memId" value="${member.id}">
+                                    <span class="text text-primary" style="font-weight: bolder" >${memName}</span>
                                 </#if>
 
                             </div>
@@ -73,7 +70,7 @@
                                 <span class="text-white fw-bolder" style="font-size: 18px">工作时间:</span>
                             </div>
                             <div class="col-lg-4">
-                                <input type="text" class="form-control mdate" placeholder="选择日期"  style="height: 35px" name="workTime" onchange="checkTime()">
+                                <input type="text" class="form-control" placeholder="2017-06-04" id="mdate" style="height: 35px" name="workTime" onchange="checkTime()">
                             </div>
                             <div class="col-lg-4">
 
@@ -88,10 +85,11 @@
                             </div>
                             <div class="col-lg-4">
                                 <select class="single-select-placeholder js-states" name="workType" onchange="checkWorkType()">
-                                    <option value="0">请选择工作内容</option>
-                                    <#list workTypeList as type>
-                                        <option value="${type.id}">${type.name}</option>
-                                    </#list>
+                                    <option value="0">请选择</option>
+                                    <option value="1">查班</option>
+                                    <option value="2">站岗</option>
+                                    <option value="3">举办活动</option>
+                                    <option value="4">扫地</option>
                                 </select>
                             </div>
                         </div>
@@ -104,9 +102,10 @@
                                 </div>
                                 <div class="col-lg-10">
                                     <select class="multi-select" name="classId" multiple="multiple" >
-                                    <#list classesList.data as c>
-                                        <option value="${c.id}">${c.name}</option>
-                                    </#list>
+                                    <option value="1">小灯班</option>
+                                    <option value="2">中灯班</option>
+                                    <option value="3">大灯班</option>
+                                    <option value="4">老灯班</option>
                                     </select>
                                 </div>
                                 <br>
@@ -120,7 +119,7 @@
 
                                     </div>
                                     <div class="col-lg-4" align="center">
-                                        <button class="btn btn-outline-secondary" onclick="submitWork()">提交</button>
+                                        <button class="btn btn-outline-secondary">提交</button>
                                     </div>
 
 
@@ -257,71 +256,6 @@
         }else {
             $(".classChoose").css("display","none");
         }
-    }
-
-    //提交按钮点击事件
-    function submitWork() {
-        var member_id=$("[name=memId]").val();
-        var workTime=$("[name=workTime]").val();
-        var workType=$("[name=workType]").val();
-        var classId=$("[name=classId]").val();
-
-        if(member_id==null){
-            alert("工作人员不得为空");
-        }else if(workTime==null){
-            alert("工作日期不得为空");
-        }else if(workType==null||workType==0){
-            alert("工作类型不得为空");
-        }else {
-            if(workType==1&&classId.length>0){
-
-                $.ajax({
-                    type:"post",
-                    url:"http://localhost:8003/assignOneWork",
-                    dataType:"json",
-                    data:{
-                        memberId:member_id,
-                        date:workTime,
-                        workTypeId:workType,
-                        classIdArray:classId,
-                        createUserId:1
-                    },
-                    success:function(res) {
-                        console.log(res);
-                        if(res.data >0){
-                            window.location.href="/toMemberWorkDetailInfo?memberId="+member_id;
-                        }else {
-                            alert("添加失败");
-                        }
-                    }
-                });
-
-            }else if(workType==1&&classId.length<=0){
-                alert("社员负责班级不得为空");
-            }else {
-                $.ajax({
-                    type:"post",
-                    url:"http://localhost:8003/assignOneWork",
-                    dataType:"json",
-                    data:{
-                        memberId:member_id,
-                        date:workTime,
-                        workTypeId:workType,
-                        createUserId:1
-                    },
-                    success:function(res) {
-                        console.log(res);
-                        if(res.data >0){
-                            window.location.href="/toMemberWorkDetailInfo?memberId="+member_id;
-                        }else {
-                            alert("添加失败");
-                        }
-                    }
-                });
-            }
-        }
-
-
     }
 </script>
 

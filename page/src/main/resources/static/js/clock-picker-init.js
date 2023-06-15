@@ -2,12 +2,12 @@
     "use strict"
 
     // Clock pickers
-    var input = $('#startTimeHMS').clockpicker({
+/*    var input = $('#startTimeHMS').clockpicker({
         placement: 'bottom',
         align: 'left',
         autoclose: true,
         'default': 'now'
-    });
+    });*/
 
     $('.clockpicker').clockpicker({
         donetext: 'Done',
@@ -16,8 +16,8 @@
     });
 
     $('.check-minutes').click(function (e) {
-        // Have to stop propagation here
         e.stopPropagation();
+        var input = $(this).closest('.input-group').find('input');
         input.clockpicker('show').clockpicker('toggleView', 'minutes');
     });
 

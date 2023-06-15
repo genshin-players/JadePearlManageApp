@@ -33,10 +33,12 @@ public class DisplayController {
         return "display/daily_info";
     }
     @RequestMapping("/inner_activities")
-    public String toInnerActivities(Model model) {
-        List<ActivitiesDTO> activitiesList = activatesClient.getActivitiesList();
-        for (ActivitiesDTO activitiesDTO:activitiesList){
-            System.out.println(activitiesDTO.getDisplay().getTitle());
+    public String toInnerActivities(@RequestParam(required = false,defaultValue = "") String title,Model model) {
+        List<ActivitiesDTO> activitiesList = null;
+        if (title == null|| "".equals(title)){
+            activitiesList = activatesClient.getActivitiesList();
+        }else {
+            activitiesList = activatesClient.activitiesListByTitle(title).getData();
         }
         model.addAttribute("activitiesList",activitiesList);
         return "display/inner_activities";
@@ -79,7 +81,12 @@ public class DisplayController {
     }
 
     @RequestMapping("/edit_activities")
-    public String toEditorActivites(Model model){
+    public String toEditorActivities(@RequestParam(required = false) String id, Model model){
+        //System.out.println(id);
+        if (id!=null){
+            ResultVO<ActivitiesDTO> activitiesById = activatesClient.getActivitiesById(Integer.parseInt(id));
+            model.addAttribute("activities",activitiesById.getData());
+        }
         return "display/edit_activities";
     }
 
@@ -88,6 +95,14 @@ public class DisplayController {
     public Map<String, Object> deleteDisplayById(@RequestParam(value = "id") Integer id){
         return displayClient.deleteDisplay(id);
     }
+
+/*
+    @RequestMapping("getDisplayById")
+    public DisplayDTO getDisplayById(@RequestParam(value = "id") Integer id){
+        ResultVO<DisplayDTO> displayById = displayClient.getDisplayById(id);
+        return displayById.getData();
+    }
+*/
 
 
     @RequestMapping("deleteActivitiesById")

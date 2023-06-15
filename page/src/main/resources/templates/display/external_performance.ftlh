@@ -78,7 +78,7 @@
                                                     </svg>
                                                 </a>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="javascript:void(0);">编辑</a>
+                                                    <a class="dropdown-item" href="javascript:toEditor(${displayDTO.id});">编辑</a>
                                                     <a class="dropdown-item" href="javascript:deleteDisplay(${displayDTO.id});">删除</a>
                                                 </div>
                                             </div>
@@ -129,6 +129,10 @@
 ***********************************-->
 
 <script>
+    function toEditor(id){
+        let str = "id="+id;
+        window.location.href = "/display/editor?type=每日一推&"+str;
+    }
     function deleteDisplay(id){
         if (confirm("确定要删除吗")){
             $.ajax({

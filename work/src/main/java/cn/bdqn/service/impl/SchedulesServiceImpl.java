@@ -37,8 +37,6 @@ public class SchedulesServiceImpl extends ServiceImpl<SchedulesMapper, Schedules
     ClassesMapper classesMapper;
     @Autowired
     ClassMapper classMapper;
-    @Autowired
-    WorkClassMapper workClassMapper;
 
 
     /**
@@ -59,13 +57,6 @@ public class SchedulesServiceImpl extends ServiceImpl<SchedulesMapper, Schedules
             for(Schedules s:schedules){
                 MemberWorkCardInfoVO vo=new MemberWorkCardInfoVO();
                 vo.setSchedules(s);
-
-                //判断工作类型如果为1查班 查询负责班级
-                if(s.getWorkTypeId()==1){
-                    List<WorkClass> workClasses=workClassMapper.selectList(new QueryWrapper<WorkClass>().eq("schedules_id",s.getId()));
-                    vo.setWorkClasses(workClasses);
-                }
-
                 //获取成员
                 Users users= usersMapper.selectById(s.getMemberId());
                 vo.setMember(users);
@@ -88,7 +79,7 @@ public class SchedulesServiceImpl extends ServiceImpl<SchedulesMapper, Schedules
 
 
 
-        return voList;
+        return null;
     }
 
 
@@ -108,14 +99,6 @@ public class SchedulesServiceImpl extends ServiceImpl<SchedulesMapper, Schedules
         if(schedules!=null&&schedules.size()>0){
             for (Schedules s:schedules){
                 MemberWorkDetailInfoVO vo=new MemberWorkDetailInfoVO();
-
-                //判断工作类型如果为1查班 查询负责班级
-                if(s.getWorkTypeId()==1){
-                    List<WorkClass> workClasses=workClassMapper.selectList(new QueryWrapper<WorkClass>().eq("schedules_id",s.getId()));
-                    vo.setWorkClasses(workClasses);
-                }
-
-
                 //获取学社成员
                 Users member=usersMapper.selectById(s.getMemberId());
                 vo.setMember(member);

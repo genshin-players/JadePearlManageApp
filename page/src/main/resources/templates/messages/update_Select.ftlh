@@ -1,6 +1,4 @@
 <#include "../header.ftlh">
-
-
 <!--**********************************
             Content body start
         ***********************************-->
@@ -23,7 +21,7 @@
                                         </label>
                                         <div class="col-lg-6">
 
-                                            <input type="text" value="<#--${usersById.username}-->" class="form-control" id="validationCustom06" placeholder="" required="">
+                                            <input type="text" value="${usersById.username}" class="form-control" id="validationCustom06" placeholder="" required="">
                                             <div class="invalid-feedback">
                                                 Please enter a Currency.
                                             </div>
@@ -34,7 +32,7 @@
                                             <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" value="898005422@qq.com" class="form-control" id="validationCustom07" placeholder="" required="">
+                                            <input type="text" value="${usersById.password}" class="form-control" id="validationCustom07" placeholder="" required="">
                                             <div class="invalid-feedback">
                                                 Please enter a url.
                                             </div>
@@ -50,6 +48,7 @@
                                                 Please enter a url.
                                             </div>
                                         </div>
+
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-lg-4 col-form-label" for="validationCustom05">性别
@@ -94,8 +93,6 @@
 <!--**********************************
     Content body end
 ***********************************-->
-
-
 <!--**********************************
     Footer start
 ***********************************-->

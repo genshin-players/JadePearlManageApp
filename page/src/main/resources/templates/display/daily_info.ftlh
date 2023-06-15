@@ -47,12 +47,12 @@
                                         </td>
                                         <td>
                                             <div class="media-bx">
-                                                <h4 class="mb-0 mt-1 text-black">${displayDTO.id}</h4>
+                                                <h4 id="id" class="mb-0 mt-1 text-black">${displayDTO.id}</h4>
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                <h4 class="mb-0 mt-1 text-black">${displayDTO.title}</h4>
+                                                <h4 id="title" class="mb-0 mt-1 text-black">${displayDTO.title}</h4>
                                             </div>
                                         </td>
                                         <td>
@@ -78,7 +78,7 @@
                                                     </svg>
                                                 </a>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="javascript:void(0);">编辑</a>
+                                                    <a class="dropdown-item" href="javascript:toEditor(${displayDTO.id});">编辑</a>
                                                     <a class="dropdown-item" href="javascript:deleteDisplay(${displayDTO.id});">删除</a>
                                                 </div>
                                             </div>
@@ -125,6 +125,10 @@
 
 </div>
 <script>
+    function toEditor(id){
+        let str = "id="+id;
+        window.location.href = "/display/editor?type=每日一推&"+str;
+    }
     function deleteDisplay(id){
         if (confirm("确定要删除吗")){
             $.ajax({
