@@ -1,8 +1,6 @@
 package cn.bdqn.client;
 
 import cn.bdqn.entity.Attendence;
-import cn.bdqn.entity.Classes;
-import cn.bdqn.entity.SchedulesType;
 import cn.bdqn.vo.workvo.*;
 import cn.bdqn.vo.ResultVO;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -60,14 +58,5 @@ public interface WorkClient {
     //学社成员出勤详情
     @GetMapping("/toMemberWorkDetailInfo")
     public ResultVO<List<MemberWorkDetailInfoVO>> getMemberWorkDetailInfo(@RequestParam("memberId") Integer memberId);
-
-
-
-    //获取所有班级
-    @RequestMapping("/getAllClasses")
-    public ResultVO<List<Classes>> getAllClasses();
-
-    @RequestMapping("/getAllWorkType")
-    public List<SchedulesType> typeList();
 
 }

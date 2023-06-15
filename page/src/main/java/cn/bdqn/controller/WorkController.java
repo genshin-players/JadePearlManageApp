@@ -1,6 +1,5 @@
 package cn.bdqn.controller;
 
-import cn.bdqn.client.UserClient;
 import cn.bdqn.client.WorkClient;
 import cn.bdqn.entity.Attendence;
 import cn.bdqn.entity.Users;
@@ -25,8 +24,6 @@ import java.util.*;
 public class WorkController {
     @Autowired
     WorkClient workClient;
-    @Autowired
-    UserClient userClient;
 
     //学生出勤页面请求
     @RequestMapping("/toStuAttendance")
@@ -183,20 +180,13 @@ public class WorkController {
     public String toEditStudentAttendance(){
         return "work/editStudentAttendance";
     }
-
-
-
     //安排工作页面
     @RequestMapping("/toAssignWork")
-    public String toAssignOneWork(@RequestParam(required = false) Integer memId, Model model){
-        if(memId!=null){
-            int id=memId;
-            Users users = userClient.selectUsersById(id);
-            model.addAttribute("member",users);
-            model.addAttribute("classesList",workClient.getAllClasses());
-            model.addAttribute("workTypeList",workClient.typeList());
+    public String toAssignOneWork(@RequestParam(required = false) String memName, Model model){
+        if(memName!=null){
+            model.addAttribute("memName", memName);
         }else {
-            model.addAttribute("member", "sb");
+            model.addAttribute("memName", "sb");
         }
         return "work/assignWork";
     }
@@ -225,7 +215,6 @@ public class WorkController {
         ResultVO<List<MemberWorkCardInfoVO>> resultVO = workClient.getMemberWorkCardInfo(workDate);
         model.addAttribute("resultVO",resultVO);
         model.addAttribute("pageDate",workDate);
-        model.addAttribute("classesList",workClient.getAllClasses());
         //System.out.println(resultVO.getData().get(0).getCreateUser().toString());
         return "work/MembersAttendance";
     }
@@ -240,7 +229,6 @@ public class WorkController {
         model.addAttribute("member",resultVO.getData().get(0).getMember());
         model.addAttribute("adviser",resultVO.getData().get(0).getAdviser());
         model.addAttribute("classes",resultVO.getData().get(0).getClasses());
-        model.addAttribute("classesList",workClient.getAllClasses());
         return "work/MembersAttendanceDetail";
     }
 }
