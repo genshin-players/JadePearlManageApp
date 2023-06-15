@@ -78,12 +78,10 @@ public class UserController {
     }
 
     /*ly所需接口*/
-    @RequestMapping("/user/selectUsersById")
+    @RequestMapping("getUsersById")
     public String selectUsersById(Integer id,Model model){
         Users users = userClient.selectUsersById(id);
-        System.out.println(users.getId()+"今天天气真好");
-        model.addAttribute("usersById",users);
-        System.out.println(users.getUsername()+"hhhhhhhhhhhhhhhhhhhh");
+//        model.addAttribute("usersById",users);
         return "messages/update_Select";
     }
 
