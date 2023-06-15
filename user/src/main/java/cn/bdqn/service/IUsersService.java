@@ -3,6 +3,7 @@ package cn.bdqn.service;
 import cn.bdqn.entity.Users;
 import cn.bdqn.entity.Users;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ import java.util.List;
  * @since 2023-06-11
  */
 public interface IUsersService extends IService<Users> {
+
+    Users showUserById(Integer id);
 
 
 

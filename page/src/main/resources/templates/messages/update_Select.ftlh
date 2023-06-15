@@ -1,10 +1,8 @@
 <#include "../header.ftlh">
-
-
 <!--**********************************
             Content body start
         ***********************************-->
-<div class="content-body" xmlns:c="http://www.w3.org/1999/html">
+<div class="content-body">
     <div class="container-fluid">
         <!-- row -->
         <div class="row">
@@ -16,9 +14,6 @@
                     <div class="card-body">
                         <div class="form-validation">
                             <form class="needs-validation" novalidate="">
-                                <#list  usersById as usersById>
-
-
                                 <div class="row">
                                     <div class="mb-3 row">
                                         <label class="col-lg-4 col-form-label" for="validationCustom06">姓名
@@ -26,7 +21,7 @@
                                         </label>
                                         <div class="col-lg-6">
 
-                                            <input type="text" value="" class="form-control" id="validationCustom06" placeholder="" required="">
+                                            <input type="text" value="${usersById.username}" class="form-control" id="validationCustom06" placeholder="" required="">
                                             <div class="invalid-feedback">
                                                 Please enter a Currency.
                                             </div>
@@ -37,7 +32,7 @@
                                             <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" value="898005422@qq.com" class="form-control" id="validationCustom07" placeholder="" required="">
+                                            <input type="text" value="${usersById.password}" class="form-control" id="validationCustom07" placeholder="" required="">
                                             <div class="invalid-feedback">
                                                 Please enter a url.
                                             </div>
@@ -53,6 +48,7 @@
                                                 Please enter a url.
                                             </div>
                                         </div>
+
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-lg-4 col-form-label" for="validationCustom05">性别
@@ -86,10 +82,7 @@
                                         </div>
                                     </div>
                                 </div>
-                        </div>
-                        </#list>
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -100,8 +93,6 @@
 <!--**********************************
     Content body end
 ***********************************-->
-
-
 <!--**********************************
     Footer start
 ***********************************-->
@@ -132,13 +123,11 @@
     Scripts
 ***********************************-->
 <!-- Required vendors -->
-<script src="js/global.min.js"></script>
-
-<script src="js/jquery.nice-select.min.js"></script>
-
-<script src="js/custom.min.js"></script>
-<script src="js/deznav-init.js"></script>
-<script src="js/demo.js"></script>
-<script src="js/styleSwitcher.js"></script>
+<script src="/js/global.min.js"></script>
+<script src="/js/jquery.nice-select.min.js"></script>
+<script src="/js/custom.min.js"></script>
+<script src="/js/deznav-init.js"></script>
+<script src="/js/demo.js"></script>
+<script src="/js/styleSwitcher.js"></script>
 </body>
 </html>

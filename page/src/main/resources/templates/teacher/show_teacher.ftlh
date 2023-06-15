@@ -52,7 +52,7 @@
                                         </td>
                                         <td>
                                             <div class="media-bx">
-                                                <h4 class="mb-0 mt-1 text-black">${user.username}</h4>
+                                                <h4 class="mb-0 mt-1 text-black" va>${user.username}</h4>
                                             </div>
                                         </td>
                                         <td>
@@ -93,15 +93,13 @@
                                                     </svg>
                                                 </a>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="/update_addteacher">修改</a>
+                                                    <a class="dropdown-item" href="/user/showUser_ById?id=${user.id}">修改</a>
                                                     <a class="dropdown-item" href="/user/deleteTeacher?id=${user.id}">删除</a>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
                                 </#list>
-
-
                                 </tbody>
                             </table>
                         </div>

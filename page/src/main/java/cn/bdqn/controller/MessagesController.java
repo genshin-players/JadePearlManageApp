@@ -3,6 +3,7 @@ package cn.bdqn.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @CrossOrigin
@@ -29,8 +30,8 @@ public class MessagesController {
     //去往个人信息/查看个人详情页面
 
     @RequestMapping("Select")
-    public String Select(){
-        return "messages/update_Select";
+    public String Select(@RequestParam(defaultValue = "1") String id){
+        return "redirect:/user/getUsersById?id="+id;
     }
     //去往个人信息/头像照片
     @RequestMapping("Images")

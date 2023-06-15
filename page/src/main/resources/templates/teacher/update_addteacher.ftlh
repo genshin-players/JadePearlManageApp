@@ -15,6 +15,7 @@
                     </div>
                     <div class="card-body">
                         <div class="form-validation">
+
                             <form class="needs-validation" novalidate="">
                                 <div class="row">
                                     <div class="mb-3 row">
@@ -22,18 +23,20 @@
                                             <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" id="validationCustom06" placeholder="输入姓名" required="" name="username">
-                                            <div class="invalid-feedback">
+                                            <input type="text" class="form-control" id="validationCustom06" placeholder="输入姓名" required="" name="username" value="${users.username}">
+                                            <div class="invalid-feedback">usersById
                                                 Please enter a Currency.
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="mb-3 row">
                                         <label class="col-lg-4 col-form-label" for="validationCustom06">姓名
                                             <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" id="validationCustom06" placeholder="输入姓名" required="" name="realname">
+                                            <#assign json=users.identityInfo?eval/>
+                                            <input type="text" class="form-control" id="validationCustom06" placeholder="输入姓名" required="" name="realname" value="${json.realname}"/>
                                             <div class="invalid-feedback">
                                                 Please enter a Currency.
                                             </div>
@@ -44,7 +47,7 @@
                                             <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" id="validationCustom07" placeholder="输入年龄" required="" name="age">
+                                            <input type="text" class="form-control" id="validationCustom07" placeholder="输入年龄" required="" name="age"  value="${json.age}">
                                             <div class="invalid-feedback">
                                                 Please enter a url.
                                             </div>
@@ -56,7 +59,7 @@
                                             <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <select class="default-select wide form-control" id="validationCustom05" name="gender" >
+                                            <select class="default-select wide form-control" id="validationCustom05" name="gender"  value="${json.gender}">
                                                 <option data-display="男" value="男">男</option>
                                                 <option value="女" >女</option>
                                             </select>
@@ -65,36 +68,40 @@
                                             </div>
                                         </div>
                                     </div>
-                                        <div class="mb-3 row">
-                                            <label class="col-lg-4 col-form-label" for="validationCustom09">联系方式 <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="validationCustom09" placeholder="输入老师方式（电话号）" required="" name="phone">
-                                                <div class="invalid-feedback">
-                                                    Please enter a digits.
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     <div class="mb-3 row">
-                                        <label class="col-lg-4 col-form-label" for="validationCustom09">身份证号码 <span class="text-danger">*</span>
+                                        <label class="col-lg-4 col-form-label" for="validationCustom09">联系方式 <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" id="validationCustom09" placeholder="输入老师方式（电话号）" required="" name="identity" >
+                                            <input type="text" class="form-control" id="validationCustom09" placeholder="输入老师方式（电话号）" required="" name="phone"  value="${json.phone}">
                                             <div class="invalid-feedback">
                                                 Please enter a digits.
                                             </div>
                                         </div>
                                     </div>
 
-                                        <div class="mb-3 row">
-                                            <div class="col-lg-8 ms-auto">
-                                                <button type="submit" class="btn btn-primary" onclick="submitEdit()">提交</button>
+                                    <div class="mb-3 row">
+                                        <label class="col-lg-4 col-form-label" for="validationCustom09">身份证号码 <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" id="validationCustom09" placeholder="输入老师方式（电话号）" required="" name="identity"  value="${json.identity}">
+                                            <div class="invalid-feedback">
+                                                Please enter a digits.
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="mb-3 row">
+                                        <div class="col-lg-8 ms-auto">
+                                            <input type="hidden" name="id" value="${users.id}" id="idid">
+                                            <button type="submit" class="btn btn-primary" onclick="submitEdit()">提交</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </form>
+                        </div>
+
+                        </form>
+
+
                         </div>
                     </div>
                 </div>
@@ -139,22 +146,24 @@
 <!-- Required vendors -->
 <script src="js/global.min.js"></script>
 
-<script src="js/jquery.nice-select.min.js"></script>
+<script src="/js/global.min.js"></script>
+<script src="/js/jquery.nice-select.min.js"></script>
 
-<script src="js/custom.min.js"></script>
-<script src="js/deznav-init.js"></script>
-<script src="js/demo.js"></script>
-<script src="js/styleSwitcher.js"></script>
+<!-- Datatable -->
+<script src="/js/jquery.dataTables.min.js"></script>
+<script src="/js/datatables.init.js"></script>
+
+<script src="/js/custom.min.js"></script>
+<script src="/js/deznav-init.js"></script>
+<script src="/js/demo.js"></script>
+<script src="/js/styleSwitcher.js"></script>
 
 
 <script>
-    $(function () {
 
-
-    });
 
     function submitEdit() {
-        alert("添加")
+
 
         var addTusername=$("[name=username]").val();
         var addTrealname=$("[name=realname]").val();
@@ -166,7 +175,7 @@
 
         $.ajax({
             type:"post",
-            url:"http://localhost:8003/user/add_user",
+            url:"http://localhost:8003/user/add_Tuser",
             data:{
                 "username":addTusername,
                 "realname":addTrealname,

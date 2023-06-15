@@ -1,12 +1,17 @@
 package cn.bdqn.controller;
 
 
+
+import cn.bdqn.entity.Classes;
 import cn.bdqn.entity.Users;
+import cn.bdqn.service.IClassesService;
+import cn.bdqn.service.IStudentClassService;
 import cn.bdqn.service.IUsersService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.additional.update.impl.UpdateChainWrapper;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +38,12 @@ public class UsersController {
     @Autowired
     private IUsersService usersService;
 
+    @Autowired
+    private IStudentClassService studentClassService;
+
+    @Autowired
+    private IClassesService classesService;
+
     @ResponseBody
     @RequestMapping("showTeacher")
     private  List<Users> showTeacher(){
@@ -40,7 +51,8 @@ public class UsersController {
         wrapper.eq("role_id",3);
         //Map<String,Object> map = new HashMap<>();
         List<Users> list = usersService.list(wrapper);
-        System.out.println(list);
+
+
         return list;
     }
 
@@ -74,7 +86,7 @@ public class UsersController {
 
     @ResponseBody
     @RequestMapping("addUser")
-    private Map<String,Object> addUser( Users users){
+    private Map<String,Object> addUser(@RequestBody  Users users){
         Map<String,Object>map=new HashMap<>();
         boolean b = usersService.save(users);
         if (b){
@@ -88,6 +100,51 @@ public class UsersController {
         return map;
 
     }
+
+    //查询所有的班级
+    @ResponseBody
+    @RequestMapping("showClass")
+    private List<Classes> showClass(){
+        Map<String,Object>map=new HashMap<>();
+        List<Classes> list = classesService.list();
+        return list;
+    }
+
+
+    @ResponseBody
+    @RequestMapping("updateUser")
+    private Map<String,Object> updateUser(@RequestBody  Users users){
+        Map<String,Object>map=new HashMap<>();
+        boolean b = usersService.updateById(users);
+        if (b){
+            map.put("data",b);
+            map.put("msg","success");
+            map.put("code","200");
+        }else {
+            map.put("msg","error");
+            map.put("code","500");
+        }
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("showUserById")
+    private Users showUserById(Integer id){
+
+        Users users = usersService.showUserById(id);
+        return users;
+
+    }
+
+
+
+
+
+
+
+
+
+
 
 
     /*ly所需接口*/
@@ -106,6 +163,7 @@ public class UsersController {
         }
         return map;
     }
+
 
 
 
