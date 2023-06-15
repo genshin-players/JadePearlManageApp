@@ -93,18 +93,8 @@ public class UsersController {
     /*ly所需接口*/
     @ResponseBody
     @RequestMapping("selectUsersById")
-    private  Map<String,Object> selectUsersById(Integer id){
-        Map<String,Object>map=new HashMap<>();
-        Users byId = usersService.getById(id);
-        if (byId!=null){
-            map.put("data",byId);
-            map.put("msg","success");
-            map.put("code","200");
-        }else {
-            map.put("msg","error");
-            map.put("code","500");
-        }
-        return map;
+    private Users selectUsersById(Integer id){
+        return usersService.getById(id);
     }
 
 
